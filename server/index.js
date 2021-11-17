@@ -4,6 +4,7 @@ const cors=require('cors');
 const http=require('http');
 const { Server }=require('socket.io');
 const mongoose=require('mongoose');
+const assert=require('assert');
 require('dotenv').config();
 
 app.use(cors);
@@ -13,7 +14,7 @@ const SignUpObject=require('./Modals/SignUpModal');
 
 const io=new Server(server,{
     cors:{
-        origin:'http://localhost:4500',
+        origin:'http://localhost:3000',
         methods:['GET','POST']
     }
 });
@@ -32,20 +33,17 @@ io.on("connection",(socket)=>{
     
     socket.on('signUpSubmit',(object)=>{
         let Modal=new SignUpObject({
-            Username:object.Username,
-            Email:object.Email,
-            Password:object.Password
+            Username:object.username,
+            Email:object.email,
+            Password:object.password
         })
         SignUpObject.findOne({"Email":Modal.Email})
         .then((data)=>{
-            if(data.Email===Modal.Email){
-                console.log("User Already Exists for the corresponding Email.");
+            if(data!==null){
+                console.log('User Already Exists for the corresponding Email.');
             }
             else{
-                Modal.save()
-                .then(()=>{
-                    console.log("User Registered Successfully.");
-                });
+                Modal.save();
             }
         })
     })
@@ -56,7 +54,7 @@ io.on("connection",(socket)=>{
 
 });
 
-server.listen(3000,()=>{
+server.listen(3001,()=>{
     console.log("Backend Server Listening.");
 });
 
