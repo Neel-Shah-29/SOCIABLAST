@@ -16,6 +16,7 @@ const Login = () => {
             password: password,
             username: username
         }
+        setAllEntry([...allEntry,newEntry]);
         socket.emit("signUpSubmit", newEntry);
     }
     return (
