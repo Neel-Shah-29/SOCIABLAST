@@ -15,8 +15,12 @@ const Login = () => {
             password: password,
             username: username
         }
+<<<<<<< HEAD
         setAllEntry([...allEntry, newEntry]);
         console.log(allEntry);
+=======
+        setAllEntry([...allEntry,newEntry]);
+>>>>>>> fb6425faed3e27aa82187e5ac523ccc1e95ca3b2
         socket.emit("signUpSubmit", newEntry);
     }
     

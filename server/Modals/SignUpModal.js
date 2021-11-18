@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const bcrypt=require("bcrypt");
+const Cryptr=require('cryptr');
 const Schema =mongoose.Schema;
 
 const SignUp=new Schema({
@@ -19,8 +19,8 @@ const SignUp=new Schema({
 
 SignUp.pre('save',async function(next){
     try{
-        const salt=await bcrypt.genSalt(10);
-        const HashedPassword=await bcrypt.hash(this.Password,salt);
+        cryptr=new Cryptr('Sociablasts');
+        let HashedPassword=cryptr.encrypt(this.Password);
         this.Password=HashedPassword;
         next();
     }
