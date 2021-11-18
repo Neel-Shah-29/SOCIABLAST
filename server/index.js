@@ -4,8 +4,7 @@ const cors=require('cors');
 const http=require('http');
 const { Server }=require('socket.io');
 const mongoose=require('mongoose');
-const Cryptr=require('cryptr');
-const cryptr=new Cryptr('SecretString');
+const {encrypt,decrypt}=require('./cryptionHandler');
 require('dotenv').config();
 
 app.use(cors);
@@ -53,13 +52,16 @@ io.on("connection",(socket)=>{
     socket.on('loginSubmit',(object)=>{
         SignUpObject.findOne({Username:object.Username,Email:object.Email})
         .then((data)=>{
-            console.log(data);
             if(data===null){
                 console.log('Invalid USERNAME or EMAIL.');
             }
             else{
-                const HashedPassword=cryptr.decrypt(data.Password);
-                if(HashedPassword===object.Password){
+                const obj={
+                    iv:data.iv,
+                    password:data.Password
+                }
+                const savedPassword=decrypt(obj);
+                if(savedPassword===object.Password){
                     console.log('Logged in successfully.');
                 }
                 else{
