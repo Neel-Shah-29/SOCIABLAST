@@ -3,31 +3,25 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3001");
 
-const Login = () => {
+const SignUp = () => {
     const [username, setUserame] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [allEntry, setAllEntry] = useState([]);
 
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
-            
+            email: email,
             password: password,
             username: username
         }
-        setAllEntry([...allEntry, newEntry]);
-        console.log(allEntry);
         socket.emit("signUpSubmit", newEntry);
     }
-    
     return (
-        <div className="login">
-            <h1 className="head">
-                LOGIN
-            </h1>
-            <div className="form">
+        <div className="">
             <form action="" onSubmit={formSubmit}>
-                <div className="username">
+                <div>
                     <label htmlFor='username'>Username:</label>
                     <input
                         type='text'
@@ -40,8 +34,19 @@ const Login = () => {
                         required
                     />
                 </div>
-                
-              
+                <div>
+                    <label htmlFor='email'>Email:</label>
+                    <input
+                        type='email'
+                        name='email'
+                        id='email'
+                        placeholder='Email'
+                        autoComplete='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
                 <div className="password">
                     <label htmlFor='password'>Password:</label>
                     <input
@@ -55,20 +60,15 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button className="button" >Log-in</button>
-                
-                <div>
-                    <a href="SignUp.js" className="newUser">New User? SignUp here!</a>
-                </div>
+                <button >SignUp</button>
             </form>
-            </div>
             <div>
                 {
                     allEntry.map((currentelem) => {
                         return (
                             <div>
                                 <p>
-                                    {currentelem.username} has logged-in successfully!
+                                    {currentelem.username} has signed up successfully!
                                 </p>
                             </div>
                         );
@@ -80,4 +80,4 @@ const Login = () => {
 
 }
 
-export default Login
+export default SignUp

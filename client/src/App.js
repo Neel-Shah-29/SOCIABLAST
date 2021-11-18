@@ -1,8 +1,12 @@
 import './App.css';
 import Login from './Login';
+import Signup from './SignUp';
 function App() {
   return (
-    <div> < Login />  </div>
+    <div> 
+      < Login />  
+      {/* <Signup /> */}
+    </div>
   );
 }
 

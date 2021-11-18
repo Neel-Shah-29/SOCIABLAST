@@ -1,13 +1,55 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+  background-color: rgb(105, 144, 145);
+  color:aliceblue;
+  background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(231, 88, 112));
+}
+.login{
+  text-align: center;
+  margin-left: 35rem;
+  border: 6px solid rgb(42, 193, 231);
+  border-radius: 3%;
+  padding:2px 4px 2px 4px;
+  background-color: black(181, 124, 204);
+  color:aliceblue;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.head{
+  color:aliceblue;
+  
 }
+
+.username{
+  padding:10px;
+  margin:10px;
+}
+
+.username:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+}
+
+.password{
+  padding:10px;
+}
+
+.password:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  transition: ease-in;
+  transition-duration: 1s;
+  padding:10px;
+}
+
+.button{
+  padding:10px;
+  background-color: aliceblue;
+  border:2px solid black;
+  border-radius: 5%;
+}
+.button:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+}
+.newUser{
+  color: aliceblue;
+  padding:20px;
+}
+
+
