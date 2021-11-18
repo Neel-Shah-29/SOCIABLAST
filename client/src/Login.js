@@ -10,6 +10,7 @@ const Login = () => {
     const [email,setEmail]=useState("");
     const [allEntry, setAllEntry] = useState([]);
     const [newUser,setNewUser]=useState(false);
+    const [status,setStatus]=useState('');
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +21,9 @@ const Login = () => {
         }
         setAllEntry([...allEntry, newEntry]);
         socket.emit("loginSubmit", newEntry);
+        socket.on('loginStatus',(data)=>{
+            setStatus(data);
+        })
     }
 
     function opnSignUp(){
@@ -85,7 +89,7 @@ const Login = () => {
                         return (
                             <div>
                                 <p>
-                                    {currentelem.username} has logged-in successfully!
+                                    {status}
                                 </p>
                             </div>
                         );

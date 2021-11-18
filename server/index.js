@@ -50,10 +50,12 @@ io.on("connection",(socket)=>{
     })
     
     socket.on('loginSubmit',(object)=>{
+        let status="";
         SignUpObject.findOne({Username:object.Username,Email:object.Email})
         .then((data)=>{
             if(data===null){
                 console.log('Invalid USERNAME or EMAIL.');
+                status='Invalid USERNAME or EMAIL.';
             }
             else{
                 const obj={
@@ -63,11 +65,14 @@ io.on("connection",(socket)=>{
                 const savedPassword=decrypt(obj);
                 if(savedPassword===object.Password){
                     console.log('Logged in successfully.');
+                    status='Logged in successfully.';
                 }
                 else{
                     console.log('Invalid Password.');
+                    status='Invalid Password.';
                 }
             }
+            socket.emit('loginStatus',status);
         })
     })
 
