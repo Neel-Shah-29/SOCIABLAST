@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SignUp from './SignUp';
 import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3001");
@@ -6,25 +7,27 @@ const socket = io.connect("http://localhost:3001");
 const Login = () => {
     const [username, setUserame] = useState("");
     const [password, setPassword] = useState("");
+    const [email,setEmail]=useState("");
     const [allEntry, setAllEntry] = useState([]);
+    const [newUser,setNewUser]=useState(false);
 
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
-            
-            password: password,
-            username: username
+            Email:email,
+            Password: password,
+            Username: username
         }
-<<<<<<< HEAD
         setAllEntry([...allEntry, newEntry]);
-        console.log(allEntry);
-=======
-        setAllEntry([...allEntry,newEntry]);
->>>>>>> fb6425faed3e27aa82187e5ac523ccc1e95ca3b2
-        socket.emit("signUpSubmit", newEntry);
+        socket.emit("loginSubmit", newEntry);
     }
-    
+
+    function opnSignUp(){
+        setNewUser(true);
+    }
+     
     return (
+        !newUser ? (
         <div className="login">
             <h1 className="head">
                 LOGIN
@@ -44,8 +47,19 @@ const Login = () => {
                         required
                     />
                 </div>
-                
-              
+                <div>
+                    <label htmlFor='email'>Email:</label>
+                    <input
+                        type='email'
+                        name='email'
+                        id='email'
+                        placeholder='Email'
+                        autoComplete='email'
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
                 <div className="password">
                     <label htmlFor='password'>Password:</label>
                     <input
@@ -59,10 +73,9 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button className="button" >Log-in</button>
-                
+                <button className="button" onClick={formSubmit}>Log-in</button>
                 <div>
-                    <a href="SignUp.js" className="newUser">New User? SignUp here!</a>
+                    <button onClick={opnSignUp}>New User? SignUp here!</button>
                 </div>
             </form>
             </div>
@@ -79,7 +92,11 @@ const Login = () => {
                     })
                 }
             </div>
-        </div>
+        </div>):(
+            <div>
+                <SignUp/>
+            </div>
+        )
     );
 
 }

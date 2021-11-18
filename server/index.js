@@ -5,6 +5,7 @@ const http=require('http');
 const { Server }=require('socket.io');
 const mongoose=require('mongoose');
 const Cryptr=require('cryptr');
+const cryptr=new Cryptr('SecretString');
 require('dotenv').config();
 
 app.use(cors);
@@ -48,17 +49,18 @@ io.on("connection",(socket)=>{
             }
         })
     })
-
+    
     socket.on('loginSubmit',(object)=>{
-        SignUpObject.findOne({Username:object.username,Email:object.email})
+        SignUpObject.findOne({Username:object.Username,Email:object.Email})
         .then((data)=>{
+            console.log(data);
             if(data===null){
                 console.log('Invalid USERNAME or EMAIL.');
             }
             else{
-                let savedPassword=cryptr.decrypt(data.Password);
-                if(savedPassword===object.password){
-                    console.log('Logged In Successfully.');
+                const HashedPassword=cryptr.decrypt(data.Password);
+                if(HashedPassword===object.Password){
+                    console.log('Logged in successfully.');
                 }
                 else{
                     console.log('Invalid Password.');
@@ -80,5 +82,4 @@ server.listen(3001,()=>{
 /*
 -Hiding API Keys    :
     Youtube Reference Video :   https://www.youtube.com/watch?v=17UVejOw3zA
-
 */

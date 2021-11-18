@@ -2,6 +2,7 @@ body{
   background-color: rgb(105, 144, 145);
   color:aliceblue;
   background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(231, 88, 112));
+  background-size: cover;
 }
 .login{
   text-align: center;
