@@ -12,6 +12,8 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "cryptr": "^6.0.2",
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
     "nodemon": "^2.0.15",

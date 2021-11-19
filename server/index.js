@@ -4,7 +4,8 @@ const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
 const mongoose = require('mongoose');
-const Roomlist = require('./models/rooms')
+const Roomlist = require('./models/rooms');
+const { encrypt, decrypt } = require('./cryptionHandler');
 app.use(cors());
 
 const server = http.createServer(app);
@@ -25,34 +26,62 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
-    socket.on("create_room", (data) => {
+    socket.on("createroom", (data) => {
         socket.join(data);
-        console.log(`User with ID: ${socket.id} created room: ${data.room}`);
+        console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
         const roomlist = new Roomlist({
-            roomname: data.room,
-            name: data.username,
+            roomname: data.roomname,
             roomcode: data.roomcode,
         })
         Roomlist.findOne({ "roomname": roomlist.roomname })
             .then((data) => {
                 if (data !== null) {
                     console.log('Roomname already exists.');
+                    let check = "Room already exists";
+                    socket.emit("checksameroom", check)
                 }
                 else {
+                    let c = "created  room successfully"
+                    socket.emit("checksameroom", c)
                     roomlist.save()
                 }
             })
     });
 
-    socket.on("join_room", () => {
-        let object = [];
-        Roomlist.find().then((data) => {
-            object = [...object, data];
-            socket.emit("recieve_roomlist", object)
-        })
 
-
-    });
+    // socket.on("join_room", () => {
+    //     let object = [];
+    //     Roomlist.find().then((data) => {
+    //         object = [...object, data];
+    //         socket.emit("recieve_roomlist", object)
+    //     })
+    // });
+    socket.on('roomlogincheck', (object) => {
+        Roomlist.findOne({ roomname: object.roomname })
+            .then((data) => {
+                if (data === null) {
+                    let d = "Invalid roomname";
+                    socket.emit("checkloginjoinroom", d)
+                }
+                else {
+                    const obj = {
+                        iv: data.iv,
+                        roomcode: data.roomcode
+                    }
+                    const savedPassword = decrypt(obj);
+                    if (savedPassword === object.roomcode) {
+                        console.log('Logged in successfully.')
+                        let f = "joined room";
+                        socket.emit("checkloginjoinroom", f)
+                    }
+                    else {
+                        let n = "Invalid Password.";
+                        console.log('Invalid Password.');
+                        socket.emit("checkloginjoinroom", n);
+                    }
+                }
+            })
+    })
     socket.on("send_message", (data) => {
         socket.to(data.room).emit("receive_message", data);
     });
