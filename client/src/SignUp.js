@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import io from "socket.io-client";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const socket = io.connect("http://localhost:3001");
 
@@ -18,12 +19,23 @@ const SignUp = () => {
         }
         socket.emit("signUpSubmit", newEntry);
     }
+    function onChange(value) {
+        console.log("Captcha value:", value);
+      }
+    
     return (
-        <div className="">
+        <div className="signUp">
+            
+            <div className="signupimg">
+                <img src="https://monophy.com/media/MCdu3khUPl7txXxOha/monophy.gif"></img>
+            </div>
+            <div className="Signupdetails">Please enter your following details to SignUp:</div>
+            <div className="form">
             <form action="" onSubmit={formSubmit}>
-                <div>
+                <div className="username">
                     <label htmlFor='username'>Username:</label>
                     <input
+                        className="user"
                         type='text'
                         name='username'
                         id='username'
@@ -34,9 +46,10 @@ const SignUp = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="email">
                     <label htmlFor='email'>Email:</label>
                     <input
+                        className="user"
                         type='email'
                         name='email'
                         id='email'
@@ -50,6 +63,7 @@ const SignUp = () => {
                 <div className="password">
                     <label htmlFor='password'>Password:</label>
                     <input
+                        className="user"
                         type='password'
                         name='password'
                         id='password'
@@ -60,22 +74,17 @@ const SignUp = () => {
                         required
                     />
                 </div>
-                <button >SignUp</button>
+                
+                {/* <ReCAPTCHA
+                    sitekey="Your client site key"
+                    onChange={onChange}
+                />, */}
+                <button className="button" onClick={formSubmit}>Sign-Up!</button>
+                
             </form>
-            <div>
-                {
-                    allEntry.map((currentelem) => {
-                        return (
-                            <div>
-                                <p>
-                                    {currentelem.username} has signed up successfully!
-                                </p>
-                            </div>
-                        );
-                    })
-                }
             </div>
-        </div>
+            </div>
+
     );
 
 }
