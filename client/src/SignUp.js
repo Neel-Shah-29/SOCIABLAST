@@ -74,13 +74,7 @@ const SignUp = () => {
                         required
                     />
                 </div>
-                
-                {/* <ReCAPTCHA
-                    sitekey="Your client site key"
-                    onChange={onChange}
-                />, */}
                 <button className="button" onClick={formSubmit}>Sign-Up!</button>
-                
             </form>
             </div>
             </div>
