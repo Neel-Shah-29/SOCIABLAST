@@ -1,12 +1,16 @@
 body{
   background-color: rgb(105, 144, 145);
   color:aliceblue;
-  background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(231, 88, 112));
+  background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(243, 88, 184));
   background-size: cover;
+  font-family: cursive;
+  height:100%;
 }
+
 .login{
   text-align: center;
-  margin-left: 35rem;
+  margin-left:25%;
+  margin-right:25%;
   border: 6px solid rgb(42, 193, 231);
   border-radius: 3%;
   padding:2px 4px 2px 4px;
@@ -14,9 +18,19 @@ body{
   color:aliceblue;
 }
 
-.head{
+.signUp{
+  text-align: center;
+  margin-left:25%;
+  margin-right:25%;
+  border: 6px solid rgb(42, 193, 231);
+  border-radius: 3%;
+  padding:2px 4px 2px 4px;
+  background-color: black(181, 124, 204);
   color:aliceblue;
-  
+}
+
+.logindetails{
+  font-size: small;
 }
 
 .username{
@@ -24,33 +38,59 @@ body{
   margin:10px;
 }
 
-.username:hover{
+.user{
+  padding: 10px;
+  border:2px solid red;
+  border-radius: 5%;
+}
+
+.user:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border:2px solid black;
+}
+
+.user:focus{
+  border: 2px solid black;
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+
+}
+
+.email{
+  padding:10px;
+  margin:10px;
 }
 
 .password{
   padding:10px;
 }
 
-.password:hover{
-  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
-  transition: ease-in;
-  transition-duration: 1s;
-  padding:10px;
-}
-
 .button{
   padding:10px;
   background-color: aliceblue;
-  border:2px solid black;
+  border:2px solid red;
   border-radius: 5%;
+  font-family: cursive;
 }
+
 .button:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border-radius: 5%;
+  border:2px solid black;
 }
+
 .newUser{
-  color: aliceblue;
-  padding:20px;
+  color: rgb(73, 76, 78);
+  padding:5px;
+  margin-top: 15px;
+  font-family: cursive;
+  border:2px solid red;
+
 }
+
+.newUser:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border:2px solid black;
+}
+
 
 

@@ -36,11 +36,16 @@ const Login = () => {
             <h1 className="head">
                 LOGIN
             </h1>
+            <div className="loginimg">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Mclb0NdAfReSwkqWDtxIh2Oc4vEyPMYzeg&usqp=CAU"></img>
+            </div>
+            <div className="logindetails">Please enter your following details to login:</div>
             <div className="form">
             <form action="" onSubmit={formSubmit}>
                 <div className="username">
                     <label htmlFor='username'>Username:</label>
                     <input
+                        className="user"
                         type='text'
                         name='username'
                         id='username'
@@ -51,9 +56,10 @@ const Login = () => {
                         required
                     />
                 </div>
-                <div>
+                <div className="email">
                     <label htmlFor='email'>Email:</label>
                     <input
+                        className="user"
                         type='email'
                         name='email'
                         id='email'
@@ -67,6 +73,7 @@ const Login = () => {
                 <div className="password">
                     <label htmlFor='password'>Password:</label>
                     <input
+                        className="user"
                         type='password'
                         name='password'
                         id='password'
@@ -78,8 +85,8 @@ const Login = () => {
                     />
                 </div>
                 <button className="button" onClick={formSubmit}>Log-in</button>
-                <div>
-                    <button onClick={opnSignUp}>New User? SignUp here!</button>
+                <div >
+                    <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
                 </div>
             </form>
             </div>
@@ -89,7 +96,7 @@ const Login = () => {
                         return (
                             <div>
                                 <p>
-                                    {status}
+                                    {currentelem.Username} {status}
                                 </p>
                             </div>
                         );
