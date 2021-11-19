@@ -19,9 +19,9 @@ const SignUp = () => {
         }
         socket.emit("signUpSubmit", newEntry);
     }
-    function onChange(value) {
-        console.log("Captcha value:", value);
-      }
+    // function onChange(value) {
+    //     console.log("Captcha value:", value);
+    //   }
     
     return (
         <div className="signUp">

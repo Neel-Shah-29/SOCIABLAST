@@ -5,11 +5,13 @@ import io from "socket.io-client";
 const socket = io.connect("http://localhost:3001");
 
 const Login = () => {
+    
     const [username, setUserame] = useState("");
     const [password, setPassword] = useState("");
     const [email,setEmail]=useState("");
     const [allEntry, setAllEntry] = useState([]);
     const [newUser,setNewUser]=useState(false);
+    const [status,setStatus]=useState("");
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +22,9 @@ const Login = () => {
         }
         setAllEntry([...allEntry, newEntry]);
         socket.emit("loginSubmit", newEntry);
+        socket.on('loginStatus',(data)=>{
+            setStatus(data);
+        })
     }
 
     function opnSignUp(){
@@ -86,17 +91,26 @@ const Login = () => {
                 </div>
             </form>
             </div>
+            
             <div>
+                
                 {
+                    
+                    
                     allEntry.map((currentelem) => {
+                        // if(updtstatus===status){
                         return (
+                            
                             <div>
                                 <p>
-                                    {currentelem.Username} has logged-in successfully!
+                                    {currentelem.Username} {status}
                                 </p>
                             </div>
+                            
                         );
+                        
                     })
+                
                 }
             </div>
         </div>):(

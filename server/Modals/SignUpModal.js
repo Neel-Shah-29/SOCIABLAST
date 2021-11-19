@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const Cryptr=require('cryptr');
+const {encrypt,decrypt}=require('../cryptionHandler');
 const Schema =mongoose.Schema;
 
 const SignUp=new Schema({
@@ -14,14 +14,17 @@ const SignUp=new Schema({
     Password:{
         type:String,
         required:true
+    },
+    iv:{
+        type:String
     }
 });
 
 SignUp.pre('save',async function(next){
     try{
-        cryptr=new Cryptr('Sociablasts');
-        let HashedPassword=cryptr.encrypt(this.Password);
-        this.Password=HashedPassword;
+        const object=await encrypt(this.Password);
+        this.Password=object.password;
+        this.iv=object.iv;
         next();
     }
     catch(error){
