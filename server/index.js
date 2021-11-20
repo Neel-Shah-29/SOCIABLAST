@@ -4,12 +4,14 @@ const cors=require('cors');
 const http=require('http');
 const { Server }=require('socket.io');
 const mongoose=require('mongoose');
+const Roomlist = require('./Modals/rooms');
+const SignUpObject=require('./Modals/SignUpModal');
 const {encrypt,decrypt}=require('./cryptionHandler');
+const { Encrypt, Decrypt } = require('./cryptionHandler1');
 require('dotenv').config();
 
 app.use(cors);
 const server=http.createServer(app);
-const SignUpObject=require('./Modals/SignUpModal');
 
 
 const io=new Server(server,{
@@ -31,6 +33,28 @@ mongoose.connect(url)
 io.on("connection",(socket)=>{
     console.log(`User Connected:${socket.id}`);
     
+    socket.on("createroom", (data) => {
+        socket.join(data);
+        console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
+        const roomlist = new Roomlist({
+            roomname: data.roomname,
+            roomcode: data.roomcode,
+        })
+        Roomlist.findOne({ "roomname": roomlist.roomname })
+            .then((data) => {
+                if (data !== null) {
+                    console.log('Roomname already exists.');
+                    let check = "Room already exists";
+                    socket.emit("checksameroom", check)
+                }
+                else {
+                    let c = "created  room successfully"
+                    socket.emit("checksameroom", c)
+                    roomlist.save()
+                }
+            })
+    });
+
     socket.on('signUpSubmit',(object)=>{
         let Modal=new SignUpObject({
             Username:object.username,
@@ -49,6 +73,37 @@ io.on("connection",(socket)=>{
         })
     })
     
+    socket.on('roomlogincheck', (object) => {
+        Roomlist.findOne({ roomname: object.roomname })
+            .then((data) => {
+                if (data === null) {
+                    let d = "Invalid roomname";
+                    socket.emit("checkloginjoinroom", d)
+                }
+                else {
+                    const obj = {
+                        iv: data.iv,
+                        roomcode: data.roomcode
+                    }
+                    const savedPassword = Decrypt(obj);
+                    if (savedPassword === object.roomcode) {
+                        console.log('Logged in successfully.')
+                        let f = "joined room";
+                        socket.emit("checkloginjoinroom", f)
+                    }
+                    else {
+                        let n = "Invalid Password.";
+                        console.log('Invalid Password.');
+                        socket.emit("checkloginjoinroom", n);
+                    }
+                }
+            })
+    })
+
+    socket.on("send_message", (data) => {
+        socket.to(data.room).emit("receive_message", data);
+    });
+
     socket.on('loginSubmit',(object)=>{
         let status="";
         SignUpObject.findOne({Username:object.Username,Email:object.Email})

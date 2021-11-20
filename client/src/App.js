@@ -1,10 +1,13 @@
 import './App.css';
 import Login from './Login';
-import Signup from './SignUp';
+import CreateRoom from './CreateRoom';
+import JoinRoom from './JoinRoom';
 function App() {
   return (
     <div> 
-      < Login />  
+      <div>< Login /></div>
+      <div><CreateRoom /></div>
+      <div><JoinRoom /></div>  
     </div>
   );
 }
