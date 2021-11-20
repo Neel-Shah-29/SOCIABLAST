@@ -33,7 +33,7 @@ function CreateRoom() {
             <div className="App">
                 {!showChat ? (
                     <div className="joinChatContainer">
-                        <h3>Join A Chat</h3>
+                        <h3>Create A Chat</h3>
                         <input
                             type="text"
                             placeholder="Roomname"
@@ -52,7 +52,7 @@ function CreateRoom() {
                         <p>{status}</p>
                     </div>
                 ) : (
-                    <Chat socket={socket} roomname={roomname} roomcode={roomcode} />
+                    <Chat roomname={roomname} roomcode={roomcode} />
                 )}
             </div>
         </>

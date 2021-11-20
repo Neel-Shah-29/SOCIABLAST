@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import io from 'socket.io-client';
 
-function Chat({ socket, username, roomname }) {
+const socket=io.connect('http://localhost:3001');
+
+function Chat({username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
-    // <div className="contact">
-    //     Nel
-    // </div>
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
@@ -18,7 +18,6 @@ function Chat({ socket, username, roomname }) {
                     ":" +
                     new Date(Date.now()).getMinutes(),
             };
-
             await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
@@ -27,9 +26,10 @@ function Chat({ socket, username, roomname }) {
 
     useEffect(() => {
         socket.on("receive_message", (data) => {
+            console.log(data);
             setMessageList((list) => [...list, data]);
         });
-    }, [socket]);
+    },[]);
 
     return (
         <div className="chat-window">

@@ -34,8 +34,7 @@ io.on("connection",(socket)=>{
     console.log(`User Connected:${socket.id}`);
     
     socket.on("createroom", (data) => {
-        socket.join(data);
-        console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
+        console.log(data);
         const roomlist = new Roomlist({
             roomname: data.roomname,
             roomcode: data.roomcode,
@@ -48,6 +47,7 @@ io.on("connection",(socket)=>{
                     socket.emit("checksameroom", check)
                 }
                 else {
+                    console.log(`User with ID: ${socket.id} created room: ${roomlist.roomname}`);
                     let c = "created  room successfully"
                     socket.emit("checksameroom", c)
                     roomlist.save()
@@ -89,7 +89,8 @@ io.on("connection",(socket)=>{
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
                         let f = "joined room";
-                        socket.emit("checkloginjoinroom", f)
+                        socket.emit("checkloginjoinroom", f);
+                        socket.to(data.roomcode).emit('receive_message',data);
                     }
                     else {
                         let n = "Invalid Password.";
@@ -101,7 +102,8 @@ io.on("connection",(socket)=>{
     })
 
     socket.on("send_message", (data) => {
-        socket.to(data.room).emit("receive_message", data);
+        console.log(data);
+        socket.emit("receive_message", data);
     });
 
     socket.on('loginSubmit',(object)=>{
