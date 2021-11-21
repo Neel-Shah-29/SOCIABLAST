@@ -17,6 +17,8 @@ body{
   padding:2px 4px 2px 4px;
   background-color: black(181, 124, 204);
   color:aliceblue;
+  align-items: center;
+  align-content: center;
 }
 
 .signUp{
@@ -37,17 +39,25 @@ body{
 .username{
   padding:10px;
   margin:10px;
+  border-radius: 20px;
+
 }
 
 .user{
   padding: 10px;
   border:2px solid red;
-  border-radius: 5%;
+  border-radius: 20px;
+  align-items: center;
+  transition: all 0.2s linear;
+
 }
 
 .user:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
   border:2px solid black;
+  transform: translateY(-3px);
+
+  
 }
 
 .user:focus{
@@ -67,30 +77,64 @@ body{
 
 .button{
   padding:10px;
+  margin-top:10px;
   background-color: aliceblue;
   border:2px solid red;
-  border-radius: 5%;
+  border-radius: 20px;
   font-family: cursive;
+  cursor:pointer;
+  transition: all 0.2s linear;
 }
 
 .button:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
-  border-radius: 5%;
+  transform: translateY(-3px);
   border:2px solid black;
 }
+
 
 .newUser{
   color: rgb(73, 76, 78);
   padding:5px;
   margin-top: 15px;
+  margin-bottom:20px;
   font-family: cursive;
   border:2px solid red;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+
+
 
 }
 
 .newUser:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
   border:2px solid black;
+  transform: translateY(-3px);
+
+}
+
+.Signupbutton{
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  background-color: aliceblue;
+  border:2px solid red;
+  border-radius: 20px;
+  font-family: cursive;
+  cursor:pointer;
+  transition: all 0.2s linear;
+}
+
+.Signupbutton:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  transform: translateY(-3px);
+  border:2px solid black;
+}
+
+.form{
+  text-align: center;
 }
 
 

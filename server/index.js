@@ -66,8 +66,8 @@ io.on("connection",(socket)=>{
                 if(savedPassword===object.Password){
                     console.log('Logged in successfully.');
                     status='Logged in successfully.';
-                    let updtstatus=status;
-                    console.log(updtstatus);
+                    
+                    
                 }
                 else{
                     console.log('Invalid Password.');

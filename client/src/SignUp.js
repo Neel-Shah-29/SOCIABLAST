@@ -9,6 +9,7 @@ const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [allEntry, setAllEntry] = useState([]);
+    const [submitted, setSubmitted] = useState("");
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -18,6 +19,10 @@ const SignUp = () => {
             username: username
         }
         socket.emit("signUpSubmit", newEntry);
+        setSubmitted("SignUp form submitted sucessfully");
+        
+        
+        
     }
     // function onChange(value) {
     //     console.log("Captcha value:", value);
@@ -26,8 +31,9 @@ const SignUp = () => {
     return (
         <div className="signUp">
             
+            
             <div className="signupimg">
-                <img src="https://monophy.com/media/MCdu3khUPl7txXxOha/monophy.gif"></img>
+                <h1>Sign-Up!</h1>
             </div>
             <div className="Signupdetails">Please enter your following details to SignUp:</div>
             <div className="form">
@@ -79,7 +85,11 @@ const SignUp = () => {
                     sitekey="Your client site key"
                     onChange={onChange}
                 />, */}
-                <button className="button" onClick={formSubmit}>Sign-Up!</button>
+                <button className="Signupbutton" onClick={formSubmit} >Sign-Up!   
+                </button>
+                <div>{submitted}</div>
+                
+                    
                 
             </form>
             </div>
