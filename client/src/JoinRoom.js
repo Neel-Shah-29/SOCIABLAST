@@ -1,6 +1,8 @@
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
+
 const socket = io.connect("http://localhost:3001")
 
 const JoinRoom = () => {
@@ -8,6 +10,7 @@ const JoinRoom = () => {
     const [showChat, setShowChat] = useState(false);
     const [roomcode, setRoomCode] = useState("");
     const [roomstatus, setroomstatus] = useState("");
+    const [username, setusername] = useState("");
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
             socket.emit("roomlogincheck", { roomname, roomcode });
@@ -16,7 +19,6 @@ const JoinRoom = () => {
 
     useEffect(() => {
         socket.on("checkloginjoinroom", (data) => {
-            console.log(data);
             setroomstatus(data)
             return (
                 <>
@@ -45,16 +47,23 @@ const JoinRoom = () => {
                         />
                         <input
                             type="text"
-                            placeholder="Room Passward"
+                            placeholder="Room Password"
                             onChange={(event) => {
                                 setRoomCode(event.target.value);
+                            }}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            onChange={(event) => {
+                                setusername(event.target.value);
                             }}
                         />
                         <button onClick={join_Room}>Join A Room</button>
                         <p>{roomstatus}</p>
                     </div>
                 ) : (
-                    <Chat socket={socket} roomname={roomname} roomcode={roomcode} />
+                    <Chat socket={socket} roomname={roomname} username={username} />
                 )}
             </div>
         </>

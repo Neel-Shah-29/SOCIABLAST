@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
@@ -33,11 +34,7 @@ function CreateRoom() {
             <div className="App">
                 {!showChat ? (
                     <div className="joinChatContainer">
-<<<<<<< HEAD
                         <h3>Join A Chat</h3>
-=======
-                        <h3>Create A Chat</h3>
->>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8
                         <input
                             type="text"
                             placeholder="Roomname"
@@ -47,7 +44,7 @@ function CreateRoom() {
                         />
                         <input
                             type="password"
-                            placeholder="Room Passward"
+                            placeholder="Room Password"
                             onChange={(event) => {
                                 setRoomCode(event.target.value);
                             }}
@@ -56,11 +53,8 @@ function CreateRoom() {
                         <p>{status}</p>
                     </div>
                 ) : (
-<<<<<<< HEAD
-                    <Chat socket={socket} roomname={roomname} roomcode={roomcode} />
-=======
-                    <Chat roomname={roomname} roomcode={roomcode} />
->>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8
+                    // <Chat socket={socket} roomname={roomname} roomcode={roomcode} username={username} />
+                    <div></div>
                 )}
             </div>
         </>
