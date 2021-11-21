@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+<<<<<<< HEAD
 
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -7,6 +8,15 @@ function Chat({ socket, username, roomname }) {
     // <div className="contact">
     //     Nel
     // </div>
+=======
+import io from 'socket.io-client';
+
+const socket=io.connect('http://localhost:3001');
+
+function Chat({username, roomname }) {
+    const [currentMessage, setCurrentMessage] = useState("");
+    const [messageList, setMessageList] = useState([]);
+>>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
@@ -18,7 +28,10 @@ function Chat({ socket, username, roomname }) {
                     ":" +
                     new Date(Date.now()).getMinutes(),
             };
+<<<<<<< HEAD
 
+=======
+>>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8
             await socket.emit("send_message", messageData);
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
@@ -27,9 +40,16 @@ function Chat({ socket, username, roomname }) {
 
     useEffect(() => {
         socket.on("receive_message", (data) => {
+<<<<<<< HEAD
             setMessageList((list) => [...list, data]);
         });
     }, [socket]);
+=======
+            console.log(data);
+            setMessageList((list) => [...list, data]);
+        });
+    },[]);
+>>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8
 
     return (
         <div className="chat-window">

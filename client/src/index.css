@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,3 +12,114 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+=======
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body{
+  background-color: rgb(105, 144, 145);
+  color:aliceblue;
+  background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(243, 88, 184));
+  background-size: cover;
+  font-family: cursive;
+  height:100%;
+}
+
+.login{
+  text-align: center;
+  margin-left:25%;
+  margin-right:25%;
+  border: 6px solid rgb(42, 193, 231);
+  border-radius: 3%;
+  padding:2px 4px 2px 4px;
+  background-color: black(181, 124, 204);
+  color:aliceblue;
+}
+
+.signUp{
+  text-align: center;
+  margin-left:25%;
+  margin-right:25%;
+  border: 6px solid rgb(42, 193, 231);
+  border-radius: 3%;
+  padding:2px 4px 2px 4px;
+  background-color: black(181, 124, 204);
+  color:aliceblue;
+}
+
+.logindetails{
+  font-size: small;
+}
+
+.username{
+  padding:10px;
+  margin:10px;
+}
+
+.user{
+  padding: 10px;
+  border:2px solid red;
+  border-radius: 5%;
+}
+
+.user:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border:2px solid black;
+}
+
+.user:focus{
+  border: 2px solid black;
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+
+}
+
+.email{
+  padding:10px;
+  margin:10px;
+}
+
+.password{
+  padding:10px;
+}
+
+.button{
+  padding:10px;
+  background-color: aliceblue;
+  border:2px solid red;
+  border-radius: 5%;
+  font-family: cursive;
+}
+
+.button:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border-radius: 5%;
+  border:2px solid black;
+}
+
+.newUser{
+  color: rgb(73, 76, 78);
+  padding:5px;
+  margin-top: 15px;
+  font-family: cursive;
+  border:2px solid red;
+
+}
+
+.newUser:hover{
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  border:2px solid black;
+}
+
+
+
+>>>>>>> b186b7e0763bc613c6c2c8a8e671c17c05f7bcd8

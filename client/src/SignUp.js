@@ -1,45 +1,35 @@
 import React, { useState } from 'react'
-import SignUp from './SignUp';
 import io from "socket.io-client";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const socket = io.connect("http://localhost:3001");
 
-const Login = () => {
+const SignUp = () => {
     const [username, setUserame] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [email,setEmail]=useState("");
     const [allEntry, setAllEntry] = useState([]);
-    const [newUser,setNewUser]=useState(false);
-    const [status,setStatus]=useState('');
 
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
-            Email:email,
-            Password: password,
-            Username: username
+            email: email,
+            password: password,
+            username: username
         }
-        setAllEntry([...allEntry, newEntry]);
-        socket.emit("loginSubmit", newEntry);
-        socket.on('loginStatus',(data)=>{
-            setStatus(data);
-        })
+        socket.emit("signUpSubmit", newEntry);
     }
-
-    function opnSignUp(){
-        setNewUser(true);
-    }
-     
+    function onChange(value) {
+        console.log("Captcha value:", value);
+      }
+    
     return (
-        !newUser ? (
-        <div className="login">
-            <h1 className="head">
-                LOGIN
-            </h1>
-            <div className="loginimg">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Mclb0NdAfReSwkqWDtxIh2Oc4vEyPMYzeg&usqp=CAU"></img>
+        <div className="signUp">
+            
+            <div className="signupimg">
+                <img src="https://monophy.com/media/MCdu3khUPl7txXxOha/monophy.gif"></img>
             </div>
-            <div className="logindetails">Please enter your following details to login:</div>
+            <div className="Signupdetails">Please enter your following details to SignUp:</div>
             <div className="form">
             <form action="" onSubmit={formSubmit}>
                 <div className="username">
@@ -84,32 +74,13 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button className="button" onClick={formSubmit}>Log-in</button>
-                <div >
-                    <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
-                </div>
+                <button className="button" onClick={formSubmit}>Sign-Up!</button>
             </form>
             </div>
-            <div>
-                {
-                    allEntry.map((currentelem) => {
-                        return (
-                            <div>
-                                <p>
-                                    {currentelem.Username} {status}
-                                </p>
-                            </div>
-                        );
-                    })
-                }
             </div>
-        </div>):(
-            <div>
-                <SignUp/>
-            </div>
-        )
+
     );
 
 }
 
-export default Login
+export default SignUp
