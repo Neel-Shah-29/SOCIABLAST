@@ -1,38 +1,38 @@
-const express=require('express');
-const app=express();
-const cors=require('cors');
-const http=require('http');
-const { Server }=require('socket.io');
-const mongoose=require('mongoose');
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const http = require('http');
+const { Server } = require('socket.io');
+const mongoose = require('mongoose');
 const Roomlist = require('./Modals/rooms');
-const SignUpObject=require('./Modals/SignUpModal');
-const {encrypt,decrypt}=require('./cryptionHandler');
+const SignUpObject = require('./Modals/SignUpModal');
+const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
 require('dotenv').config();
 
 app.use(cors);
-const server=http.createServer(app);
+const server = http.createServer(app);
 
 
-const io=new Server(server,{
-    cors:{
-        origin:'http://localhost:3000',
-        methods:['GET','POST']
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST']
     }
 });
 
 
-const url=process.env.MongoDB_Database_Url;
+const url = process.env.MongoDB_Database_Url;
 mongoose.connect(url)
-.then(()=>{
-    console.log("Successfully Connected to the SignUp Database of MongoDB.");
-})
+    .then(() => {
+        console.log("Successfully Connected to the SignUp Database of MongoDB.");
+    })
 
 //Printing the environment variables into the env file  :   console.log(process.env);
 
-io.on("connection",(socket)=>{
+io.on("connection", (socket) => {
     console.log(`User Connected:${socket.id}`);
-    
+
     socket.on("createroom", (data) => {
         console.log(data);
         const roomlist = new Roomlist({
@@ -51,28 +51,32 @@ io.on("connection",(socket)=>{
                     let c = "created  room successfully"
                     socket.emit("checksameroom", c)
                     roomlist.save()
+                        .then(() => {
+                            socket.join(data.roomname)
+                        })
+
                 }
             })
     });
 
-    socket.on('signUpSubmit',(object)=>{
-        let Modal=new SignUpObject({
-            Username:object.username,
-            Email:object.email,
-            Password:object.password
+    socket.on('signUpSubmit', (object) => {
+        let Modal = new SignUpObject({
+            Username: object.username,
+            Email: object.email,
+            Password: object.password
         })
-        SignUpObject.findOne({"Email":Modal.Email})
-        .then((data)=>{
-            if(data!==null){
-                console.log('User Already Exists for the corresponding Email.');
-            }
-            else{
-                console.log('User registered Successfully.');
-                Modal.save();
-            }
-        })
+        SignUpObject.findOne({ "Email": Modal.Email })
+            .then((data) => {
+                if (data !== null) {
+                    console.log('User Already Exists for the corresponding Email.');
+                }
+                else {
+                    console.log('User registered Successfully.');
+                    Modal.save();
+                }
+            })
     })
-    
+
     socket.on('roomlogincheck', (object) => {
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
@@ -90,7 +94,8 @@ io.on("connection",(socket)=>{
                         console.log('Logged in successfully.')
                         let f = "joined room";
                         socket.emit("checkloginjoinroom", f);
-                        socket.to(data.roomcode).emit('receive_message',data);
+                        socket.join(data.roomname)
+
                     }
                     else {
                         let n = "Invalid Password.";
@@ -103,43 +108,43 @@ io.on("connection",(socket)=>{
 
     socket.on("send_message", (data) => {
         console.log(data);
-        socket.emit("receive_message", data);
+        socket.to(data.roomname).emit("receive_message", data);
     });
 
-    socket.on('loginSubmit',(object)=>{
-        let status="";
-        SignUpObject.findOne({Username:object.Username,Email:object.Email})
-        .then((data)=>{
-            if(data===null){
-                console.log('Invalid USERNAME or EMAIL.');
-                status='Invalid USERNAME or EMAIL.';
-            }
-            else{
-                const obj={
-                    iv:data.iv,
-                    password:data.Password
+    socket.on('loginSubmit', (object) => {
+        let status = "";
+        SignUpObject.findOne({ Username: object.Username, Email: object.Email })
+            .then((data) => {
+                if (data === null) {
+                    console.log('Invalid USERNAME or EMAIL.');
+                    status = 'Invalid USERNAME or EMAIL.';
                 }
-                const savedPassword=decrypt(obj);
-                if(savedPassword===object.Password){
-                    console.log('Logged in successfully.');
-                    status='Logged in successfully.';
+                else {
+                    const obj = {
+                        iv: data.iv,
+                        password: data.Password
+                    }
+                    const savedPassword = decrypt(obj);
+                    if (savedPassword === object.Password) {
+                        console.log('Logged in successfully.');
+                        status = 'Logged in successfully.';
+                    }
+                    else {
+                        console.log('Invalid Password.');
+                        status = 'Invalid Password.';
+                    }
                 }
-                else{
-                    console.log('Invalid Password.');
-                    status='Invalid Password.';
-                }
-            }
-            socket.emit('loginStatus',status);
-        })
+                socket.emit('loginStatus', status);
+            })
     })
 
-    socket.on('Disconnect',()=>{
+    socket.on('Disconnect', () => {
         console.log(`User Disconnected:${socket.id}`);
     });
 
 });
 
-server.listen(3001,()=>{
+server.listen(3001, () => {
     console.log("Backend Server Listening.");
 });
 
