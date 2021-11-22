@@ -9,7 +9,7 @@ const encrypt = (Password) => {
         cipher.update(Password),
         cipher.final(),
     ]);
-    return { iv: iv.toString("hex"), roomcode: encryptedPassword.toString("hex") };
+    return { iv: iv.toString("hex"), password: encryptedPassword.toString("hex") };
 }
 
 const decrypt = (encryption) => {
@@ -19,7 +19,7 @@ const decrypt = (encryption) => {
         Buffer.from(encryption.iv, "hex")
     );
     const decryptedPassword = Buffer.concat([
-        decipher.update(Buffer.from(encryption.roomcode, "hex")),
+        decipher.update(Buffer.from(encryption.password, "hex")),
         decipher.final()
     ])
     return decryptedPassword.toString();
