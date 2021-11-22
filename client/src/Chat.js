@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
-    // <div className="contact">
-    //     Nel
-    // </div>
     const sendMessage = async () => {
         if (currentMessage !== "") {
             const messageData = {
