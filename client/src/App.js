@@ -1,5 +1,5 @@
 import './App.css';
-import Login from './Login';
+import Login from './login';
 import CreateRoom from './CreateRoom';
 import JoinRoom from './JoinRoom';
 import Header from './Header';
