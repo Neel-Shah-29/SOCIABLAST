@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+<<<<<<< HEAD
 function Chat({ socket, username, roomname }) {
+=======
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:3001');
+
+function Chat({ username, roomname }) {
+>>>>>>> 1766d4ac78b9e6a8cb6889dd96fd086b8e8db7c2
     const [currentMessage, setCurrentMessage] = useState("");
     const [messageList, setMessageList] = useState([]);
     // <div className="contact">

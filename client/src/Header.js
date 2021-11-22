@@ -12,12 +12,17 @@ export default function Header(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+                            <Link className="nav-link active" aria-current="page" to="/SignUp">SignUp</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/about">About</Link>
+                            <Link className="nav-link" to="/Login">Login</Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/JoinRoom">JoinRoom</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/CreateRoom">CreateRoom</Link>
+                        </li>
                     </ul>
                     {props.searchbar ? <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
