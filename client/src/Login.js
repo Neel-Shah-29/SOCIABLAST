@@ -38,7 +38,7 @@ const Login = () => {
                 LOGIN
             </h1>
             <div className="loginimg">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Mclb0NdAfReSwkqWDtxIh2Oc4vEyPMYzeg&usqp=CAU"></img>
+                <img src=""></img>
             </div>
             <div className="logindetails">Please enter your following details to login:</div>
             <div className="form">
@@ -103,7 +103,7 @@ const Login = () => {
                             
                             <div>
                                 <p>
-                                     {status}
+                                     {username}{status}
                                 </p>
                             </div>
                             

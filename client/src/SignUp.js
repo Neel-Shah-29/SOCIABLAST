@@ -87,10 +87,7 @@ const SignUp = () => {
                 />, */}
                 <button className="Signupbutton" onClick={formSubmit} >Sign-Up!   
                 </button>
-                <div>{submitted}</div>
-                
-                    
-                
+                <div>{submitted}</div>  
             </form>
             </div>
             </div>
