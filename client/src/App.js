@@ -15,6 +15,7 @@ import SignUp from './SignUp';
 import Home from './Home';
 function App() {
   return (
+<<<<<<< HEAD
 
 
     <BrowserRouter>
@@ -36,6 +37,12 @@ function App() {
     //   <div><CreateRoom /></div>
     //   <div><JoinRoom /></div>  
     // </div>
+=======
+    <div > 
+      < Login />  
+     
+    </div>
+>>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
   );
 }
 

@@ -19,10 +19,15 @@ const SignUp = () => {
             username: username
         }
         socket.emit("signUpSubmit", newEntry);
+        setSubmitted("SignUp form submitted sucessfully");
+        
+        
+        
     }
     // function onChange(value) {
     //     console.log("Captcha value:", value);
     //   }
+<<<<<<< HEAD
     useEffect(() => {
         socket.on("signupsubmit", (data) => {
             setSubmitted(data)
@@ -34,6 +39,13 @@ const SignUp = () => {
         <div className="signUp">
 
 
+=======
+    
+    return (
+        <div className="signUp">
+            
+            
+>>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
             <div className="signupimg">
                 <h1>Sign-Up!</h1>
             </div>
@@ -87,6 +99,7 @@ const SignUp = () => {
                     sitekey="Your client site key"
                     onChange={onChange}
                 />, */}
+<<<<<<< HEAD
                     <button className="Signupbutton" onClick={formSubmit} >Sign-Up!
                     </button>
                     <div>{submitted}</div>
@@ -94,6 +107,13 @@ const SignUp = () => {
 
 
                 </form>
+=======
+                <button className="Signupbutton" onClick={formSubmit} >Sign-Up!   
+                </button>
+                <div>{submitted}</div>  
+            </form>
+            </div>
+>>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
             </div>
         </div>
 
