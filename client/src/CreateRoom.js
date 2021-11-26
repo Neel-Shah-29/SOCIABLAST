@@ -29,7 +29,7 @@ function CreateRoom() {
         })
     }, [socket]);
     return (
-        <>
+        <div>
             <div className="App">
                 {!showChat ? (
                     <div className="joinChatContainer">
@@ -55,7 +55,7 @@ function CreateRoom() {
                     <div></div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
 

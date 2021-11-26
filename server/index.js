@@ -119,6 +119,13 @@ io.on("connection", (socket) => {
                     const savedPassword = Decrypt(obj);
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
+                        SignUpObject.findOne({ Username: object.username})
+                        .then((datas)=>{
+                            console.log(datas);
+                            console.log(datas.RoomsJoined);
+                            SignUpObject.update({_id:datas._id},{$push:{RoomsJoined:{RoomName:object.roomname,RoomCode:savedPassword}}})
+                            console.log(datas.RoomsJoined);
+                        })
                         let f = "joined room";
                         socket.emit("checkloginjoinroom", f)
                         socket.join(data.roomname)

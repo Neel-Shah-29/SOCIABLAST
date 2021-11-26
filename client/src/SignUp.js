@@ -22,9 +22,6 @@ const SignUp = (props) => {
     useEffect(() => {
         socket.on("signupsubmit", (data) => {
             setSubmitted(data)
-            if(data==='User registered Successfully.'){
-                props.loginStatus();
-            }
         })
     }, [socket]);
     return (

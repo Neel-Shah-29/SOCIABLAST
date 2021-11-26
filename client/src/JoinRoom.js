@@ -13,7 +13,7 @@ const JoinRoom = () => {
     const [username, setusername] = useState("");
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
-            socket.emit("roomlogincheck", { roomname, roomcode });
+            socket.emit("roomlogincheck", {username, roomname, roomcode });
         }
     };
 
