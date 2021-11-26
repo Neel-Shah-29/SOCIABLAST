@@ -80,7 +80,6 @@ io.on("connection", (socket) => {
                     });
 
                 }
-<<<<<<< HEAD
             })
     })
     socket.on('loginSubmit', (object) => {
@@ -90,14 +89,6 @@ io.on("connection", (socket) => {
                 if (data === null) {
                     console.log('Invalid USERNAME or EMAIL.');
                     status = 'Invalid USERNAME or EMAIL.';
-=======
-                const savedPassword=decrypt(obj);
-                if(savedPassword===object.Password){
-                    console.log('Logged in successfully.');
-                    status='Logged in successfully.';
-                    
-                    
->>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
                 }
                 else {
                     const obj = {

@@ -17,11 +17,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
-<<<<<<< HEAD
     "node.js": "^0.0.1-security",
-=======
-    "nodejs": "^0.0.0",
->>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
     "nodemon": "^2.0.15",
     "socket.io": "^4.4.0"
   }

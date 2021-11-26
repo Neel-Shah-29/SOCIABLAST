@@ -15,7 +15,6 @@ import SignUp from './SignUp';
 import Home from './Home';
 function App() {
   return (
-<<<<<<< HEAD
 
 
     <BrowserRouter>
@@ -24,8 +23,6 @@ function App() {
         {<Route exact path="/" element={<Home />} />}
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Login" element={< Login />} />
-        <Route path="/CreateRoom" element={< CreateRoom />} />
-        <Route path="/JoinRoom" element={< JoinRoom />} />
 
       </Routes>
       <Footer />
@@ -37,12 +34,6 @@ function App() {
     //   <div><CreateRoom /></div>
     //   <div><JoinRoom /></div>  
     // </div>
-=======
-    <div > 
-      < Login />  
-     
-    </div>
->>>>>>> 59f9bec231150d5e9f4db77aed62484cab4ac6af
   );
 }
 
