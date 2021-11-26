@@ -12,35 +12,46 @@ code {
     monospace;
 }
 
+.Home{
+  padding:20px;
+  margin: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 body{
-  background-color: rgb(105, 144, 145);
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
   color:aliceblue;
-  background-image: linear-gradient(45deg, rgb(87, 87, 134), rgb(243, 88, 184));
   background-size: cover;
-  font-family: cursive;
+  font-family:'Times New Roman', Times, serif;
   height:100%;
 }
 
 .login{
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
-  margin-left:25%;
-  margin-right:25%;
-  border: 6px solid rgb(42, 193, 231);
-  border-radius: 3%;
-  padding:2px 4px 2px 4px;
-  background-color: black(181, 124, 204);
-  color:aliceblue;
+  margin-top:3%;
+  margin-left:30%;
+  margin-right:30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding:10px;
+  background-color:gainsboro;
+  color:black;
 }
 
 .signUp{
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
-  margin-left:25%;
-  margin-right:25%;
-  border: 6px solid rgb(42, 193, 231);
-  border-radius: 3%;
+  margin-top:3%;
+  margin-left:30%;
+  margin-right:30%;
+  border: 1px solid black;
+  border-radius: 5px;
   padding:2px 4px 2px 4px;
-  background-color: black(181, 124, 204);
-  color:aliceblue;
+  background-color: gainsboro;
+  color:black;
+  padding:10px;
 }
 
 .logindetails{
@@ -54,15 +65,23 @@ body{
 
 .user{
   padding: 10px;
-  border:2px solid red;
+  border:2px solid black;
   border-radius: 5%;
 }
 
 .user:hover{
-  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+  background-color:rgb(176, 214, 247);
   border:2px solid black;
 }
-
+.Signupbutton{
+  background-color:dodgerblue;
+  border-radius: 3px;
+  color:white;
+  padding:15px;
+  border:none;
+  margin:10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .user:focus{
   border: 2px solid black;
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
@@ -80,28 +99,26 @@ body{
 
 .button{
   padding:10px;
-  background-color: aliceblue;
-  border:2px solid red;
+  background-color:dodgerblue;
+  border:none;
   border-radius: 5%;
-  font-family: cursive;
+  color:white
 }
 
-.button:hover{
-  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
-  border-radius: 5%;
-  border:2px solid black;
-}
 
 .newUser{
   color: rgb(73, 76, 78);
-  padding:5px;
+  padding:10px;
   margin-top: 15px;
-  font-family: cursive;
-  border:2px solid red;
-
+  background-color:dodgerblue;
+  border:none;
+  color:white;
 }
 
+<<<<<<< HEAD
 .newUser:hover{
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
   border:2px solid black;
 }
+=======
+>>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791

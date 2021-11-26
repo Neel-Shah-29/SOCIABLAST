@@ -1,0 +1,59 @@
+.grandfather{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-left:13%;
+    margin-top:5%;
+    align-self: center;
+    width: 1000px;
+    height:500px;
+    background-color: aliceblue;
+    border:1px solid black;
+    display:flex;
+    flex-direction: row;
+    padding:10px;
+    border-radius: 10px;
+}
+.fathersync{
+    width:30%;
+    height:100%;
+    background-color: white;
+    color:black;
+    overflow:hidden;
+    overflow-y: scroll;
+    border:1px solid black;
+}
+.mothersync{
+    width:70%;
+    height:100%;
+    border:1px solid black;
+    color:black;
+    overflow:hidden;
+    overflow-y: scroll;
+}
+
+.async1{
+    border: 1px solid gray;
+    border-radius:3px;
+    padding:5px;
+    margin:3px;
+}
+.async1:hover{
+    background-color: lightblue;   
+}
+.child1{
+    width:100%;
+    height:100%;
+}
+.headers1{
+    width: 100%;
+    height:15%;
+    border-bottom: 1px solid black;
+    padding-top:8%;
+    padding-left:4%
+}
+.headers2{
+    width:100%;
+    height:15%;
+    border-bottom: 1px solid black;
+    padding-top:3%;
+    padding-left:4%;
+}

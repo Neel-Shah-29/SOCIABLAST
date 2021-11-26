@@ -2,6 +2,15 @@ const mongoose = require("mongoose");
 const { encrypt, decrypt } = require('../cryptionHandler');
 const Schema = mongoose.Schema;
 
+const RoomsSchema=new Schema({
+    RoomName:{
+        type:String
+    },
+    RoomCode:{
+        type:String
+    }
+})
+
 const SignUp = new Schema({
     Username: {
         type: String,
@@ -15,6 +24,7 @@ const SignUp = new Schema({
         type: String,
         required: true
     },
+    RoomsJoined:[RoomsSchema],
     iv: {
         type: String
     }
@@ -22,9 +32,7 @@ const SignUp = new Schema({
 
 SignUp.pre('save', async function (next) {
     try {
-        console.log(this.Password)
         const object = await encrypt(this.Password);
-
         this.Password = object.password;
         this.iv = object.iv;
         next();
