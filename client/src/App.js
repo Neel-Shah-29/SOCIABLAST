@@ -4,6 +4,8 @@ import CreateRoom from './CreateRoom';
 import JoinRoom from './JoinRoom';
 import Header from './Header';
 import { Footer } from './Footer';
+import Main from './Main';
+import CreateAndJoinRoom from './CreateAndJoinRoom';
 
 import {
   BrowserRouter,
@@ -23,7 +25,8 @@ function App() {
         <Route path="/Login" element={< Login />} />
         <Route path="/CreateRoom" element={< CreateRoom />} />
         <Route path="/JoinRoom" element={< JoinRoom />} />
-
+        <Route path="/Main" element={< Main />} />
+        <Route path="/CreateAndJoinRoom" element={<CreateAndJoinRoom/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>

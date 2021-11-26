@@ -23,6 +23,9 @@ export default function Header(props) {
                         <li className="nav-item">
                             <Link className="nav-link" to="/CreateRoom">CreateRoom</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/Main">Main</Link>
+                        </li>
                     </ul>
                     {props.searchbar ? <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />

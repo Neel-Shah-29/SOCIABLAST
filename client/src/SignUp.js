@@ -3,7 +3,7 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:3001");
 
-const SignUp = () => {
+const SignUp = (props) => {
     const [username, setUserame] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,22 +22,23 @@ const SignUp = () => {
     useEffect(() => {
         socket.on("signupsubmit", (data) => {
             setSubmitted(data)
-            console.log(data)
-
+            if(data==='User registered Successfully.'){
+                props.loginStatus();
+            }
         })
     }, [socket]);
     return (
         <div className="signUp">
-
-
             <div className="signupimg">
                 <h1>Sign-Up!</h1>
             </div>
+            <hr/>
             <div className="Signupdetails">Please enter your following details to SignUp:</div>
             <div className="form">
                 <form action="" onSubmit={formSubmit}>
                     <div className="username">
                         <label htmlFor='username'>Username:</label>
+                        <br/>
                         <input
                             className="user"
                             type='text'
@@ -52,6 +53,7 @@ const SignUp = () => {
                     </div>
                     <div className="email">
                         <label htmlFor='email'>Email:</label>
+                        <br/>
                         <input
                             className="user"
                             type='email'
@@ -66,6 +68,7 @@ const SignUp = () => {
                     </div>
                     <div className="password">
                         <label htmlFor='password'>Password:</label>
+                        <br/>
                         <input
                             className="user"
                             type='password'
