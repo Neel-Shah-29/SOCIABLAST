@@ -2,6 +2,7 @@ import SideBar from "./Sidebar";
 import './SidebarCss.css';
 import Chat from './Chat';
 import JoinRoom from './JoinRoom'; 
+import { Link } from 'react-router-dom'
 
 function Main(){
     return (
@@ -13,10 +14,13 @@ function Main(){
                     </div>
                     <SideBar/>
                 </div>
-                <div className="mothersync">
-                    <div className="headers2">
-                        <p>Roomname</p>
-                    </div>           
+                <div className="mothersync">   
+                    <div className="headers3">
+                        <JoinRoom/>
+                    </div>
+                    {/*<button className="butform">
+                        <Link className="nav-link" to="/CreateRoom">Create A Room</Link>    
+                    </button>*/}        
                 </div>
             </div>
         </div>

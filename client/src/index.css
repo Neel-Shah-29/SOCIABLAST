@@ -52,6 +52,7 @@ body{
   background-color: gainsboro;
   color:black;
   padding:10px;
+  margin-bottom: 50px;
 }
 
 .logindetails{
@@ -113,5 +114,10 @@ body{
   background-color:dodgerblue;
   border:none;
   color:white;
+}
+
+.CandJ{
+  display: flex;
+  flex-direction: row;
 }
 

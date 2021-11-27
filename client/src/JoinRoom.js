@@ -33,7 +33,6 @@ const JoinRoom = () => {
     }, [socket]);
 
     return (
-        <>
             <div className="App">
                 {!showChat ? (
                     <div className="joinChatContainer">
@@ -66,7 +65,6 @@ const JoinRoom = () => {
                     <Chat socket={socket} roomname={roomname} username={username} />
                 )}
             </div>
-        </>
     );
 }
 

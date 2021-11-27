@@ -100,7 +100,8 @@ const Login = () => {
                             />
                         </div>
                         {/*<button className="button" onClick={formSubmit}>Log-in</button>*/}
-                        <Link className="nav-link active" aria-current="page" to="/CreateAndJoinRoom" Uname={username}>Login</Link>
+                        <button className="button"><Link className="nav-link active" aria-current="page" to="/Main" style={{color:"white"}} Uname={username}>Login</Link>
+                        </button>
                         <div >
                             <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
                         </div>

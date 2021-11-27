@@ -3,7 +3,7 @@ import JoinRoom from "./JoinRoom";
 
 function CreateAndJoinRoom(){
     return (
-        <div>
+        <div >
             <CreateRoom/>
             <JoinRoom/>
         </div>

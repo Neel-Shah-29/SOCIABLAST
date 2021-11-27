@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import './index.css'
 
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -30,7 +31,7 @@ function Chat({ socket, username, roomname }) {
     return (
         <div className="chat-window">
             <div className="chat-header">
-                <p>Live Chat</p>
+                <p>Room Name</p>
             </div>
             <div className="chat-body">
                 <ScrollToBottom className="message-container">
@@ -67,7 +68,7 @@ function Chat({ socket, username, roomname }) {
                         event.key === "Enter" && sendMessage();
                     }}
                 />
-                <button onClick={sendMessage}>&#9658;</button>
+                <button className="sendButton" style={{width:"10px",backgroundColor:"#245f48",borderRadius:"50%"}}><button onClick={sendMessage}>&#9658;</button></button>
             </div>
         </div>
     );
