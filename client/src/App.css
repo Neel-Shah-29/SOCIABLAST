@@ -1,4 +1,3 @@
-
 .App {
   text-align: center;
 }
@@ -39,17 +38,13 @@
 }
 
 .App {
-  width: 30%;
-  height: 60%;
-  margin-left:35%;
-  margin-top:6%;
-  background: #fff;
+  width: 100%;
+  height: 100%;
   color: #212121;
   font-family: "Open Sans", sans-serif;
   display: grid;
   place-items: center;
   border-radius: 5px;
-  padding:25px;
 }
 body {
   margin: 0%;
@@ -58,9 +53,18 @@ body {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
 .joinChatContainer {
+  font-family: 'Times New Roman', Times, serif;
   display: flex;
   flex-direction: column;
   text-align: center;
+  margin-top: 50px;
+  padding:20px;
+  background-color: rgba(0,0,0,0.3);
+  margin-bottom:20px;
+  padding-left:40px;
+  padding-right:40px;
+  border: 1px solid darkgreen;
+  border-radius: 4px;
 }
 
 .joinChatContainer h3 {
@@ -95,8 +99,9 @@ body {
 }
 
 .chat-window {
-  width: 300px;
-  height: 420px;
+  width: 100%;
+  height:100%;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 .chat-window p {
@@ -106,8 +111,10 @@ body {
   height: 45px;
   border-radius: 6px;
   background: #263238;
-  position: relative;
+  width:100%;
+  height:10%;
   cursor: pointer;
+
 }
 .chat-window .chat-header p {
   display: block;
@@ -120,9 +127,13 @@ body {
 .chat-window .chat-body {
   height: calc(450px - (45px + 70px));
   border: 1px solid #263238;
+  /*
   background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO7g3KqXHvvV7lj1ctTvlK0QJPsIBjFVqG1A&usqp=CAU");
-
-  position: relative;
+  */
+  background-color:rgba(0,0,0,0.3);
+  border-bottom: none;
+  height:83%;
+  width:100%;
 }
 .chat-window .chat-body .message-container {
   width: 100%;
@@ -138,6 +149,7 @@ body {
   height: auto;
   padding: 10px;
   display: flex;
+  color:white;
 }
 
 .chat-window .chat-body .message .message-content {
@@ -196,22 +208,24 @@ body {
 }
 
 .chat-window .chat-footer {
-  height: 40px;
+  height: 7%;
   border: 1px solid #263238;
   border-top: none;
+  width:100%;
   display: flex;
 }
 
 .chat-window .chat-footer input {
   height: 100%;
-  flex: 85%;
-  border: 0;
+  flex:95%;
+  border: 1px solid black;
   padding: 0 0.7em;
   font-size: 1em;
   border-right: 1px dotted #607d8b;
-
+  border-left: none;
   outline: none;
   font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
 }
 
 .chat-window .chat-footer button {
@@ -219,7 +233,7 @@ body {
   display: grid;
   place-items: center;
   cursor: pointer;
-  flex: 15%;
+  flex: 8%;
   height: 100%;
   background: transparent;
   outline: none;

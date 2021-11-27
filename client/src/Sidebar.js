@@ -1,7 +1,7 @@
 import './SidebarCss.css';
 
-function SideBar(){
-    return(
+function SideBar() {
+    return (
         <div className="child1">
             <div className="async1">
                 <p>ROOM1</p>

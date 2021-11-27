@@ -29,13 +29,13 @@ const SignUp = (props) => {
             <div className="signupimg">
                 <h1>Sign-Up!</h1>
             </div>
-            <hr/>
+            <hr />
             <div className="Signupdetails">Please enter your following details to SignUp:</div>
             <div className="form">
                 <form action="" onSubmit={formSubmit}>
                     <div className="username">
                         <label htmlFor='username'>Username:</label>
-                        <br/>
+                        <br />
                         <input
                             className="user"
                             type='text'
@@ -50,7 +50,7 @@ const SignUp = (props) => {
                     </div>
                     <div className="email">
                         <label htmlFor='email'>Email:</label>
-                        <br/>
+                        <br />
                         <input
                             className="user"
                             type='email'
@@ -65,7 +65,7 @@ const SignUp = (props) => {
                     </div>
                     <div className="password">
                         <label htmlFor='password'>Password:</label>
-                        <br/>
+                        <br />
                         <input
                             className="user"
                             type='password'

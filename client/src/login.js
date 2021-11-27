@@ -1,27 +1,13 @@
 import React, { useState } from 'react'
 import SignUp from './SignUp';
 import io from "socket.io-client";
-<<<<<<< HEAD
-import JoinRoom from './JoinRoom';
-import ReactDOM from 'react-dom';
-import CreateRoom from './CreateRoom';
-import { Footer } from './Footer';
-=======
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    Link
-  } from "react-router-dom";
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
-
 import {
     BrowserRouter,
     Routes,
     Route,
     Link
 } from "react-router-dom";
-import Home from './Home';
+
 const socket = io.connect("http://localhost:3001");
 
 const Login = () => {
@@ -31,11 +17,9 @@ const Login = () => {
     const [allEntry, setAllEntry] = useState([]);
     const [newUser, setNewUser] = useState(false);
     const [status, setStatus] = useState('');
-<<<<<<< HEAD
-=======
-    const [newPage,setNewPage]=useState(false);
+    const [newPage, setNewPage] = useState(false);
+    const [linker, setLinker] = useState(false);
 
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -47,38 +31,31 @@ const Login = () => {
         socket.emit("loginSubmit", newEntry);
         socket.on('loginStatus', (data) => {
             setStatus(data);
+            if (data === "Logged in successfully.") {
+                setNewPage(true);
+                setLinker(true);
+            }
         })
-<<<<<<< HEAD
 
-=======
-        if(status==="Logged in successfully."){
-            console.log(status);
-            setNewPage(true);
-        }
-    }
-    function setUser(){
-        setNewUser(false);
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
     }
     function opnSignUp() {
         setNewUser(true);
     }
-<<<<<<< HEAD
-    if (status !== 'Logged in successfully.') {
-        return (
-            !newUser ? (
+
+    return (
+        !newUser ? (
+            <div>
                 <div className="login">
                     <h1 className="head">
                         LOGIN
                     </h1>
-                    <div className="loginimg">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3Mclb0NdAfReSwkqWDtxIh2Oc4vEyPMYzeg&usqp=CAU"></img>
-                    </div>
+                    <hr />
                     <div className="logindetails">Please enter your following details to login:</div>
                     <div className="form">
                         <form action="" onSubmit={formSubmit}>
                             <div className="username">
                                 <label htmlFor='username'>Username:</label>
+                                <br />
                                 <input
                                     className="user"
                                     type='text'
@@ -93,6 +70,7 @@ const Login = () => {
                             </div>
                             <div className="email">
                                 <label htmlFor='email'>Email:</label>
+                                <br />
                                 <input
                                     className="user"
                                     type='email'
@@ -107,6 +85,7 @@ const Login = () => {
                             </div>
                             <div className="password">
                                 <label htmlFor='password'>Password:</label>
+                                <br />
                                 <input
                                     className="user"
                                     type='password'
@@ -119,7 +98,12 @@ const Login = () => {
                                     required
                                 />
                             </div>
-                            <button className="button" onClick={formSubmit}>Log-in</button>
+
+                            {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
+                            {console.log(linker)}
+                            {linker && (<button style={{ backgroundColor: "dodgerblue", border: "none" }}><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} Uname={username}>Go To Main</Link></button>)}
+
+
                             <div >
                                 <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
                             </div>
@@ -138,96 +122,14 @@ const Login = () => {
                             })
                         }
                     </div>
-                </div>) : (
-=======
 
-    return (
-        !newUser ? (
-            <div>
-            <div className="login">
-                <h1 className="head">
-                    LOGIN
-                </h1>
-                <hr/>
-                <div className="logindetails">Please enter your following details to login:</div>
-                <div className="form">
-                    <form action="" onSubmit={formSubmit}>
-                        <div className="username">
-                            <label htmlFor='username'>Username:</label>
-                            <br/>
-                            <input
-                                className="user"
-                                type='text'
-                                name='username'
-                                id='username'
-                                placeholder='Username'
-                                autoComplete='name'
-                                value={username}
-                                onChange={(e) => setUserame(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="email">
-                            <label htmlFor='email'>Email:</label>
-                            <br/>
-                            <input
-                                className="user"
-                                type='email'
-                                name='email'
-                                id='email'
-                                placeholder='Email'
-                                autoComplete='email'
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="password">
-                            <label htmlFor='password'>Password:</label>
-                            <br/>
-                            <input
-                                className="user"
-                                type='password'
-                                name='password'
-                                id='password'
-                                placeholder='Password'
-                                autoComplete='password'
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        {/*<button className="button" onClick={formSubmit}>Log-in</button>*/}
-                        <Link className="nav-link active" aria-current="page" to="/CreateAndJoinRoom" Uname={username}>Login</Link>
-                        <div >
-                            <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
-                        </div>
-                    </form>
                 </div>
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
-                <div>
-                    <SignUp />
-                </div>
-<<<<<<< HEAD
-            )
-        );
-    }
-    else {
-        return (
+            </div>) : (
             <div>
-                <JoinRoom /> && <CreateRoom />
-            </div>
-        )
-    }
-=======
-        
-            </div>
-            </div>):(
-            <div>
-                {}
+                <SignUp />
             </div>
         )
     );
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
 }
+
 export default Login

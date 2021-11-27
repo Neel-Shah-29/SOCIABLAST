@@ -14,11 +14,15 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "http://localhost:3000", //url from which request is made i.e react
         methods: ["GET", "POST"],
     },
 });
+// const dbURI = 'mongodb+srv://dhruv11:dhruv11@nodetuts.ugon2.mongodb.net/room?retryWrites=true&w=majority';
 
+// mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then((result) => console.log("connected to mongodb"))
+//     .catch((err) => console.log(err));
 const url = process.env.MongoDB_Database_Url;
 mongoose.connect(url)
     .then(() => {
@@ -71,12 +75,13 @@ io.on("connection", (socket) => {
                     console.log('User registered Successfully.');
                     Modal.save().then((result) => {
                         a = 'User registered Successfully.'
+                        console.log(result)
                         socket.emit('signupsubmit', a)
                     });
+
                 }
             })
-        }
-    )
+    })
     socket.on('loginSubmit', (object) => {
         let status = "";
         SignUpObject.findOne({ Username: object.Username, Email: object.Email })
@@ -84,6 +89,7 @@ io.on("connection", (socket) => {
                 if (data === null) {
                     console.log('Invalid USERNAME or EMAIL.');
                     status = 'Invalid USERNAME or EMAIL.';
+                    socket.emit('loginStatus', status);
                 }
                 else {
                     const obj = {
@@ -94,16 +100,17 @@ io.on("connection", (socket) => {
                     if (savedPassword === object.Password) {
                         console.log('Logged in successfully.');
                         status = 'Logged in successfully.';
+                        socket.emit('loginStatus', status);
                     }
                     else {
                         console.log('Invalid Password.');
                         status = 'Invalid Password.';
+                        socket.emit('loginStatus', status);
                     }
                 }
-                socket.emit('loginStatus', status);
+
             })
-        }
-    )
+    })
     socket.on('roomlogincheck', (object) => {
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
@@ -119,13 +126,6 @@ io.on("connection", (socket) => {
                     const savedPassword = Decrypt(obj);
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
-                        SignUpObject.findOne({ Username: object.username})
-                        .then((datas)=>{
-                            console.log(datas);
-                            console.log(datas.RoomsJoined);
-                            SignUpObject.update({_id:datas._id},{$push:{RoomsJoined:{RoomName:object.roomname,RoomCode:savedPassword}}})
-                            console.log(datas.RoomsJoined);
-                        })
                         let f = "joined room";
                         socket.emit("checkloginjoinroom", f)
                         socket.join(data.roomname)
@@ -138,8 +138,7 @@ io.on("connection", (socket) => {
                     }
                 }
             })
-        }
-    )
+    })
     socket.on("send_message", (data) => {
         socket.to(data.roomname).emit("receive_message", data);
     });

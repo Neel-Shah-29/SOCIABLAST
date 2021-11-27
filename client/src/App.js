@@ -23,14 +23,7 @@ function App() {
         {<Route exact path="/" element={<Home />} />}
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Login" element={< Login />} />
-<<<<<<< HEAD
-
-=======
-        <Route path="/CreateRoom" element={< CreateRoom />} />
-        <Route path="/JoinRoom" element={< JoinRoom />} />
         <Route path="/Main" element={< Main />} />
-        <Route path="/CreateAndJoinRoom" element={<CreateAndJoinRoom/>}/>
->>>>>>> e6dbc16aeb3411793011d4082d8eacbee728f791
       </Routes>
       <Footer />
     </BrowserRouter>

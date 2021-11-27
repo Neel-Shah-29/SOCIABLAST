@@ -1,11 +1,11 @@
 import CreateRoom from "./CreateRoom";
 import JoinRoom from "./JoinRoom";
 
-function CreateAndJoinRoom(){
+function CreateAndJoinRoom() {
     return (
         <div>
-            <CreateRoom/>
-            <JoinRoom/>
+            <CreateRoom />
+            <JoinRoom />
         </div>
     );
 }

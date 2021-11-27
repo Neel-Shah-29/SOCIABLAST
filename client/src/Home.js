@@ -26,10 +26,10 @@ const Home = () => {
             <p>
                 TEAM MEMBERS:-
                 <ol>
-                <li>Neel Shah  </li>
-                <li>Harsh Nag</li>
-                <li>Smit Sekhadia </li>
-                <li>Dhruv Kunjadiya</li>
+                    <li>Neel Shah  </li>
+                    <li>Harsh Nag</li>
+                    <li>Smit Sekhadia </li>
+                    <li>Dhruv Kunjadiya</li>
                 </ol>
             </p>
         </div>
