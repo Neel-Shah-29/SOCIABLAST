@@ -18,6 +18,7 @@ const Login = () => {
     const [newUser, setNewUser] = useState(false);
     const [status, setStatus] = useState('');
     const [newPage,setNewPage]=useState(false);
+    const [linker,setLinker]=useState(false);
 
     const formSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +35,7 @@ const Login = () => {
         if(status==="Logged in successfully."){
             console.log(status);
             setNewPage(true);
+            setLinker(true);
         }
     }
     function setUser(){
@@ -99,9 +101,12 @@ const Login = () => {
                                 required
                             />
                         </div>
-                        {/*<button className="button" onClick={formSubmit}>Log-in</button>*/}
-                        <button className="button"><Link className="nav-link active" aria-current="page" to="/Main" style={{color:"white"}} Uname={username}>Login</Link>
-                        </button>
+                        
+                        {!linker ?(<button className="button" onClick={formSubmit}>Log-in</button>):(
+
+                        <button style={{backgroundColor:"dodgerblue",border:"none"}}><Link className="nav-link active" aria-current="page" to="/Main" style={{color:"white"}} Uname={username}>Go To Main</Link></button>
+                        )}
+                        
                         <div >
                             <button className="newUser" onClick={opnSignUp}>New User? SignUp here!</button>
                         </div>
@@ -124,7 +129,7 @@ const Login = () => {
             </div>
             </div>):(
             <div>
-                {}
+                <SignUp/>
             </div>
         )
     );
