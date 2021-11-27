@@ -31,7 +31,7 @@ function Chat({ socket, username, roomname }) {
     return (
         <div className="chat-window">
             <div className="chat-header">
-                <p>Room Name</p>
+                <p>{roomname}</p>
             </div>
             <div className="chat-body">
                 <ScrollToBottom className="message-container">
@@ -68,7 +68,7 @@ function Chat({ socket, username, roomname }) {
                         event.key === "Enter" && sendMessage();
                     }}
                 />
-                <button className="sendButton" style={{width:"10px",backgroundColor:"#245f48",borderRadius:"50%"}}><button onClick={sendMessage}>&#9658;</button></button>
+                <button className="sendButton" style={{ width: "10px", backgroundColor: "#245f48", borderRadius: "50%" }}><button onClick={sendMessage}>&#9658;</button></button>
             </div>
         </div>
     );

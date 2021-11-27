@@ -47,7 +47,7 @@ io.on("connection", (socket) => {
                     socket.emit("checksameroom", check)
                 }
                 else {
-                    let c = "created  room successfully"
+                    let c = "Room created!"
                     socket.emit("checksameroom", c)
                     roomlist.save()
                         .then((result) => {

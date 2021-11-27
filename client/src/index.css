@@ -31,6 +31,7 @@ body{
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   margin-top:3%;
+  margin-bottom:3%;
   margin-left:30%;
   margin-right:30%;
   border: 1px solid black;
@@ -119,9 +120,15 @@ body{
 .CandJ{
   display: flex;
   flex-direction: row;
-<<<<<<< HEAD
 }
-=======
+.headers1 p{
+  color: #8aa7ec;
 }
-
->>>>>>> 86839eabed21ec78774e02e4e0feeef1f7ab2ce9
+.headers1 p button{
+  margin:0 0 0 40px;
+  color:#378181
+}
+.headers1 p button:hover{
+  background-color:rgb(182, 238, 235);
+  border:2px solid black;
+}
