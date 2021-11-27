@@ -8,4 +8,8 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById('root')
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> 93c91709431a2fea49a090fadf5f105436d96c82

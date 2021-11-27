@@ -12,11 +12,23 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+<<<<<<< HEAD
+    "crypto": "^1.0.1",
+=======
+>>>>>>> 93c91709431a2fea49a090fadf5f105436d96c82
     "cryptr": "^6.0.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
+<<<<<<< HEAD
+    "node.js": "^0.0.1-security",
+    "nodemon": "^2.0.15",
+    "socket.io": "^4.4.0"
+  }
+}
+=======
     "nodemon": "^2.0.15",
     "socket.io": "^4.3.2"
   }
 }
+>>>>>>> 93c91709431a2fea49a090fadf5f105436d96c82

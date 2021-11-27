@@ -11,3 +11,110 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+<<<<<<< HEAD
+
+.Home{
+  padding:20px;
+  margin: 20px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+body{
+  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  color:aliceblue;
+  background-size: cover;
+  font-family:'Times New Roman', Times, serif;
+  height:100%;
+}
+
+.login{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  margin-top:3%;
+  margin-left:30%;
+  margin-right:30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding:10px;
+  background-color:gainsboro;
+  color:black;
+}
+
+.signUp{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  margin-top:3%;
+  margin-left:30%;
+  margin-right:30%;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding:2px 4px 2px 4px;
+  background-color: gainsboro;
+  color:black;
+  padding:10px;
+}
+
+.logindetails{
+  font-size: small;
+}
+
+.username{
+  padding:10px;
+  margin:10px;
+}
+
+.user{
+  padding: 10px;
+  border:2px solid black;
+  border-radius: 5%;
+}
+
+.user:hover{
+  background-color:rgb(176, 214, 247);
+  border:2px solid black;
+}
+.Signupbutton{
+  background-color:dodgerblue;
+  border-radius: 3px;
+  color:white;
+  padding:15px;
+  border:none;
+  margin:10px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.user:focus{
+  border: 2px solid black;
+  background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
+
+}
+
+.email{
+  padding:10px;
+  margin:10px;
+}
+
+.password{
+  padding:10px;
+}
+
+.button{
+  padding:10px;
+  background-color:dodgerblue;
+  border:none;
+  border-radius: 5%;
+  color:white
+}
+
+
+.newUser{
+  color: rgb(73, 76, 78);
+  padding:10px;
+  margin-top: 15px;
+  background-color:dodgerblue;
+  border:none;
+  color:white;
+}
+
+=======
+>>>>>>> 93c91709431a2fea49a090fadf5f105436d96c82
