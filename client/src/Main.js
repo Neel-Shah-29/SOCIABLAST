@@ -12,7 +12,7 @@ function Main() {
                     <div className="headers1">
                         <p>
                             username
-                            <button><Link className="nav-link active" aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                            <button><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
 
                         </p>
                     </div>

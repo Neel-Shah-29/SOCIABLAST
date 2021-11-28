@@ -26,6 +26,7 @@ function App() {
         <Route path="/Main" element={< Main />} />
         <Route path="/CreateRoom" element={<CreateRoom />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -126,9 +126,20 @@ body{
 }
 .headers1 p button{
   margin:0 0 0 40px;
-  color:#378181
+  border:none;
+  background: #58AE01;
+background: -webkit-linear-gradient(top left, #58AE01, #E3722A);
+background: -moz-linear-gradient(top left, #58AE01, #E3722A);
+background: linear-gradient(to bottom right, #58AE01, #E3722A);
+  color:honeydew;
+  border-radius:5px;
 }
 .headers1 p button:hover{
-  background-color:rgb(182, 238, 235);
-  border:2px solid black;
+  background: -webkit-linear-gradient(top left, #04AE01, #2A71E3);
+  background: -moz-linear-gradient(top left, #04AE01, #2A71E3);
+  background: linear-gradient(to bottom right, #04AE01, #2A71E3);;
+  border:none
+}
+.headers1 button Link{
+  color:black;
 }

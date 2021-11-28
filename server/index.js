@@ -111,6 +111,7 @@ io.on("connection", (socket) => {
 
             })
     })
+
     socket.on('roomlogincheck', (object) => {
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
