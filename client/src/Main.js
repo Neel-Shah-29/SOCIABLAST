@@ -1,26 +1,30 @@
 import SideBar from "./Sidebar";
 import './SidebarCss.css';
 import Chat from './Chat';
-import JoinRoom from './JoinRoom'; 
+import JoinRoom from './JoinRoom';
 import { Link } from 'react-router-dom'
 
-function Main(){
+function Main() {
     return (
         <div>
             <div className="grandfather">
                 <div className="fathersync">
                     <div className="headers1">
-                        <p>Username</p>
+                        <p>
+                            username
+                            <button><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+
+                        </p>
                     </div>
-                    <SideBar/>
+                    <SideBar />
                 </div>
-                <div className="mothersync">   
+                <div className="mothersync">
                     <div className="headers3">
-                        <JoinRoom/>
+                        <JoinRoom />
                     </div>
                     {/*<button className="butform">
                         <Link className="nav-link" to="/CreateRoom">Create A Room</Link>    
-                    </button>*/}        
+                    </button>*/}
                 </div>
             </div>
         </div>

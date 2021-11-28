@@ -23,10 +23,8 @@ function App() {
         {<Route exact path="/" element={<Home />} />}
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Login" element={< Login />} />
-        <Route path="/CreateRoom" element={< CreateRoom />} />
-        <Route path="/JoinRoom" element={< JoinRoom />} />
         <Route path="/Main" element={< Main />} />
-        <Route path="/CreateAndJoinRoom" element={<CreateAndJoinRoom/>}/>
+        <Route path="/CreateRoom" element={<CreateRoom />} />
       </Routes>
       <Footer />
     </BrowserRouter>
