@@ -103,10 +103,13 @@ body {
   width: 100%;
   height:100%;
   font-family: 'Times New Roman', Times, serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .chat-window p {
   margin: 0;
+  
 }
 .chat-window .chat-header {
   height: 45px;
@@ -145,6 +148,8 @@ body {
 
 .chat-window .chat-body .message-container::-webkit-scrollbar {
   display: none;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .chat-window .chat-body .message {
   height: auto;

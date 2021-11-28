@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SignUp from './SignUp';
 import io from "socket.io-client";
 import {
@@ -31,12 +31,11 @@ const Login = () => {
         socket.emit("loginSubmit", newEntry);
         socket.on('loginStatus', (data) => {
             setStatus(data);
+            if(data==="Logged in successfully."){
+                setNewPage(true);
+                setLinker(true);
+            }
         })
-        if(status==="Logged in successfully."){
-            console.log(status);
-            setNewPage(true);
-            setLinker(true);
-        }
     }
     function setUser(){
         setNewUser(false);
@@ -44,6 +43,10 @@ const Login = () => {
     function opnSignUp() {
         setNewUser(true);
     }
+
+    useEffect(()=>{
+
+    },[linker])
 
     return (
         !newUser ? (
@@ -125,7 +128,6 @@ const Login = () => {
                         })
                     }
                 </div>
-        
             </div>
             </div>):(
             <div>

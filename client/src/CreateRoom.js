@@ -8,9 +8,10 @@ function CreateRoom() {
     const [roomcode, setRoomCode] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [status, setstatus] = useState("");
+    const [createrName,setCreaterName]=useState("");
     const create_Room = () => {
         if (roomname !== "" && roomcode !== "") {
-            socket.emit("createroom", { roomname, roomcode });
+            socket.emit("createroom", {createrName, roomname, roomcode });
         }
     };
     useEffect(() => {
@@ -46,6 +47,13 @@ function CreateRoom() {
                             placeholder="Room Password"
                             onChange={(event) => {
                                 setRoomCode(event.target.value);
+                            }}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Creater name"
+                            onChange={(event) => {
+                                setCreaterName(event.target.value);
                             }}
                         />
                         <button onClick={create_Room}>Create A Room</button>

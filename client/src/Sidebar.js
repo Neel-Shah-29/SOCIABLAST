@@ -1,6 +1,20 @@
 import './SidebarCss.css';
+import {useState} from 'react';
+import io from 'socket.io-client';
+
+const socket=io.connect('http://localhost:3001');
 
 function SideBar(){
+
+    const [array,setArray]=useState([]);
+    function getData(){
+        socket.emit('getAlreadyJoinedRooms',{Username:"ZHOLAR"});
+        socket.on('takeAlreadyJoinedRooms',(data)=>{
+            setArray(data);
+            console.log(array);
+        })
+    }
+
     return(
         <div className="child1">
             <div className="async1">
