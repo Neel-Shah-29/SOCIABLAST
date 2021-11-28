@@ -8,7 +8,6 @@ const Roomlist = require('./Modals/rooms');
 const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
-const Zholar=require('./Modals/JoinChatModal');
 require('dotenv').config();
 
 const server = http.createServer(app);
@@ -47,11 +46,6 @@ io.on("connection", (socket) => {
                 }
                 else {
                     let c = "created  room successfully";
-                    let zholarObject=new Zholar({
-                        Username:globalCreaterName,
-                        ChatRoomname:globalRoomName
-                    })
-                    zholarObject.save();
                     socket.emit("checksameroom", c)
                     roomlist.save()
                         .then((result) => {
@@ -113,6 +107,8 @@ io.on("connection", (socket) => {
         }
     )
     socket.on('roomlogincheck', (object) => {
+        let uname=object.username;
+        let rname=object.roomname;
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
                 if (data === null) {
@@ -127,14 +123,19 @@ io.on("connection", (socket) => {
                     const savedPassword = Decrypt(obj);
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
-                        let zholareObject=new Zholar({
-                            Username:object.username,
-                            ChatRoomname:object.roomname
+                        console.log('Appending data.')
+                        SignUpObject.findOneAndUpdate({
+                            Username:uname
+                        },{
+                            $push:{
+                                RoomsJoined:rname
+                            }
+                        }).then(()=>{
+                            console.log('Data appended.');
+                            let f = "joined room";
+                            socket.emit("checkloginjoinroom", f)
+                            socket.join(data.roomname)
                         })
-                        zholareObject.save();
-                        let f = "joined room";
-                        socket.emit("checkloginjoinroom", f)
-                        socket.join(data.roomname)
                     }
                     else {
                         let n = "Invalid Password.";
@@ -148,10 +149,11 @@ io.on("connection", (socket) => {
     )
     socket.on('getAlreadyJoinedRooms',(object)=>{
         let name=object.Username;
-        Zholar.find({Username:name})
+        SignUpObject.findOne({Username:name})
         .then((data)=>{
-            console.log(data);
             socket.emit('takeAlreadyJoinedRooms',data);
+            console.log(data);
+            console.log('Got all the joined chat rooms successfully.')
         })
     })
 

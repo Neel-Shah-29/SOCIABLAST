@@ -5,7 +5,6 @@ import JoinRoom from './JoinRoom';
 import Header from './Header';
 import { Footer } from './Footer';
 import Main from './Main';
-import CreateAndJoinRoom from './CreateAndJoinRoom';
 
 import {
   BrowserRouter,

@@ -34,6 +34,7 @@ const Login = () => {
             if(data==="Logged in successfully."){
                 setNewPage(true);
                 setLinker(true);
+                socket.emit('getAlreadyJoinedRooms',newEntry);
             }
         })
     }

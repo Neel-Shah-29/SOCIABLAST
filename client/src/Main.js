@@ -1,10 +1,24 @@
 import SideBar from "./Sidebar";
 import './SidebarCss.css';
-import Chat from './Chat';
+import io from 'socket.io-client'
 import JoinRoom from './JoinRoom';
 import { Link } from 'react-router-dom'
+import {useState,useEffect} from "react";
+
+const socket=io.connect('http://localhost:3001');
 
 function Main() {
+    const [array,setArray]=useState([]);
+    
+    useEffect(()=>{
+        console.log('Entered in the use effect of MAIN.')
+        socket.on('takeAlreadyJoinedRooms',(data)=>{
+            setArray(data);
+            console.log('Data successfully corrupted.');
+            console.log(array);
+        })
+    },[socket]);
+
     return (
         <div>
             <div className="grandfather">
@@ -22,9 +36,6 @@ function Main() {
                     <div className="headers3">
                         <JoinRoom />
                     </div>
-                    {/*<button className="butform">
-                        <Link className="nav-link" to="/CreateRoom">Create A Room</Link>    
-                    </button>*/}
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { encrypt, decrypt } = require('../cryptionHandler');
 const Schema = mongoose.Schema;
-
+/*
 const RoomsSchema=new Schema({
     RoomName:{
         type:String
@@ -10,7 +10,7 @@ const RoomsSchema=new Schema({
         type:String
     }
 })
-
+*/
 const SignUp = new Schema({
     Username: {
         type: String,
@@ -24,7 +24,7 @@ const SignUp = new Schema({
         type: String,
         required: true
     },
-    RoomsJoined:[RoomsSchema],
+    RoomsJoined:[],
     iv: {
         type: String
     }
