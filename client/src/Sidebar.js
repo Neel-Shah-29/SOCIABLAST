@@ -1,43 +1,24 @@
 import './SidebarCss.css';
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import io from 'socket.io-client';
+import UserContext from './UserContext';
 
 const socket=io.connect('http://localhost:3001');
 
-function SideBar(){
+function SideBar(props){
 
-    const [array,setArray]=useState([]);
-    function getData(){
-        socket.emit('getAlreadyJoinedRooms',{Username:"ZHOLAR"});
-        socket.on('takeAlreadyJoinedRooms',(data)=>{
-            setArray(data);
-            console.log(array);
-        })
-    }
-
+    const { deluxe, setDeluxe} = useContext(UserContext);
     return(
         <div className="child1">
-            <div className="async1">
-                <p>ROOM1</p>
-            </div>
-            <div className="async1">
-                <p>ROOM2</p>
-            </div>
-            <div className="async1">
-                <p>ROOM3</p>
-            </div>
-            <div className="async1">
-                <p>ROOM4</p>
-            </div>
-            <div className="async1">
-                <p>ROOM5</p>
-            </div>
-            <div className="async1">
-                <p>ROOM6</p>
-            </div>
-            <div className="async1">
-                <p>ROOM7</p>
-            </div>
+            {props.arr.map((currentelem) => {
+                                return (
+                                    <div className="async1">
+                                        <p>
+                                            {currentelem}
+                                        </p>
+                                    </div>
+                                );
+                            })}
         </div>
     );
 }

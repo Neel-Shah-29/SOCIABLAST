@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import SignUp from './SignUp';
 import io from "socket.io-client";
 import {
     BrowserRouter,
     Routes,
+    Router,
     Route,
     Link
 } from "react-router-dom";
 
+import Main from './Main';
+import UserContext from './UserContext';
 const socket = io.connect("http://localhost:3001");
 
 const Login = () => {
@@ -19,7 +22,8 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-    const [Data,setData]=useState(null);
+    const { user, setuser} = useContext(UserContext);
+    const { deluxe, setDeluxe} = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -30,34 +34,25 @@ const Login = () => {
         setAllEntry([...allEntry, newEntry]);
         socket.emit("loginSubmit", newEntry);
         socket.on('loginStatus', (data) => {
-            setStatus(data);
-            if(data==="Logged in successfully."){
+            if (data === "Logged in successfully.") {
                 setNewPage(true);
                 setLinker(true);
-                socket.emit('getAlreadyJoinedRooms',newEntry);
+                setStatus(data);
+                setDeluxe(newEntry);
             }
         })
-    }
-    useEffect(()=>{
-        socket.on('takeAlreadyJoinedRooms',(data)=>{
-            console.log(data);
-            console.log('Data fetched successfully.');
-        })
-    },[socket])
-    function setUser() {
-        setNewUser(false);
+
     }
     function opnSignUp() {
         setNewUser(true);
     }
-
-    useEffect(()=>{
-
-    },[linker])
+    function loginset() {
+        setuser(true);
+    }
 
     return (
         !newUser ? (
-            <div>
+            <div className="MasterLogin">
                 <div className="login">
                     <h1 className="head">
                         LOGIN
@@ -111,10 +106,10 @@ const Login = () => {
                                     required
                                 />
                             </div>
-
                             {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
-
-                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} Uname={username}>Go To Main</Link></button>}
+                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}
+                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} onClick={loginset}
+                            >Go To Main</Link></button>}
 
 
                             <div >
@@ -137,7 +132,7 @@ const Login = () => {
                     </div>
 
                 </div>
-            </div>):(
+            </div>) : (
             <div>
                 <SignUp />
             </div>
