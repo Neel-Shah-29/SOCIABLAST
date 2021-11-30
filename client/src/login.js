@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import SignUp from './SignUp';
 import io from "socket.io-client";
 import {
     BrowserRouter,
     Routes,
+    Router,
     Route,
     Link
 } from "react-router-dom";
+// import UserContext from "./UserContext";
 
+import Main from './Main';
+import UserContext from './UserContext';
 const socket = io.connect("http://localhost:3001");
 
 const Login = () => {
@@ -19,7 +23,7 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-
+    const { user, setuser } = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -30,20 +34,19 @@ const Login = () => {
         setAllEntry([...allEntry, newEntry]);
         socket.emit("loginSubmit", newEntry);
         socket.on('loginStatus', (data) => {
-            setStatus(data);
             if (data === "Logged in successfully.") {
-                console.log(status);
                 setNewPage(true);
                 setLinker(true);
+                setStatus(data);
             }
         })
 
     }
-    function setUser() {
-        setNewUser(false);
-    }
     function opnSignUp() {
         setNewUser(true);
+    }
+    function loginset() {
+        setuser(true);
     }
 
     return (
@@ -102,10 +105,10 @@ const Login = () => {
                                     required
                                 />
                             </div>
-
                             {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
-
-                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} Uname={username}>Go To Main</Link></button>}
+                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}
+                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} onClick={loginset}
+                            >Go To Main</Link></button>}
 
 
                             <div >
