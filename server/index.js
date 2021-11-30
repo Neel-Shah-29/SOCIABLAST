@@ -46,6 +46,18 @@ io.on("connection", (socket) => {
                 }
                 else {
                     let c = "created  room successfully";
+                    SignUpObject.findOneAndUpdate({
+                        Username:globalCreaterName
+                    },{
+                        $push:{
+                            RoomsJoined:globalRoomName
+                        }
+                    }).then(()=>{
+                        console.log('Data appended.');
+                        let f = "joined room";
+                        socket.emit("checkloginjoinroom", f)
+                        socket.join(data.roomname)
+                    })
                     socket.emit("checksameroom", c)
                     roomlist.save()
                         .then((result) => {
@@ -136,6 +148,7 @@ io.on("connection", (socket) => {
                             socket.emit("checkloginjoinroom", f)
                             socket.join(data.roomname)
                         })
+                        //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
                         let n = "Invalid Password.";
@@ -151,9 +164,9 @@ io.on("connection", (socket) => {
         let name=object.Username;
         SignUpObject.findOne({Username:name})
         .then((data)=>{
-            socket.emit('takeAlreadyJoinedRooms',data);
             console.log(data);
             console.log('Got all the joined chat rooms successfully.')
+            socket.emit('takeAlreadyJoinedRooms',data.RoomsJoined);
         })
     })
 

@@ -19,7 +19,7 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-
+    const [Data,setData]=useState(null);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -38,6 +38,13 @@ const Login = () => {
             }
         })
     }
+    useEffect(()=>{
+        socket.on('takeAlreadyJoinedRooms',(data)=>{
+            console.log(data);
+            setData=data;
+            console.log('Data fetched successfully.');
+        })
+    },[socket])
     function setUser() {
         setNewUser(false);
     }

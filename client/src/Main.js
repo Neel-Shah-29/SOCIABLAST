@@ -13,11 +13,11 @@ function Main() {
     useEffect(()=>{
         console.log('Entered in the use effect of MAIN.')
         socket.on('takeAlreadyJoinedRooms',(data)=>{
+            console.log(data);
             setArray(data);
-            console.log('Data successfully corrupted.');
-            console.log(array);
+            console.log('Data fetched successfully.');
         })
-    },[socket]);
+    },[]);
 
     return (
         <div>
