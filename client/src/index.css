@@ -37,8 +37,8 @@ body{
   border: 1px solid black;
   border-radius: 5px;
   padding:10px;
-  background-color:gainsboro;
-  color:black;
+  background-color:rgba(0, 0, 0, 0.3);
+  color:white;
 }
 
 .signUp{
@@ -50,8 +50,8 @@ body{
   border: 1px solid black;
   border-radius: 5px;
   padding:2px 4px 2px 4px;
-  background-color: gainsboro;
-  color:black;
+  background-color:rgba(0, 0, 0, 0.3);
+  color:white;
   padding:10px;
   margin-bottom: 50px;
 }

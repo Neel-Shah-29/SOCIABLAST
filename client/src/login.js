@@ -41,7 +41,6 @@ const Login = () => {
     useEffect(()=>{
         socket.on('takeAlreadyJoinedRooms',(data)=>{
             console.log(data);
-            setData=data;
             console.log('Data fetched successfully.');
         })
     },[socket])
