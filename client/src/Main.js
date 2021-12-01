@@ -5,14 +5,13 @@ import JoinRoom from './JoinRoom';
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useContext } from "react";
 import Login from "./login";
-import context from "./login";
 import io from "socket.io-client";
 import UserContext from "./UserContext";
 const socket = io.connect("http://localhost:3001");
 
 function Main() {
     const [array,setArray]=useState([]);
-    const { user, setuser,deluxe,setDeluxe} = useContext(UserContext);
+    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined} = useContext(UserContext);
     useEffect(()=>{
         console.log('Entered in the use effect of MAIN.')
         socket.emit('getAlreadyJoinedRooms',deluxe)
@@ -39,7 +38,10 @@ function Main() {
                         </div>
                         <div className="mothersync">
                             <div className="headers3">
-                                <JoinRoom />
+                                {!joinJoined && <JoinRoom />}
+                                {joinJoined && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username}/>}
+                            </div>
+                            <div>
                             </div>
                         </div>
                     </div>

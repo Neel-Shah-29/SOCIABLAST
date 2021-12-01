@@ -148,6 +148,19 @@ io.on("connection", (socket) => {
                             socket.emit("checkloginjoinroom", f)
                             socket.join(data.roomname)
                         })
+                        /*
+                        let flag=false;
+                        SignUpObject.find({Username:uname},(data)=>{
+                            for(let i=0;i<data.RoomsJoined.length;i++){
+                                if(data.RoomsJoined[i]===rname){
+                                    flag=true;
+                                }
+                            }
+                        })
+                        if(flag===false){
+                            
+                        }
+                        */
                         //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
@@ -168,6 +181,11 @@ io.on("connection", (socket) => {
             console.log('Got all the joined chat rooms successfully.')
             socket.emit('takeAlreadyJoinedRooms',data.RoomsJoined);
         })
+    })
+    socket.on('JoinJoinedRooms',(data)=>{
+        socket.emit('gotJoinJoinedRooms',data);
+        console.log('Backend of the JoinJoinedRooms.');
+        socket.join(data);
     })
 
     socket.on("send_message", (data) => {

@@ -19,10 +19,11 @@ import UserContext from './UserContext';
 function App() {
   const [user, setuser] = useState(null);
   const [deluxe,setDeluxe]=useState({});
+  const [joinJoined,setJoinJoined]=useState(null);
   return (
     <BrowserRouter>
       <Header title="My Chat App" />
-      <UserContext.Provider value={{ user, setuser,deluxe,setDeluxe}}>
+      <UserContext.Provider value={{ user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined}}>
         <Routes>
           {<Route exact path="/" element={<Home />} />}
           <Route path="/SignUp" element={<SignUp />} />
