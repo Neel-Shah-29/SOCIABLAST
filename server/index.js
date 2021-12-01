@@ -22,7 +22,7 @@ const io = new Server(server, {
 const url = process.env.MongoDB_Database_Url;
 mongoose.connect(url)
     .then(() => {
-        console.log("Successfully Connected to the SignUp Database of MongoDB.");
+        console.log("Conneected.");
     })
 
 io.on("connection", (socket) => {
@@ -136,31 +136,38 @@ io.on("connection", (socket) => {
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
                         console.log('Appending data.')
-                        SignUpObject.findOneAndUpdate({
-                            Username:uname
-                        },{
-                            $push:{
-                                RoomsJoined:rname
-                            }
-                        }).then(()=>{
-                            console.log('Data appended.');
-                            let f = "joined room";
-                            socket.emit("checkloginjoinroom", f)
-                            socket.join(data.roomname)
-                        })
-                        /*
                         let flag=false;
-                        SignUpObject.find({Username:uname},(data)=>{
-                            for(let i=0;i<data.RoomsJoined.length;i++){
-                                if(data.RoomsJoined[i]===rname){
+                        SignUpObject.find({Username:uname})
+                        .then((datas)=>{
+                            let array=datas[0].RoomsJoined;
+                            for(let i=0;i<array.length;i++){
+                                if(array[i]===rname){
+
                                     flag=true;
                                 }
                             }
                         })
-                        if(flag===false){
-                            
-                        }
-                        */
+                        .then(()=>{
+                            if(flag===false){
+                                SignUpObject.findOneAndUpdate({
+                                    Username:uname
+                                },{
+                                    $push:{
+                                        RoomsJoined:rname
+                                    }
+                                }).then(()=>{
+                                    console.log('Data appended.');
+                                    let f = "joined room";
+                                    socket.emit("checkloginjoinroom", f)
+                                    socket.join(data.roomname)
+                                })
+                            }
+                            else if(flag===true){
+                                console.log("Room Already Joined.")
+                                let string="Room Already Joined.";
+                                socket.emit('RoomAlreadyJoined',string);
+                            }
+                        })
                         //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
@@ -200,5 +207,5 @@ io.on("connection", (socket) => {
 
 
 server.listen(3001, () => {
-    console.log("SERVER RUNNING");
+    console.log("Server Running.");
 });

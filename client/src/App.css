@@ -45,6 +45,7 @@
   display: grid;
   place-items: center;
   border-radius: 5px;
+  margin-bottom: 5%;
 }
 body {
   margin: 0%;

@@ -40,7 +40,7 @@ function CreateRoom() {
         <div>
             <div className="App">
                 <div className="joinChatContainers">
-                    <h3>Join A Chat</h3>
+                    <h3>Create Room</h3>
                     <input
                         type="text"
                         placeholder="Roomname"
