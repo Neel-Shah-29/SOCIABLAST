@@ -190,9 +190,9 @@ io.on("connection", (socket) => {
         })
     })
     socket.on('JoinJoinedRooms',(data)=>{
+        socket.join(data);
         socket.emit('gotJoinJoinedRooms',data);
         console.log('Backend of the JoinJoinedRooms.');
-        socket.join(data);
     })
 
     socket.on("send_message", (data) => {

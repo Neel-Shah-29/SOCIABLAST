@@ -13,14 +13,13 @@ function Main() {
     const [array,setArray]=useState([]);
     const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined} = useContext(UserContext);
     useEffect(()=>{
-        console.log('Entered in the use effect of MAIN.')
         socket.emit('getAlreadyJoinedRooms',deluxe)
         socket.on('takeAlreadyJoinedRooms',(data)=>{
             console.log(data);
             setArray(data);
             console.log('Data fetched successfully.');
         })
-    },[socket]);
+    },[socket,joinJoined]);
     return (
         user ?
             (
