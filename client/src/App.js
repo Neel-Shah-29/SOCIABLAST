@@ -20,10 +20,11 @@ function App() {
   const [user, setuser] = useState(null);
   const [deluxe,setDeluxe]=useState({});
   const [joinJoined,setJoinJoined]=useState(null);
+  const [remJoinChat,setRemJoinChat]=useState(true);
   return (
     <BrowserRouter>
       <Header title="My Chat App" />
-      <UserContext.Provider value={{ user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined}}>
+      <UserContext.Provider value={{ user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat}}>
         <Routes>
           {<Route exact path="/" element={<Home />} />}
           <Route path="/SignUp" element={<SignUp />} />

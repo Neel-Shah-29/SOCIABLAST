@@ -9,13 +9,13 @@ import io from "socket.io-client";
 import UserContext from "./UserContext";
 const socket = io.connect("http://localhost:3001");
 
+
 function Main() {
     const [array,setArray]=useState([]);
-    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined} = useContext(UserContext);
+    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat} = useContext(UserContext);
     useEffect(()=>{
         socket.emit('getAlreadyJoinedRooms',deluxe)
         socket.on('takeAlreadyJoinedRooms',(data)=>{
-            console.log(data);
             setArray(data);
             console.log('Data fetched successfully.');
         })
@@ -37,8 +37,8 @@ function Main() {
                         </div>
                         <div className="mothersync">
                             <div className="headers3">
-                                {!joinJoined && <JoinRoom />}
-                                {joinJoined && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username}/>}
+                                {remJoinChat && <JoinRoom />}
+                                {!remJoinChat && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username}/>}
                             </div>
                             <div>
                             </div>

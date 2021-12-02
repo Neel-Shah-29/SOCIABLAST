@@ -184,7 +184,6 @@ io.on("connection", (socket) => {
         let name=object.Username;
         SignUpObject.findOne({Username:name})
         .then((data)=>{
-            console.log(data);
             console.log('Got all the joined chat rooms successfully.')
             socket.emit('takeAlreadyJoinedRooms',data.RoomsJoined);
         })
@@ -196,6 +195,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on("send_message", (data) => {
+        console.log(data);
         socket.to(data.roomname).emit("receive_message", data);
     });
 

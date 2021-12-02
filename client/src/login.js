@@ -118,8 +118,7 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
-                        {
-                            allEntry.map((currentelem) => {
+                        {   allEntry.map((currentelem) => {
                                 return (
                                     <div>
                                         <p>
