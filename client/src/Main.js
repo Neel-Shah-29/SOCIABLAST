@@ -33,7 +33,7 @@ function Main() {
 
                                 </p>
                             </div>
-                            <SideBar arr={array}/>
+                            <SideBar arr={array} soc={socket}/>
                         </div>
                         <div className="mothersync">
                             <div className="headers3">

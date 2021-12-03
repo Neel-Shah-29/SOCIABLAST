@@ -2,7 +2,6 @@ import io from "socket.io-client";
 import {useEffect,useContext} from 'react';
 import Chat from './Chat'
 import UserContext from "./UserContext";
-const socket=io.connect('http://localhost:3001');
 
 function Container(props){
     let Roomname=props.Rname;
@@ -10,17 +9,17 @@ function Container(props){
     const {remJoinChat,setRemJoinChat}=useContext(UserContext);
 
     function func(){
-        socket.emit('JoinJoinedRooms',Roomname);
+        props.socket.emit('JoinJoinedRooms',Roomname);
     }
 
     useEffect(() => {
         console.log(joinJoined);
         console.log('Frontend of the JoinJoinedRooms');
-        socket.on("gotJoinJoinedRooms",(data) => {
+        props.socket.on("gotJoinJoinedRooms",(data) => {
             setJoinJoined(data);
             setRemJoinChat(false);
         })
-    }, [socket,joinJoined]);
+    }, [props.socket,joinJoined]);
 
     return (
         <div>

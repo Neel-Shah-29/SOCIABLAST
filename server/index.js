@@ -196,6 +196,8 @@ io.on("connection", (socket) => {
 
     socket.on("send_message", (data) => {
         console.log(data);
+        //const clientsInRoom = await io.in(data.roomname).allSockets();
+        //The above commented line is used to check the users present in thr room.
         socket.to(data.roomname).emit("receive_message", data);
     });
 

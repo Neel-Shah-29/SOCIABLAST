@@ -4,8 +4,6 @@ import io from 'socket.io-client';
 import UserContext from './UserContext';
 import Container from './Container.js'
 
-const socket=io.connect('http://localhost:3001');
-
 function SideBar(props){
 
     const { deluxe, setDeluxe} = useContext(UserContext);
@@ -14,7 +12,7 @@ function SideBar(props){
             {props.arr.map((currentelem) => {
                 return (
                     <div className="async1">
-                        <Container Rname={currentelem}/>
+                        <Container Rname={currentelem} socket={props.soc}/>
                     </div>
                  );
             })}
