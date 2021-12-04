@@ -29,8 +29,8 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
-        let globalCreaterName=data.createrName;
-        let globalRoomName=data.roomname;
+        let globalCreaterName = data.createrName;
+        let globalRoomName = data.roomname;
         socket.join(data);
         console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
         const roomlist = new Roomlist({
@@ -47,16 +47,19 @@ io.on("connection", (socket) => {
                 else {
                     let c = "created  room successfully";
                     SignUpObject.findOneAndUpdate({
-                        Username:globalCreaterName
-                    },{
-                        $push:{
-                            RoomsJoined:globalRoomName
+                        Username: globalCreaterName
+                    }, {
+                        $push: {
+                            RoomsJoined: globalRoomName
                         }
-                    }).then(()=>{
+                    }).then(() => {
                         console.log('Data appended.');
-                        let f = "joined room";
-                        socket.emit("checkloginjoinroom", f)
-                        socket.join(data.roomname)
+                        if (data != null) {
+                            let f = "joined room";
+                            socket.emit("checkloginjoinroom", f)
+                            socket.join(data.roomname)
+                        }
+
                     })
                     socket.emit("checksameroom", c)
                     roomlist.save()
@@ -89,7 +92,7 @@ io.on("connection", (socket) => {
                     });
                 }
             })
-        }
+    }
     )
     socket.on('loginSubmit', (object) => {
         let status = "";
@@ -116,11 +119,11 @@ io.on("connection", (socket) => {
                 }
                 socket.emit('loginStatus', status);
             })
-        }
+    }
     )
     socket.on('roomlogincheck', (object) => {
-        let uname=object.username;
-        let rname=object.roomname;
+        let uname = object.username;
+        let rname = object.roomname;
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
                 if (data === null) {
@@ -136,38 +139,38 @@ io.on("connection", (socket) => {
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
                         console.log('Appending data.')
-                        let flag=false;
-                        SignUpObject.find({Username:uname})
-                        .then((datas)=>{
-                            let array=datas[0].RoomsJoined;
-                            for(let i=0;i<array.length;i++){
-                                if(array[i]===rname){
+                        let flag = false;
+                        SignUpObject.find({ Username: uname })
+                            .then((datas) => {
+                                let array = datas[0].RoomsJoined;
+                                for (let i = 0; i < array.length; i++) {
+                                    if (array[i] === rname) {
 
-                                    flag=true;
-                                }
-                            }
-                        })
-                        .then(()=>{
-                            if(flag===false){
-                                SignUpObject.findOneAndUpdate({
-                                    Username:uname
-                                },{
-                                    $push:{
-                                        RoomsJoined:rname
+                                        flag = true;
                                     }
-                                }).then(()=>{
-                                    console.log('Data appended.');
-                                    let f = "joined room";
-                                    socket.emit("checkloginjoinroom", f)
-                                    socket.join(data.roomname)
-                                })
-                            }
-                            else if(flag===true){
-                                console.log("Room Already Joined.")
-                                let string="Room Already Joined.";
-                                socket.emit('RoomAlreadyJoined',string);
-                            }
-                        })
+                                }
+                            })
+                            .then(() => {
+                                if (flag === false) {
+                                    SignUpObject.findOneAndUpdate({
+                                        Username: uname
+                                    }, {
+                                        $push: {
+                                            RoomsJoined: rname
+                                        }
+                                    }).then(() => {
+                                        console.log('Data appended.');
+                                        let f = "joined room";
+                                        socket.emit("checkloginjoinroom", f)
+                                        socket.join(data.roomname)
+                                    })
+                                }
+                                else if (flag === true) {
+                                    console.log("Room Already Joined.")
+                                    let string = "Room Already Joined.";
+                                    socket.emit('RoomAlreadyJoined', string);
+                                }
+                            })
                         //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
@@ -178,19 +181,22 @@ io.on("connection", (socket) => {
                     }
                 }
             })
-        }
+    }
     )
-    socket.on('getAlreadyJoinedRooms',(object)=>{
-        let name=object.Username;
-        SignUpObject.findOne({Username:name})
-        .then((data)=>{
-            console.log('Got all the joined chat rooms successfully.')
-            socket.emit('takeAlreadyJoinedRooms',data.RoomsJoined);
-        })
+    socket.on('getAlreadyJoinedRooms', (object) => {
+        let name = object.Username;
+        SignUpObject.findOne({ Username: name })
+            .then((data) => {
+                if (data != null) {
+                    console.log('Got all the joined chat rooms successfully.')
+                    socket.emit('takeAlreadyJoinedRooms', data.RoomsJoined);
+                }
+
+            })
     })
-    socket.on('JoinJoinedRooms',(data)=>{
+    socket.on('JoinJoinedRooms', (data) => {
         socket.join(data);
-        socket.emit('gotJoinJoinedRooms',data);
+        socket.emit('gotJoinJoinedRooms', data);
         console.log('Backend of the JoinJoinedRooms.');
     })
 
@@ -205,9 +211,6 @@ io.on("connection", (socket) => {
         console.log("User Disconnected", socket.id);
     });
 });
-
-
-
 server.listen(3001, () => {
     console.log("Server Running.");
 });

@@ -11,15 +11,18 @@ const socket = io.connect("http://localhost:3001");
 
 
 function Main() {
-    const [array,setArray]=useState([]);
-    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat} = useContext(UserContext);
-    useEffect(()=>{
-        socket.emit('getAlreadyJoinedRooms',deluxe)
-        socket.on('takeAlreadyJoinedRooms',(data)=>{
-            setArray(data);
-            console.log('Data fetched successfully.');
-        })
-    },[socket,joinJoined]);
+    const [array, setArray] = useState([]);
+    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
+    useEffect(() => {
+        console.log(deluxe);
+        if (deluxe !== null) {
+            socket.emit('getAlreadyJoinedRooms', deluxe)
+            socket.on('takeAlreadyJoinedRooms', (data) => {
+                setArray(data);
+                console.log('Data fetched successfully.');
+            })
+        }
+    }, [socket, joinJoined]);
     return (
         user ?
             (
@@ -33,12 +36,12 @@ function Main() {
 
                                 </p>
                             </div>
-                            <SideBar arr={array} soc={socket}/>
+                            <SideBar arr={array} soc={socket} />
                         </div>
                         <div className="mothersync">
                             <div className="headers3">
                                 {remJoinChat && <JoinRoom />}
-                                {!remJoinChat && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username}/>}
+                                {!remJoinChat && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username} />}
                             </div>
                             <div>
                             </div>
@@ -49,10 +52,10 @@ function Main() {
                 <div className="SSSSSS">
                     <p>Kindly login first</p>
                     <div>
-                    <button className="button">
-                    <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "white" }}
+                        <button className="button">
+                            <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "white" }}
                             >Login</Link>
-                    </button>
+                        </button>
                     </div>
                 </div>
             )
