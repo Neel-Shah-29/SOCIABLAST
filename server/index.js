@@ -8,7 +8,15 @@ const Roomlist = require('./Modals/rooms');
 const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
+const fetch = require('node-fetch');
+const WIKIPEDIA=require('wikipedia');
+const XMLHttpRequest = require('xhr2');
+const { parse } = require('path');
 require('dotenv').config();
+const api = {
+    key: "6f4a080b394bf3e3b171c15866a13d78",
+    base: "https://api.openweathermap.org/data/2.5/"
+}
 
 const server = http.createServer(app);
 
@@ -200,7 +208,46 @@ io.on("connection", (socket) => {
         //The above commented line is used to check the users present in thr room.
         socket.to(data.roomname).emit("receive_message", data);
     });
+    socket.on("botmessage", (data) => {
+        if (data.message.includes(".weather", 0)) {
+            let s = "";
+            for (let i = 9; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    if (result !== undefined) {
+                        //    console.log(result);
 
+                        data.message = [result.main.temp, result.sys.country];
+                        socket.emit('botreporting', data)
+                    }
+                }
+            );
+        }
+        else if(data.message.includes(".wikipedia",0)){
+            let s = "";
+            for (let i =11; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query=s;
+            (async () => {
+                try {
+                    const page = await WIKIPEDIA.page(query);
+                    const summary = await page.summary();
+                    console.log(summary.extract);
+                    const paragraph=summary.extract;
+                    data.message=paragraph;
+                    socket.emit('botreporting',data);
+                } catch (error) {
+                    console.log(error);
+                }
+            })()
+        }
+    })
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });

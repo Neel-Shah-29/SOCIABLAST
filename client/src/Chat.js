@@ -1,12 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import './index.css'
+import UserContext from "./UserContext";
 
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([]);
+    const {messageList, setMessageList} = useContext(UserContext);
     const sendMessage = async () => {
-        if (currentMessage !== "") {
+        if (currentMessage.includes(".", 0)) {
+            const messageData = {
+                roomname: roomname,
+                username: 'bot',
+                message: currentMessage,
+                time:
+                    new Date(Date.now()).getHours() +
+                    ":" +
+                    new Date(Date.now()).getMinutes(),
+            };
+            await socket.emit('botmessage', messageData);
+            setMessageList((list) => [...list, messageData]);
+            setCurrentMessage("");
+        }
+        else if (currentMessage !== "") {
             const messageData = {
                 roomname: roomname,
                 username: username,
@@ -27,6 +42,10 @@ function Chat({ socket, username, roomname }) {
             console.log(data);
             setMessageList((list) => [...list, data]);
         });
+        socket.on("botreporting", (data) => {
+            setMessageList((list) => [...list, data]);
+            console.log(data);
+        })
     }, [socket]);
 
     return (
@@ -40,7 +59,7 @@ function Chat({ socket, username, roomname }) {
                         return (
                             <div
                                 className="message"
-                                id={username === messageContent.username ? "you" : "other"}
+                                id={username === messageContent.username ? "you" :(messageContent.username==="bot"?"bot":"other")}
                             >
                                 <div>
                                     <div className="message-content">
