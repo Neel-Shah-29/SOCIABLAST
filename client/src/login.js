@@ -23,7 +23,12 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
+<<<<<<< HEAD
     const { user, setuser } = useContext(UserContext);
+=======
+    const { user, setuser} = useContext(UserContext);
+    const { deluxe, setDeluxe} = useContext(UserContext);
+>>>>>>> af29855295fcee059fc727b8512291f34752f02f
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -38,6 +43,10 @@ const Login = () => {
                 setNewPage(true);
                 setLinker(true);
                 setStatus(data);
+<<<<<<< HEAD
+=======
+                setDeluxe(newEntry);
+>>>>>>> af29855295fcee059fc727b8512291f34752f02f
             }
         })
 
@@ -51,7 +60,7 @@ const Login = () => {
 
     return (
         !newUser ? (
-            <div>
+            <div className="MasterLogin">
                 <div className="login">
                     <h1 className="head">
                         LOGIN
@@ -117,8 +126,7 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
-                        {
-                            allEntry.map((currentelem) => {
+                        {   allEntry.map((currentelem) => {
                                 return (
                                     <div>
                                         <p>

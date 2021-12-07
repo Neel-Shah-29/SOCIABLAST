@@ -11,6 +11,7 @@ const JoinRoom = () => {
     const [roomcode, setRoomCode] = useState("");
     const [roomstatus, setroomstatus] = useState("");
     const [username, setusername] = useState("");
+    const [joinStatus,setJoinStatus]=useState(false);
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
             socket.emit("roomlogincheck", { username, roomname, roomcode });
@@ -30,11 +31,15 @@ const JoinRoom = () => {
                 </>
             );
         })
+        socket.on("RoomAlreadyJoined",(data)=>{
+            setJoinStatus(true);
+        })
     }, [socket]);
 
     return (
         <div className="App">
             {!showChat ? (
+                <div>
                 <div className="joinChatContainer">
                     <h3>Join A Chat</h3>
                     <input
@@ -60,6 +65,8 @@ const JoinRoom = () => {
                     />
                     <button onClick={join_Room}>Join A Room</button>
                     <p>{roomstatus}</p>
+                </div>
+                    {joinStatus && <p style={{fontFamily:"Times New Roman" }}>Room Already Joined</p>}
                 </div>
             ) : (
                 <Chat socket={socket} roomname={roomname} username={username} />

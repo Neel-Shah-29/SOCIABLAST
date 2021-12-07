@@ -20,11 +20,15 @@ code {
 }
 
 body{
-  background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  background:linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
   color:aliceblue;
   background-size: cover;
   font-family:'Times New Roman', Times, serif;
   height:100%;
+}
+.MasterLogin{
+  height:100%;
+  width:100%;
 }
 
 .login{
@@ -37,11 +41,12 @@ body{
   border: 1px solid black;
   border-radius: 5px;
   padding:10px;
-  background-color:gainsboro;
-  color:black;
+  background-color:rgba(0, 0, 0, 0.3);
+  color:white;
 }
 
 .signUp{
+
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   margin-top:3%;
@@ -50,8 +55,8 @@ body{
   border: 1px solid black;
   border-radius: 5px;
   padding:2px 4px 2px 4px;
-  background-color: gainsboro;
-  color:black;
+  background-color:rgba(0, 0, 0, 0.3);
+  color:white;
   padding:10px;
   margin-bottom: 50px;
 }
@@ -142,4 +147,9 @@ background: linear-gradient(to bottom right, #58AE01, #E3722A);
 }
 .headers1 button Link{
   color:black;
+}
+
+.SSSSSS{
+  margin-left:45%;
+  height:575px;
 }

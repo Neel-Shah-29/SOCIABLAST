@@ -8,31 +8,34 @@ const Roomlist = require('./Modals/rooms');
 const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
+const fetch = require('node-fetch');
+const WIKIPEDIA = require('wikipedia');
 require('dotenv').config();
-
+const api = {
+    key: "6f4a080b394bf3e3b171c15866a13d78",
+    base: "https://api.openweathermap.org/data/2.5/"
+}
 const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000", //url from which request is made i.e react
+        origin: "http://localhost:3000",
         methods: ["GET", "POST"],
     },
 });
-// const dbURI = 'mongodb+srv://dhruv11:dhruv11@nodetuts.ugon2.mongodb.net/room?retryWrites=true&w=majority';
 
-// mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then((result) => console.log("connected to mongodb"))
-//     .catch((err) => console.log(err));
 const url = process.env.MongoDB_Database_Url;
 mongoose.connect(url)
     .then(() => {
-        console.log("Successfully Connected to the SignUp Database of MongoDB.");
+        console.log("Conneected.");
     })
 
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
+        let globalCreaterName = data.createrName;
+        let globalRoomName = data.roomname;
         socket.join(data);
         console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
         const roomlist = new Roomlist({
@@ -47,7 +50,22 @@ io.on("connection", (socket) => {
                     socket.emit("checksameroom", check)
                 }
                 else {
-                    let c = "Room created!"
+                    let c = "created  room successfully";
+                    SignUpObject.findOneAndUpdate({
+                        Username: globalCreaterName
+                    }, {
+                        $push: {
+                            RoomsJoined: globalRoomName
+                        }
+                    }).then(() => {
+                        console.log('Data appended.');
+                        if (data != null) {
+                            let f = "joined room";
+                            socket.emit("checkloginjoinroom", f)
+                            socket.join(data.roomname)
+                        }
+
+                    })
                     socket.emit("checksameroom", c)
                     roomlist.save()
                         .then((result) => {
@@ -75,13 +93,12 @@ io.on("connection", (socket) => {
                     console.log('User registered Successfully.');
                     Modal.save().then((result) => {
                         a = 'User registered Successfully.'
-                        console.log(result)
                         socket.emit('signupsubmit', a)
                     });
-
                 }
             })
-    })
+    }
+    )
     socket.on('loginSubmit', (object) => {
         let status = "";
         SignUpObject.findOne({ Username: object.Username, Email: object.Email })
@@ -89,7 +106,6 @@ io.on("connection", (socket) => {
                 if (data === null) {
                     console.log('Invalid USERNAME or EMAIL.');
                     status = 'Invalid USERNAME or EMAIL.';
-                    socket.emit('loginStatus', status);
                 }
                 else {
                     const obj = {
@@ -100,19 +116,19 @@ io.on("connection", (socket) => {
                     if (savedPassword === object.Password) {
                         console.log('Logged in successfully.');
                         status = 'Logged in successfully.';
-                        socket.emit('loginStatus', status);
                     }
                     else {
                         console.log('Invalid Password.');
                         status = 'Invalid Password.';
-                        socket.emit('loginStatus', status);
                     }
                 }
-
+                socket.emit('loginStatus', status);
             })
-    })
-
+    }
+    )
     socket.on('roomlogincheck', (object) => {
+        let uname = object.username;
+        let rname = object.roomname;
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
                 if (data === null) {
@@ -127,9 +143,40 @@ io.on("connection", (socket) => {
                     const savedPassword = Decrypt(obj);
                     if (savedPassword === object.roomcode) {
                         console.log('Logged in successfully.')
-                        let f = "joined room";
-                        socket.emit("checkloginjoinroom", f)
-                        socket.join(data.roomname)
+                        console.log('Appending data.')
+                        let flag = false;
+                        SignUpObject.find({ Username: uname })
+                            .then((datas) => {
+                                let array = datas[0].RoomsJoined;
+                                for (let i = 0; i < array.length; i++) {
+                                    if (array[i] === rname) {
+
+                                        flag = true;
+                                    }
+                                }
+                            })
+                            .then(() => {
+                                if (flag === false) {
+                                    SignUpObject.findOneAndUpdate({
+                                        Username: uname
+                                    }, {
+                                        $push: {
+                                            RoomsJoined: rname
+                                        }
+                                    }).then(() => {
+                                        console.log('Data appended.');
+                                        let f = "joined room";
+                                        socket.emit("checkloginjoinroom", f)
+                                        socket.join(data.roomname)
+                                    })
+                                }
+                                else if (flag === true) {
+                                    console.log("Room Already Joined.")
+                                    let string = "Room Already Joined.";
+                                    socket.emit('RoomAlreadyJoined', string);
+                                }
+                            })
+                        //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
                         let n = "Invalid Password.";
@@ -139,18 +186,77 @@ io.on("connection", (socket) => {
                     }
                 }
             })
-    })
-    socket.on("send_message", (data) => {
-        socket.to(data.roomname).emit("receive_message", data);
-    });
+    }
+    )
+    socket.on('getAlreadyJoinedRooms', (object) => {
+        let name = object.Username;
+        SignUpObject.findOne({ Username: name })
+            .then((data) => {
+                if (data != null) {
+                    console.log('Got all the joined chat rooms successfully.')
+                    socket.emit('takeAlreadyJoinedRooms', data.RoomsJoined);
+                }
 
+            })
+    })
+    socket.on('JoinJoinedRooms', (data) => {
+        socket.join(data);
+        socket.emit('gotJoinJoinedRooms', data);
+        console.log('Backend of the JoinJoinedRooms.');
+    })
+
+    socket.on("send_message", (data) => {
+        console.log(data);
+        //const clientsInRoom = await io.in(data.roomname).allSockets();
+        //The above commented line is used to check the users present in thr room.
+
+        socket.to(data.roomname).emit("receive_message", data);
+
+    });
+    socket.on("botmessage", (data) => {
+        if (data.message.includes(".weather", 0)) {
+            let s = "";
+            for (let i = 9; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    if (result.message !== 'city not found') {
+                        //    console.log(result);
+
+                        data.message = [result.main.temp, result.sys.country, result.weather[0].main];
+                        socket.emit('botreporting', data)
+                    }
+                }
+                );
+        }
+        else if (data.message.includes(".wikipedia", 0)) {
+            let s = "";
+            for (let i = 11; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            (async () => {
+                try {
+                    const page = await WIKIPEDIA.page(query);
+                    const summary = await page.summary();
+                    console.log(summary.extract);
+                    const paragraph = summary.extract;
+                    data.message = paragraph;
+                    socket.emit('botreporting', data);
+                } catch (error) {
+                    console.log(error);
+                }
+            })()
+        }
+    })
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });
 });
-
-
-
 server.listen(3001, () => {
-    console.log("SERVER RUNNING");
+    console.log("Server Running.");
 });
