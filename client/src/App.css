@@ -203,6 +203,20 @@ body {
   margin-right: 5px;
 }
 
+#bot {
+  justify-content: flex-end;
+}
+
+#bot .message-content {
+  justify-content: flex-end;
+  background-color: rgb(255, 208, 0);
+}
+
+#bot .message-meta {
+  justify-content: flex-end;
+  margin-right: 5px;
+}
+
 .message-meta #author {
   margin-left: 10px;
   font-weight: bold;
@@ -347,4 +361,3 @@ body {
 .joinChatContainers button:hover {
   background: #2e7d32;
 }
-

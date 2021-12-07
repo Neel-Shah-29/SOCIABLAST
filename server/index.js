@@ -8,8 +8,12 @@ const Roomlist = require('./Modals/rooms');
 const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
+const fetch = require('node-fetch');
 require('dotenv').config();
-
+const api = {
+    key: "6f4a080b394bf3e3b171c15866a13d78",
+    base: "https://api.openweathermap.org/data/2.5/"
+}
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -204,9 +208,32 @@ io.on("connection", (socket) => {
         console.log(data);
         //const clientsInRoom = await io.in(data.roomname).allSockets();
         //The above commented line is used to check the users present in thr room.
-        socket.to(data.roomname).emit("receive_message", data);
-    });
+       
+            socket.to(data.roomname).emit("receive_message", data);
 
+    });
+    socket.on("botmessage", (data) => {
+        if (data.message.includes(".weather", 0)) {
+            let s = "";
+            for (let i = 9; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let botm = "";
+            let query = s;
+            fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    if (result !== undefined) {
+                        //    console.log(result);
+
+                        data.message = [result.main.temp, result.sys.country];
+                        socket.emit('botreporting', data)
+                    }
+                }
+                );
+        }
+    })
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });
