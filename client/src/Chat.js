@@ -35,6 +35,20 @@ function Chat({ socket, username, roomname }) {
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
         }
+        else if (currentMessage !== "") {
+            const messageData = {
+                roomname: roomname,
+                username: username,
+                message: currentMessage,
+                time:
+                    new Date(Date.now()).getHours() +
+                    ":" +
+                    new Date(Date.now()).getMinutes(),
+            };
+            await socket.emit("send_message", messageData);
+            setMessageList((list) => [...list, messageData]);
+            setCurrentMessage("");
+        }
     };
     useEffect(() => {
         socket.on("receive_message", (data) => {
@@ -59,8 +73,8 @@ function Chat({ socket, username, roomname }) {
                             <div
                                 className="message"
                                 id={username === messageContent.username ? "you" : (messageContent.username === "bot" ? "bot" : "other")}
-
                             >
+
                                 <div>
                                     <div className="message-content">
                                         <p>{messageContent.message}</p>

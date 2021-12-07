@@ -210,11 +210,14 @@ body {
 #bot .message-content {
   justify-content: flex-end;
   background-color: rgb(255, 208, 0);
+  color:#212121;
+ 
 }
 
 #bot .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
+  
 }
 
 .message-meta #author {
