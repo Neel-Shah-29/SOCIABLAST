@@ -20,7 +20,11 @@ code {
 }
 
 body{
+  /*
   background:linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+  https://i0.wp.com/www.djdesignerlab.com/wp-content/uploads/2021/01/3D-Animated-Website-Backgrounds.jpg
+  */
+  background-image: url("https://static.vecteezy.com/system/resources/previews/000/394/482/original/worldwide-connection-blue-background-illustration-vector.jpg");
   color:aliceblue;
   background-size: cover;
   font-family:'Times New Roman', Times, serif;
@@ -38,7 +42,7 @@ body{
   margin-bottom:3%;
   margin-left:30%;
   margin-right:30%;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5px;
   padding:10px;
   background-color:rgba(0, 0, 0, 0.3);
@@ -52,7 +56,7 @@ body{
   margin-top:3%;
   margin-left:30%;
   margin-right:30%;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5px;
   padding:2px 4px 2px 4px;
   background-color:rgba(0, 0, 0, 0.3);
@@ -81,18 +85,23 @@ body{
   border:2px solid black;
 }
 .Signupbutton{
-  background-color:dodgerblue;
+  background-color:white;
   border-radius: 3px;
-  color:white;
+  color:black;
   padding:15px;
   border:none;
   margin:10px;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
+.Signupbutton:hover{
+  background-color: rgb(163, 238, 196);
+}
+
 .user:focus{
   border: 2px solid black;
+  /*
   background-image: linear-gradient(45deg, rgb(180, 180, 243), rgb(243, 88, 184));
-
+  */
 }
 
 .email{
@@ -106,10 +115,10 @@ body{
 
 .button{
   padding:10px;
-  background-color:dodgerblue;
+  background-color:white;
   border:none;
   border-radius: 5%;
-  color:white
+  color:black;
 }
 
 
@@ -117,9 +126,9 @@ body{
   color: rgb(73, 76, 78);
   padding:10px;
   margin-top: 15px;
-  background-color:dodgerblue;
+  background-color:white;
   border:none;
-  color:white;
+  color:black;
 }
 
 .CandJ{
@@ -150,6 +159,14 @@ background: linear-gradient(to bottom right, #58AE01, #E3722A);
 }
 
 .SSSSSS{
-  margin-left:45%;
+  margin-left:39%;
   height:575px;
+}
+.SSSSSS .Spara{
+  margin-left: 4.5%;
+  font-size: xx-large;
+}
+.SSSSSS .button{
+  margin-left: 12.5%;
+  font-size: large;
 }

@@ -11,6 +11,7 @@ const { Encrypt, Decrypt } = require('./cryptionHandler1');
 const fetch = require('node-fetch');
 const WIKIPEDIA=require('wikipedia');
 const axios = require('axios');
+const solenolyrics= require("solenolyrics");
 require('dotenv').config();
 const api = {
     key: "6f4a080b394bf3e3b171c15866a13d78",
@@ -287,6 +288,42 @@ io.on("connection", (socket) => {
             })
             .catch(error => {
                 console.log(error);
+            });
+        }
+        else if (data.message.includes(".lyrics", 0)) {
+            let s = "";
+            for (let i = 8; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            solenolyrics.requestLyricsFor(s).then(
+                result => {
+                    data.message = [result];
+                    socket.emit('botreporting', data);
+                }
+            );
+        }
+        else if(data.message.includes('.stock')){
+            let s="";
+            for(let i=7;i<data.message.length;i++){
+                s=s+data.message[i];
+            }
+            let query=s;
+            var axios = require("axios").default;
+
+            var options = {
+                method: 'GET',
+                url: 'https://yh-finance.p.rapidapi.com/auto-complete',
+                params: {q: query, region: 'India'},
+                headers: {
+                    'x-rapidapi-host': 'yh-finance.p.rapidapi.com',
+                    'x-rapidapi-key': 'eb77eb184cmshb845180388fccf9p1fcde7jsn10d58de2eec7'
+                }
+            };
+
+            axios.request(options).then(function (response) {
+                console.log(response.data);
+            }).catch(function (error) {
+                console.error(error);
             });
         }
     })

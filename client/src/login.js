@@ -107,8 +107,8 @@ const Login = () => {
                                 />
                             </div>
                             {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
-                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}
-                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} onClick={loginset}
+                            {linker && <button style={{ backgroundColor: "white", border: "none" }}
+                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "black" }} onClick={loginset}
                             >Go To Main</Link></button>}
 
 
