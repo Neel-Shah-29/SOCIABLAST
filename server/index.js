@@ -176,7 +176,6 @@ io.on("connection", (socket) => {
                                 socket.emit('RoomAlreadyJoined',string);
                             }
                         })
-                        //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
                         let n = "Invalid Password.";
@@ -208,6 +207,7 @@ io.on("connection", (socket) => {
         //The above commented line is used to check the users present in thr room.
         socket.to(data.roomname).emit("receive_message", data);
     });
+    
     socket.on("botmessage", (data) => {
         if (data.message.includes(".weather", 0)) {
             let s = "";
@@ -215,42 +215,63 @@ io.on("connection", (socket) => {
                 s = s + data.message[i];
             }
             let query = s;
+            let check=".weather";
             fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
                 .then(res => res.json())
                 .then(result => {
                     console.log(result)
-                    if (result !== undefined) {
+                    if (result.message !== 'city not found') {
                         //    console.log(result);
 
-                        data.message = [result.main.temp, result.sys.country];
+                        data.message = [check,result.main.temp, result.sys.country, result.weather[0].main,s,result.main.temp_max,result.main.temp_min,result.main.humidity];
+                        console.log(data.message)
                         socket.emit('botreporting', data)
                     }
                 }
-            );
+                );
         }
-        else if(data.message.includes(".wikipedia",0)){
+        else if (data.message.includes(".wikipedia", 0)) {
             let s = "";
-            for (let i =11; i < data.message.length; i++) {
+            for (let i = 11; i < data.message.length; i++) {
                 s = s + data.message[i];
             }
-            let query=s;
+            let query = s;
+            let check=".wikipedia";
             (async () => {
                 try {
                     const page = await WIKIPEDIA.page(query);
                     const summary = await page.summary();
                     console.log(summary.extract);
-                    const paragraph=summary.extract;
-                    data.message=paragraph;
-                    socket.emit('botreporting',data);
+                    const paragraph = summary.extract;
+                    data.message = [check,paragraph,s];
+                    socket.emit('botreporting', data);
                 } catch (error) {
                     console.log(error);
                 }
             })()
         }
+        else if (data.message.includes(".time", 0)) {
+            let s = "";
+            let check=".time"
+            for (let i = 6; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            axios.get(`https://timezone.abstractapi.com/v1/current_time/?api_key=7b9d1cd586ef4e05b2d9f1f48d1299c3&location=${query}`)
+                .then(response => {
+                    console.log(response.data);
+                    data.message = [check,[response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude],s];
+                    socket.emit('botreporting', data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
         else if (data.message.includes(".currency", 0)) {
             let s = "";
             let q = "";
             let amt = "";
+            let check=".currency"
             for (let i = 10; i < 13; i++) {
                 s = s + data.message[i];
             }
@@ -267,64 +288,29 @@ io.on("connection", (socket) => {
                 .then(res => res.json())
                 .then(result => {
                     console.log(result)
-                    data.message = [result.price, result.source, result.destination, result.converted_value];
+                    data.message = [check,result.price, result.source, result.destination, result.converted_value];
                     socket.emit('botreporting', data);
                 })
                 .catch(err => {
                     console.error(err);
                 });
         }
-        else if(data.message.includes(".time",0)){
-            let s="";
-            for(let i=6;i<data.message.length;i++){
-                s=s+data.message[i];
-            }
-            let query=s;
-            axios.get(`https://timezone.abstractapi.com/v1/current_time/?api_key=7b9d1cd586ef4e05b2d9f1f48d1299c3&location=${query}`)
-            .then(response => {
-                console.log(response.data);
-                data.message=[[response.data.datetime],[response.data.timezone_name],[response.data.timezone_location],[response.data.latitude],[response.data.longitude]];
-                socket.emit('botreporting',data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-        }
+        
         else if (data.message.includes(".lyrics", 0)) {
             let s = "";
+            let check=".lyrics"
             for (let i = 8; i < data.message.length; i++) {
                 s = s + data.message[i];
             }
             solenolyrics.requestLyricsFor(s).then(
                 result => {
-                    data.message = [result];
+                    console.log(s);
+                    data.message = [check,result,s];
                     socket.emit('botreporting', data);
                 }
             );
-        }
-        else if(data.message.includes('.stock')){
-            let s="";
-            for(let i=7;i<data.message.length;i++){
-                s=s+data.message[i];
-            }
-            let query=s;
-            var axios = require("axios").default;
 
-            var options = {
-                method: 'GET',
-                url: 'https://yh-finance.p.rapidapi.com/auto-complete',
-                params: {q: query, region: 'India'},
-                headers: {
-                    'x-rapidapi-host': 'yh-finance.p.rapidapi.com',
-                    'x-rapidapi-key': 'eb77eb184cmshb845180388fccf9p1fcde7jsn10d58de2eec7'
-                }
-            };
 
-            axios.request(options).then(function (response) {
-                console.log(response.data);
-            }).catch(function (error) {
-                console.error(error);
-            });
         }
     })
     socket.on("disconnect", () => {

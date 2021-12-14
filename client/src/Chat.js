@@ -2,6 +2,7 @@ import React, { useEffect, useState ,useContext} from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import './index.css'
 import UserContext from "./UserContext";
+import Component from "./Component";
 
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
@@ -59,9 +60,9 @@ function Chat({ socket, username, roomname }) {
                         return (
                             <div
                                 className="message"
-                                id={username === messageContent.username ? "you" :(messageContent.username==="bot"?"bot":"other")}
+                                id={username === messageContent.username ? "you" : (messageContent.username === "bot" ? "bot" : "other")}
                             >
-                                <div>
+                                {(messageContent.username==="bot")?<Component a={messageContent} />:<div>
                                     <div className="message-content">
                                         <p>{messageContent.message}</p>
                                     </div>
@@ -69,18 +70,18 @@ function Chat({ socket, username, roomname }) {
                                         <p id="time">{messageContent.time}</p>
                                         <p id="author">{messageContent.username}</p>
                                     </div>
-                                </div>
+                                </div>}
+
                             </div>
                         );
                     })}
                 </ScrollToBottom>
             </div>
-
             <div className="chat-footer">
                 <input
                     type="text"
                     value={currentMessage}
-                    placeholder="Hey..."
+                    placeholder="Type Your Message..."
                     onChange={(event) => {
                         setCurrentMessage(event.target.value);
                     }}
@@ -88,7 +89,7 @@ function Chat({ socket, username, roomname }) {
                         event.key === "Enter" && sendMessage();
                     }}
                 />
-                <button className="sendButton" style={{ width: "10px", backgroundColor: "#245f48", borderRadius: "50%" }}><button onClick={sendMessage}>&#9658;</button></button>
+                <button className="sendButton" style={{ width: "8px",height:"40px", backgroundColor: "#245f48", borderRadius: "50%" }}><button onClick={sendMessage}>&#9658;</button></button>
             </div>
         </div>
     );
