@@ -7,29 +7,37 @@ const Home = () => {
             <p>
                 Making an application with chat + bot considering the following feactures COMMANDS:-
                 <ol>
-                    <li>.math</li>
-                    <li>.wiki object</li>
+                <p>(Implemented sucessfully)</p>
+                <div style={{marginLeft:"20px"}}>
+                    <li>.wiki object</li> 
                     <li>.weather place</li>
-                    <li>.song name</li>
+                    <li>.lyrics</li>
+                    <li>.time</li>
+                    <li>.currency</li>
+                    <br></br>
+                </div>
+                <p>(Yet to be implemented)</p>
+                <div style={{marginLeft:"20px"}}>
                     <li>.voice line</li>
                     <li>.sticker</li>
+                    <li>.song name</li>
                     <li>.meme</li>
                     <li>.covid</li>
+                    <li>.stocks</li>
                     <li>.reminder</li>
-                    <li>.swap to different app</li>
-                    <li>.help</li>
-                    <li>.lyrics</li>
-                    <li>.custom wallpaper in different text</li>
-                    <li>.help</li>
+                    </div>
                 </ol>
             </p>
             <p>
                 TEAM MEMBERS:-
                 <ol>
+                <div style={{marginLeft:"20px"}}>
+
                     <li>Neel Shah  </li>
                     <li>Harsh Nag</li>
                     <li>Smit Sekhadia </li>
                     <li>Dhruv Kunjadiya</li>
+                    </div>
                 </ol>
             </p>
         </div>

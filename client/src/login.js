@@ -41,6 +41,9 @@ const Login = () => {
                 setStatus(data);
                 setDeluxe(newEntry);
             }
+            else{
+                setStatus(data);
+            }
         })
 
     }
@@ -108,8 +111,8 @@ const Login = () => {
                                 />
                             </div>
                             {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
-                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}
-                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} onClick={loginset}
+                            {linker && <button style={{ backgroundColor: "white", border: "none" }}
+                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "black" }} onClick={loginset}
                             >Go To Main</Link></button>}
 
 
@@ -119,6 +122,7 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
+<<<<<<< HEAD
                         {allEntry.map((currentelem) => {
                             return (
                                 <div>
@@ -129,6 +133,10 @@ const Login = () => {
                             );
                         })
                         }
+=======
+                        <br></br>
+                        {   <p>{status}</p>}
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     </div>
 
                 </div>

@@ -9,11 +9,21 @@ const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
 const fetch = require('node-fetch');
+<<<<<<< HEAD
 const WIKIPEDIA = require('wikipedia');
 const axios = require('axios');
 const solenolyrics = require("solenolyrics");
 
+=======
+const WIKIPEDIA=require('wikipedia');
+const axios = require('axios');
+const solenolyrics= require("solenolyrics");
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
 require('dotenv').config();
+const api = {
+    key: "6f4a080b394bf3e3b171c15866a13d78",
+    base: "https://api.openweathermap.org/data/2.5/"
+}
 
 const api = {
     key: "6f4a080b394bf3e3b171c15866a13d78",
@@ -38,8 +48,13 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
+<<<<<<< HEAD
         let globalCreaterName = data.createrName;
         let globalRoomName = data.roomname;
+=======
+        let globalCreaterName=data.deluxe.Username;
+        let globalRoomName=data.roomname;
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
         socket.join(data);
         console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
         const roomlist = new Roomlist({
@@ -54,7 +69,7 @@ io.on("connection", (socket) => {
                     socket.emit("checksameroom", check)
                 }
                 else {
-                    let c = "created  room successfully";
+                    let c = "Created  Room Successfully !";
                     SignUpObject.findOneAndUpdate({
                         Username: globalCreaterName
                     }, {
@@ -108,8 +123,8 @@ io.on("connection", (socket) => {
         SignUpObject.findOne({ Username: object.Username, Email: object.Email })
             .then((data) => {
                 if (data === null) {
-                    console.log('Invalid USERNAME or EMAIL.');
-                    status = 'Invalid USERNAME or EMAIL.';
+                    console.log('Invalid Username or Email.');
+                    status = 'Invalid Username or Email';
                 }
                 else {
                     const obj = {
@@ -131,8 +146,13 @@ io.on("connection", (socket) => {
     }
     )
     socket.on('roomlogincheck', (object) => {
+<<<<<<< HEAD
         let uname = object.username;
         let rname = object.roomname;
+=======
+        let uname=object.deluxe.Username;
+        let rname=object.roomname;
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
                 if (data === null) {
@@ -157,6 +177,7 @@ io.on("connection", (socket) => {
 
                                         flag = true;
                                     }
+<<<<<<< HEAD
                                 }
                             })
                             .then(() => {
@@ -181,6 +202,21 @@ io.on("connection", (socket) => {
                                 }
                             })
                         //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
+=======
+                                }).then(()=>{
+                                    console.log('Data appended.');
+                                    let f = "joined room";
+                                    socket.emit("checkloginjoinroom", f)
+                                    socket.join(data.roomname)
+                                })
+                            }
+                            else if(flag===true){
+                                console.log("Room Already Joined.")
+                                let string="Room Already Joined.";
+                                socket.emit('RoomAlreadyJoined',string);
+                            }
+                        })
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     }
                     else {
                         let n = "Invalid Password.";
@@ -217,6 +253,10 @@ io.on("connection", (socket) => {
         socket.to(data.roomname).emit("receive_message", data);
 
     });
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
     socket.on("botmessage", (data) => {
         if (data.message.includes(".weather", 0)) {
             let s = "";
@@ -224,6 +264,10 @@ io.on("connection", (socket) => {
                 s = s + data.message[i];
             }
             let query = s;
+<<<<<<< HEAD
+=======
+            let check=".weather";
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
             fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
                 .then(res => res.json())
                 .then(result => {
@@ -231,7 +275,11 @@ io.on("connection", (socket) => {
                     if (result.message !== 'city not found') {
                         //    console.log(result);
 
+<<<<<<< HEAD
                         data.message = [result.main.temp, result.sys.country, result.weather[0].main];
+=======
+                        data.message = [check,result.main.temp, result.sys.country, result.weather[0].main,s,result.main.temp_max,result.main.temp_min,result.main.humidity];
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                         console.log(data.message)
                         socket.emit('botreporting', data)
                     }
@@ -244,13 +292,21 @@ io.on("connection", (socket) => {
                 s = s + data.message[i];
             }
             let query = s;
+<<<<<<< HEAD
+=======
+            let check=".wikipedia";
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
             (async () => {
                 try {
                     const page = await WIKIPEDIA.page(query);
                     const summary = await page.summary();
                     console.log(summary.extract);
                     const paragraph = summary.extract;
+<<<<<<< HEAD
                     data.message = paragraph;
+=======
+                    data.message = [check,paragraph,s];
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     socket.emit('botreporting', data);
                 } catch (error) {
                     console.log(error);
@@ -259,6 +315,10 @@ io.on("connection", (socket) => {
         }
         else if (data.message.includes(".time", 0)) {
             let s = "";
+<<<<<<< HEAD
+=======
+            let check=".time"
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
             for (let i = 6; i < data.message.length; i++) {
                 s = s + data.message[i];
             }
@@ -266,7 +326,11 @@ io.on("connection", (socket) => {
             axios.get(`https://timezone.abstractapi.com/v1/current_time/?api_key=7b9d1cd586ef4e05b2d9f1f48d1299c3&location=${query}`)
                 .then(response => {
                     console.log(response.data);
+<<<<<<< HEAD
                     data.message = [[response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude]];
+=======
+                    data.message = [check,[response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude],s];
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     socket.emit('botreporting', data);
                 })
                 .catch(error => {
@@ -277,6 +341,10 @@ io.on("connection", (socket) => {
             let s = "";
             let q = "";
             let amt = "";
+<<<<<<< HEAD
+=======
+            let check=".currency"
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
             for (let i = 10; i < 13; i++) {
                 s = s + data.message[i];
             }
@@ -293,21 +361,37 @@ io.on("connection", (socket) => {
                 .then(res => res.json())
                 .then(result => {
                     console.log(result)
+<<<<<<< HEAD
                     data.message = [result.price, result.source, result.destination, result.converted_value];
+=======
+                    data.message = [check,result.price, result.source, result.destination, result.converted_value];
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     socket.emit('botreporting', data);
                 })
                 .catch(err => {
                     console.error(err);
                 });
         }
+<<<<<<< HEAD
         else if (data.message.includes(".lyrics", 0)) {
             let s = "";
+=======
+        
+        else if (data.message.includes(".lyrics", 0)) {
+            let s = "";
+            let check=".lyrics"
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
             for (let i = 8; i < data.message.length; i++) {
                 s = s + data.message[i];
             }
             solenolyrics.requestLyricsFor(s).then(
                 result => {
+<<<<<<< HEAD
                     data.message = [result];
+=======
+                    console.log(s);
+                    data.message = [check,result,s];
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
                     socket.emit('botreporting', data);
                 }
             );
@@ -319,6 +403,10 @@ io.on("connection", (socket) => {
         console.log("User Disconnected", socket.id);
     });
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
 server.listen(3001, () => {
     console.log("Server Running.");
 });

@@ -4,10 +4,10 @@
     margin-top:5%;
     margin-bottom:5%;
     align-self: center;
-    width: 1000px;
+    width: 1100px;
     height:600px;
     background-color:rgba(0,0,0,0.3);
-    border:1px solid black;
+    border:1px solid white;
     display:flex;
     flex-direction: row;
     padding:10px;
@@ -20,26 +20,26 @@
     color:black;
     overflow:hidden;
     overflow-y: scroll;
-    border:1px solid black;
-
+    border:1px solid rgb(68, 66, 66);
     color:white;
 }
 .mothersync{
     width:70%;
     height:100%;
-    border:1px solid black;
+    border:1px solid rgb(68, 66, 66);
+    border-left: none;
     color:black;
 }
 
 .async1{
-    border: 1px solid gray;
+    border: 1px solid rgb(68, 66, 66);
     border-radius:3px;
     padding:5px;
     margin:3px;
     background-color:rgba(0,0,0,0.3);
 }
 .async1:hover{
-    background-color: lightblue;   
+    background-color: rgba(53, 50, 50, 0.3);   
 }
 .child1{
     width:100%;
@@ -68,4 +68,40 @@
     border-radius: 3px;
     border: 1px solid black;
     margin-left:40%;
+}
+html::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+html::-webkit-scrollbar-track {
+    background-color: black;
+}
+  
+html::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 25px;
+}
+.fathersync::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+.fathersync::-webkit-scrollbar-track {
+    background-color: black;
+}
+  
+.fathersync::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 25px;
+}
+.mothersync::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+.mothersync::-webkit-scrollbar-track {
+    background-color: black;
+}
+  
+.mothersync::-webkit-scrollbar-thumb {
+    background: #4e4e4e;
+    border-radius: 25px;
 }
