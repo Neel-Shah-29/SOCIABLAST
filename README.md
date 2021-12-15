@@ -1,6 +1,6 @@
 # **SOCIABLAST**
 
-A chat+bot with amazing feactures!
+A chat+bot with amazing features!
 
 #### Team Name : **Technobots**
 
@@ -23,7 +23,7 @@ A chat+bot with amazing feactures!
 ## 📝 Description
 
 ### SOCIABLAST!
-Making an application with chat + bot considering the following feactures COMMANDS:-
+Making an application with chat + bot considering the following features COMMANDS:-
 (Implemented sucessfully)
 
 1) .wiki object
