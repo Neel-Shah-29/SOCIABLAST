@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState, useContext } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import './index.css'
-import { useContext } from "react";
 import UserContext from "./UserContext";
+
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
     const { messageList, setMessageList } = useContext(UserContext);
@@ -35,21 +36,8 @@ function Chat({ socket, username, roomname }) {
             setMessageList((list) => [...list, messageData]);
             setCurrentMessage("");
         }
-        else if (currentMessage !== "") {
-            const messageData = {
-                roomname: roomname,
-                username: username,
-                message: currentMessage,
-                time:
-                    new Date(Date.now()).getHours() +
-                    ":" +
-                    new Date(Date.now()).getMinutes(),
-            };
-            await socket.emit("send_message", messageData);
-            setMessageList((list) => [...list, messageData]);
-            setCurrentMessage("");
-        }
     };
+
     useEffect(() => {
         socket.on("receive_message", (data) => {
             console.log(data);
@@ -72,13 +60,8 @@ function Chat({ socket, username, roomname }) {
                         return (
                             <div
                                 className="message"
-<<<<<<< HEAD
-                                id={username === messageContent.username ? "other" : "you"}
-=======
                                 id={username === messageContent.username ? "you" : (messageContent.username === "bot" ? "bot" : "other")}
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
                             >
-
                                 <div>
                                     <div className="message-content">
                                         <p>{messageContent.message}</p>

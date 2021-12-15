@@ -14,11 +14,11 @@ function CreateRoom() {
     const [roomname, setRoomName] = useState("");
     const [roomcode, setRoomCode] = useState("");
     const [showmain, setShowmain] = useState(false);
-    const [createrName,setCreaterName]=useState("");
+    const [createrName, setCreaterName] = useState("");
     const [status, setstatus] = useState("");
     const create_Room = () => {
         if (roomname !== "" && roomcode !== "") {
-            socket.emit("createroom", { roomname, roomcode,createrName});
+            socket.emit("createroom", { roomname, roomcode, createrName });
         }
     };
     useEffect(() => {

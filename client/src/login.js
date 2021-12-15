@@ -23,12 +23,8 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-<<<<<<< HEAD
     const { user, setuser } = useContext(UserContext);
-=======
-    const { user, setuser} = useContext(UserContext);
-    const { deluxe, setDeluxe} = useContext(UserContext);
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
+    const { deluxe, setDeluxe } = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -43,10 +39,7 @@ const Login = () => {
                 setNewPage(true);
                 setLinker(true);
                 setStatus(data);
-<<<<<<< HEAD
-=======
                 setDeluxe(newEntry);
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
             }
         })
 
@@ -126,15 +119,15 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
-                        {   allEntry.map((currentelem) => {
-                                return (
-                                    <div>
-                                        <p>
-                                            {currentelem.Username} {status}
-                                        </p>
-                                    </div>
-                                );
-                            })
+                        {allEntry.map((currentelem) => {
+                            return (
+                                <div>
+                                    <p>
+                                        {currentelem.Username} {status}
+                                    </p>
+                                </div>
+                            );
+                        })
                         }
                     </div>
 

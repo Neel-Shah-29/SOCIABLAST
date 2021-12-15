@@ -5,18 +5,6 @@ import JoinRoom from './JoinRoom';
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useContext } from "react";
 import Login from "./login";
-<<<<<<< HEAD
-import context from "./login";
-import io from "socket.io-client";
-import UserContext from "./UserContext";
-const socket = io.connect("http://localhost:3001");
-
-function Main() {
-    const { user, setuser } = useContext(UserContext);
-    useEffect(() => {
-        console.log(user);
-    }, [user]);
-=======
 import io from "socket.io-client";
 import UserContext from "./UserContext";
 const socket = io.connect("http://localhost:3001");
@@ -35,7 +23,6 @@ function Main() {
             })
         }
     }, [socket, joinJoined]);
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
     return (
         user ?
             (
@@ -44,26 +31,11 @@ function Main() {
                         <div className="fathersync">
                             <div className="headers1">
                                 <p>
-<<<<<<< HEAD
-                                    username
-=======
                                     {deluxe.Username}
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
                                     <button><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
 
                                 </p>
                             </div>
-<<<<<<< HEAD
-                            <SideBar />
-                        </div>
-                        <div className="mothersync">
-                            <div className="headers3">
-                                <JoinRoom />
-                            </div>
-                            {/*<button className="butform">
-                        <Link className="nav-link" to="/CreateRoom">Create A Room</Link>    
-                    </button>*/}
-=======
                             <SideBar arr={array} soc={socket} />
                         </div>
                         <div className="mothersync">
@@ -73,15 +45,10 @@ function Main() {
                             </div>
                             <div>
                             </div>
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
                         </div>
                     </div>
                 </div>
             ) : (
-<<<<<<< HEAD
-                <div>
-                    <p>Kindly login first</p>
-=======
                 <div className="SSSSSS">
                     <p>Kindly login first</p>
                     <div>
@@ -90,7 +57,6 @@ function Main() {
                             >Login</Link>
                         </button>
                     </div>
->>>>>>> af29855295fcee059fc727b8512291f34752f02f
                 </div>
             )
     );

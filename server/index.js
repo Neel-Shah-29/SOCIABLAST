@@ -10,7 +10,11 @@ const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
 const fetch = require('node-fetch');
 const WIKIPEDIA = require('wikipedia');
+const axios = require('axios');
+const solenolyrics = require("solenolyrics");
+
 require('dotenv').config();
+
 const api = {
     key: "6f4a080b394bf3e3b171c15866a13d78",
     base: "https://api.openweathermap.org/data/2.5/"
@@ -228,6 +232,7 @@ io.on("connection", (socket) => {
                         //    console.log(result);
 
                         data.message = [result.main.temp, result.sys.country, result.weather[0].main];
+                        console.log(data.message)
                         socket.emit('botreporting', data)
                     }
                 }
@@ -251,6 +256,63 @@ io.on("connection", (socket) => {
                     console.log(error);
                 }
             })()
+        }
+        else if (data.message.includes(".time", 0)) {
+            let s = "";
+            for (let i = 6; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            axios.get(`https://timezone.abstractapi.com/v1/current_time/?api_key=7b9d1cd586ef4e05b2d9f1f48d1299c3&location=${query}`)
+                .then(response => {
+                    console.log(response.data);
+                    data.message = [[response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude]];
+                    socket.emit('botreporting', data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+        else if (data.message.includes(".currency", 0)) {
+            let s = "";
+            let q = "";
+            let amt = "";
+            for (let i = 10; i < 13; i++) {
+                s = s + data.message[i];
+            }
+            for (let i = 14; i < 17; i++) {
+                q = q + data.message[i];
+            }
+            for (let i = 18; i < data.message.length; i++) {
+                amt = amt + data.message[i];
+            }
+            let input = s.toString();
+            let output = q.toString();
+            console.log(input + output)
+            fetch(`https://free-currency-converter.herokuapp.com/list/convert?source=${input}&destination=${output}&price=${amt}`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    data.message = [result.price, result.source, result.destination, result.converted_value];
+                    socket.emit('botreporting', data);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+        else if (data.message.includes(".lyrics", 0)) {
+            let s = "";
+            for (let i = 8; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            solenolyrics.requestLyricsFor(s).then(
+                result => {
+                    data.message = [result];
+                    socket.emit('botreporting', data);
+                }
+            );
+
+
         }
     })
     socket.on("disconnect", () => {
