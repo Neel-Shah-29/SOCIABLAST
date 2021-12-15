@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect,useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { io } from "socket.io-client";
 import UserContext from './UserContext';
 import {
@@ -12,7 +12,7 @@ import {
 const socket = io.connect("http://localhost:3001")
 
 function CreateRoom() {
-    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat} = useContext(UserContext);
+    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
     const [roomname, setRoomName] = useState("");
     const [roomcode, setRoomCode] = useState("");
     const [showmain, setShowmain] = useState(false);
@@ -20,11 +20,7 @@ function CreateRoom() {
     const [status, setstatus] = useState("");
     const create_Room = () => {
         if (roomname !== "" && roomcode !== "") {
-<<<<<<< HEAD
-            socket.emit("createroom", { roomname, roomcode, createrName });
-=======
-            socket.emit("createroom", { roomname, roomcode, deluxe});
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
+            socket.emit("createroom", { roomname, roomcode, deluxe });
         }
     };
     useEffect(() => {
@@ -62,7 +58,7 @@ function CreateRoom() {
                         }}
                     />
                     {!showmain && (<button className="button" onClick={create_Room}>Create Room</button>)}
-                    {showmain && <button><Link style={{color:"white"}} className="nav-link active" aria-current="page" to="/Main" >Go To Main</Link></button>}
+                    {showmain && <button><Link style={{ color: "white" }} className="nav-link active" aria-current="page" to="/Main" >Go To Main</Link></button>}
                     <p>{status}</p>
                 </div>
             </div>

@@ -31,9 +31,9 @@ function Main() {
                     <div className="grandfather">
                         <div className="fathersync">
                             <div className="headers1">
-                                <p style={{color:"white"}}>
+                                <p style={{ color: "white" }}>
                                     <b>{deluxe.Username}</b>
-                                    <button style={{marginLeft:"30%"}}><Link className="nav-link active" style={{ color: "white"}} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                    <button style={{ marginLeft: "30%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
 
                                 </p>
                             </div>
@@ -49,16 +49,11 @@ function Main() {
                 </div>
             ) : (
                 <div className="SSSSSS">
-                    <img src={logo} style={{width:"300px",marginLeft:"0"}}/>
+                    <img src={logo} style={{ width: "300px", marginLeft: "0" }} />
                     <p className="Spara">Kindly login first</p>
                     <div>
-<<<<<<< HEAD
                         <button className="button">
-                            <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "white" }}
-=======
-                    <button className="button">
-                    <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "black" }}
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
+                            <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "black" }}
                             >Login</Link>
                         </button>
                     </div>

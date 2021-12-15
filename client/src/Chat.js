@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-
 import React, { useEffect, useState, useContext } from "react";
-import ScrollToBottom from "react-scroll-to-bottom";
-import './index.css'
-import UserContext from "./UserContext";
-
-function Chat({ socket, username, roomname }) {
-    const [currentMessage, setCurrentMessage] = useState("");
-    const { messageList, setMessageList } = useContext(UserContext);
-=======
-import React, { useEffect, useState ,useContext} from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import './index.css'
 import UserContext from "./UserContext";
@@ -17,8 +6,7 @@ import Component from "./Component";
 
 function Chat({ socket, username, roomname }) {
     const [currentMessage, setCurrentMessage] = useState("");
-    const {messageList, setMessageList} = useContext(UserContext);
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
+    const { messageList, setMessageList } = useContext(UserContext);
     const sendMessage = async () => {
         if (currentMessage.includes(".", 0)) {
             const messageData = {
@@ -74,7 +62,7 @@ function Chat({ socket, username, roomname }) {
                                 className="message"
                                 id={username === messageContent.username ? "you" : (messageContent.username === "bot" ? "bot" : "other")}
                             >
-                                {(messageContent.username==="bot")?<Component a={messageContent} />:<div>
+                                {(messageContent.username === "bot") ? <Component a={messageContent} /> : <div>
                                     <div className="message-content">
                                         <p>{messageContent.message}</p>
                                     </div>
@@ -101,7 +89,7 @@ function Chat({ socket, username, roomname }) {
                         event.key === "Enter" && sendMessage();
                     }}
                 />
-                <button className="sendButton" style={{ width: "8px",height:"40px", backgroundColor: "#245f48", borderRadius: "50%" }}><button onClick={sendMessage}>&#9658;</button></button>
+                <button className="sendButton" style={{ width: "8px", height: "40px", backgroundColor: "#245f48", borderRadius: "50%" }}><button onClick={sendMessage}>&#9658;</button></button>
             </div>
         </div>
     );

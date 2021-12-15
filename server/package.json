@@ -19,21 +19,6 @@
     "express": "^4.17.1",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^6.0.13",
-<<<<<<< HEAD
-    "node-fetch": "2.0",
-    "node-lyrics-api": "^1.0.1",
-=======
-    "node-fetch": "^2.0.0",
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
-    "node.js": "^0.0.1-security",
-    "nodemon": "^2.0.15",
-    "socket.io": "^4.4.0",
-    "solenolyrics": "^5.0.0",
-<<<<<<< HEAD
-    "wikipedia": "^1.1.6"
-=======
-    "wikipedia": "^1.1.6",
     "xhr2": "^0.2.1"
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
   }
 }

@@ -378,8 +378,6 @@ body {
 
 .joinChatContainers button:hover {
   background: #2e7d32;
-<<<<<<< HEAD
-=======
 }
 
 
@@ -407,5 +405,4 @@ body {
 *::-webkit-scrollbar-thumb {
   background: #4e4e4e;
   border-radius: 25px;
->>>>>>> 1a74e21e7a14151afe20bda72c060a3827ad8182
 }

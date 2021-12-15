@@ -7,36 +7,36 @@ const Home = () => {
             <p>
                 Making an application with chat + bot considering the following feactures COMMANDS:-
                 <ol>
-                <p>(Implemented sucessfully)</p>
-                <div style={{marginLeft:"20px"}}>
-                    <li>.wiki object</li> 
-                    <li>.weather place</li>
-                    <li>.lyrics</li>
-                    <li>.time</li>
-                    <li>.currency</li>
-                    <br></br>
-                </div>
-                <p>(Yet to be implemented)</p>
-                <div style={{marginLeft:"20px"}}>
-                    <li>.voice line</li>
-                    <li>.sticker</li>
-                    <li>.song name</li>
-                    <li>.meme</li>
-                    <li>.covid</li>
-                    <li>.stocks</li>
-                    <li>.reminder</li>
+                    <p>(Implemented sucessfully)</p>
+                    <div style={{ marginLeft: "20px" }}>
+                        <li>.wiki object</li>
+                        <li>.weather place</li>
+                        <li>.lyrics</li>
+                        <li>.time</li>
+                        <li>.currency</li>
+                        <br></br>
+                    </div>
+                    <p>(Yet to be implemented)</p>
+                    <div style={{ marginLeft: "20px" }}>
+                        <li>.voice line</li>
+                        <li>.sticker</li>
+                        <li>.song name</li>
+                        <li>.meme</li>
+                        <li>.covid</li>
+                        <li>.stocks</li>
+                        <li>.reminder</li>
                     </div>
                 </ol>
             </p>
             <p>
                 TEAM MEMBERS:-
                 <ol>
-                <div style={{marginLeft:"20px"}}>
+                    <div style={{ marginLeft: "20px" }}>
 
-                    <li>Neel Shah  </li>
-                    <li>Harsh Nag</li>
-                    <li>Smit Sekhadia </li>
-                    <li>Dhruv Kunjadiya</li>
+                        <li>Neel Shah  </li>
+                        <li>Harsh Nag</li>
+                        <li>Smit Sekhadia </li>
+                        <li>Dhruv Kunjadiya</li>
                     </div>
                 </ol>
             </p>
