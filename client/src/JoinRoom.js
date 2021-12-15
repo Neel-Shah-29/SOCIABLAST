@@ -1,11 +1,12 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
-
+import UserContext from './UserContext';
 const socket = io.connect("http://localhost:3001")
 
 const JoinRoom = () => {
+    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat} = useContext(UserContext);
     const [roomname, setRoomName] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [roomcode, setRoomCode] = useState("");
@@ -14,7 +15,7 @@ const JoinRoom = () => {
     const [joinStatus,setJoinStatus]=useState(false);
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
-            socket.emit("roomlogincheck", { username, roomname, roomcode });
+            socket.emit("roomlogincheck", { deluxe, roomname, roomcode });
         }
     };
 
@@ -54,13 +55,6 @@ const JoinRoom = () => {
                         placeholder="Room Password"
                         onChange={(event) => {
                             setRoomCode(event.target.value);
-                        }}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        onChange={(event) => {
-                            setusername(event.target.value);
                         }}
                     />
                     <button onClick={join_Room}>Join A Room</button>

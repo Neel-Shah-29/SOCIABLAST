@@ -40,6 +40,9 @@ const Login = () => {
                 setStatus(data);
                 setDeluxe(newEntry);
             }
+            else{
+                setStatus(data);
+            }
         })
 
     }
@@ -118,16 +121,8 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
-                        {   allEntry.map((currentelem) => {
-                                return (
-                                    <div>
-                                        <p>
-                                            {currentelem.Username} {status}
-                                        </p>
-                                    </div>
-                                );
-                            })
-                        }
+                        <br></br>
+                        {   <p>{status}</p>}
                     </div>
 
                 </div>

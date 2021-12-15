@@ -134,11 +134,7 @@ body{
 .headers1 p button{
   margin:0 0 0 40px;
   border:none;
-  background: #58AE01;
-background: -webkit-linear-gradient(top left, #58AE01, #E3722A);
-background: -moz-linear-gradient(top left, #58AE01, #E3722A);
-background: linear-gradient(to bottom right, #58AE01, #E3722A);
-  color:honeydew;
+  background-color: rgb(18, 206, 99);
   border-radius:5px;
 }
 .headers1 p button:hover{

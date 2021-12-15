@@ -37,7 +37,7 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
-        let globalCreaterName=data.createrName;
+        let globalCreaterName=data.deluxe.Username;
         let globalRoomName=data.roomname;
         socket.join(data);
         console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
@@ -53,7 +53,7 @@ io.on("connection", (socket) => {
                     socket.emit("checksameroom", check)
                 }
                 else {
-                    let c = "created  room successfully";
+                    let c = "Created  Room Successfully !";
                     SignUpObject.findOneAndUpdate({
                         Username:globalCreaterName
                     },{
@@ -104,8 +104,8 @@ io.on("connection", (socket) => {
         SignUpObject.findOne({ Username: object.Username, Email: object.Email })
             .then((data) => {
                 if (data === null) {
-                    console.log('Invalid USERNAME or EMAIL.');
-                    status = 'Invalid USERNAME or EMAIL.';
+                    console.log('Invalid Username or Email.');
+                    status = 'Invalid Username or Email';
                 }
                 else {
                     const obj = {
@@ -127,7 +127,7 @@ io.on("connection", (socket) => {
         }
     )
     socket.on('roomlogincheck', (object) => {
-        let uname=object.username;
+        let uname=object.deluxe.Username;
         let rname=object.roomname;
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
