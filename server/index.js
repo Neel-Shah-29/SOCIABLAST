@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -9,11 +10,15 @@ const SignUpObject = require('./Modals/SignUpModal');
 const { encrypt, decrypt } = require('./cryptionHandler');
 const { Encrypt, Decrypt } = require('./cryptionHandler1');
 const fetch = require('node-fetch');
+const WIKIPEDIA = require('wikipedia');
+const axios = require('axios');
+const solenolyrics = require("solenolyrics");
 require('dotenv').config();
 const api = {
     key: "6f4a080b394bf3e3b171c15866a13d78",
     base: "https://api.openweathermap.org/data/2.5/"
 }
+
 const server = http.createServer(app);
 
 const io = new Server(server, {
@@ -33,7 +38,7 @@ io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
-        let globalCreaterName = data.createrName;
+        let globalCreaterName = data.deluxe.Username;
         let globalRoomName = data.roomname;
         socket.join(data);
         console.log(`User with ID: ${socket.id} created room: ${data.roomname}`);
@@ -49,7 +54,7 @@ io.on("connection", (socket) => {
                     socket.emit("checksameroom", check)
                 }
                 else {
-                    let c = "created  room successfully";
+                    let c = "Created  Room Successfully !";
                     SignUpObject.findOneAndUpdate({
                         Username: globalCreaterName
                     }, {
@@ -57,13 +62,12 @@ io.on("connection", (socket) => {
                             RoomsJoined: globalRoomName
                         }
                     }).then(() => {
-                        console.log('Data appended.');
-                        if (data != null) {
+                        if (data !== null) {
+                            console.log('Data appended.');
                             let f = "joined room";
                             socket.emit("checkloginjoinroom", f)
                             socket.join(data.roomname)
                         }
-
                     })
                     socket.emit("checksameroom", c)
                     roomlist.save()
@@ -103,8 +107,8 @@ io.on("connection", (socket) => {
         SignUpObject.findOne({ Username: object.Username, Email: object.Email })
             .then((data) => {
                 if (data === null) {
-                    console.log('Invalid USERNAME or EMAIL.');
-                    status = 'Invalid USERNAME or EMAIL.';
+                    console.log('Invalid Username or Email.');
+                    status = 'Invalid Username or Email';
                 }
                 else {
                     const obj = {
@@ -126,7 +130,7 @@ io.on("connection", (socket) => {
     }
     )
     socket.on('roomlogincheck', (object) => {
-        let uname = object.username;
+        let uname = object.deluxe.Username;
         let rname = object.roomname;
         Roomlist.findOne({ roomname: object.roomname })
             .then((data) => {
@@ -175,7 +179,6 @@ io.on("connection", (socket) => {
                                     socket.emit('RoomAlreadyJoined', string);
                                 }
                             })
-                        //https://www.youtube.com/watch?v=gtUPPO8Re98->LINK FOR APPENDING THE DATA IN ARRAY.
                     }
                     else {
                         let n = "Invalid Password.";
@@ -191,11 +194,10 @@ io.on("connection", (socket) => {
         let name = object.Username;
         SignUpObject.findOne({ Username: name })
             .then((data) => {
-                if (data != null) {
+                if (data !== null) {
                     console.log('Got all the joined chat rooms successfully.')
                     socket.emit('takeAlreadyJoinedRooms', data.RoomsJoined);
                 }
-
             })
     })
     socket.on('JoinJoinedRooms', (data) => {
@@ -208,36 +210,119 @@ io.on("connection", (socket) => {
         console.log(data);
         //const clientsInRoom = await io.in(data.roomname).allSockets();
         //The above commented line is used to check the users present in thr room.
-       
-            socket.to(data.roomname).emit("receive_message", data);
-
+        socket.to(data.roomname).emit("receive_message", data);
     });
+
     socket.on("botmessage", (data) => {
         if (data.message.includes(".weather", 0)) {
             let s = "";
             for (let i = 9; i < data.message.length; i++) {
                 s = s + data.message[i];
             }
-            let botm = "";
             let query = s;
+            let check = ".weather";
             fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
                 .then(res => res.json())
                 .then(result => {
                     console.log(result)
-                    if (result !== undefined) {
+                    if (result.message !== 'city not found') {
                         //    console.log(result);
 
-                        data.message = [result.main.temp, result.sys.country];
+                        data.message = [check, result.main.temp, result.sys.country, result.weather[0].main, s, result.main.temp_max, result.main.temp_min, result.main.humidity];
+                        console.log(data.message)
                         socket.emit('botreporting', data)
                     }
                 }
                 );
+        }
+        else if (data.message.includes(".wikipedia", 0)) {
+            let s = "";
+            for (let i = 11; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            let check = ".wikipedia";
+            (async () => {
+                try {
+                    const page = await WIKIPEDIA.page(query);
+                    const summary = await page.summary();
+                    console.log(summary.extract);
+                    const paragraph = summary.extract;
+                    data.message = [check, paragraph, s];
+                    socket.emit('botreporting', data);
+                } catch (error) {
+                    console.log(error);
+                }
+            })()
+        }
+        else if (data.message.includes(".time", 0)) {
+            let s = "";
+            let check = ".time"
+            for (let i = 6; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            let query = s;
+            axios.get(`https://timezone.abstractapi.com/v1/current_time/?api_key=7b9d1cd586ef4e05b2d9f1f48d1299c3&location=${query}`)
+                .then(response => {
+                    console.log(response.data);
+                    data.message = [check, [response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude], s];
+                    socket.emit('botreporting', data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+        else if (data.message.includes(".currency", 0)) {
+            let s = "";
+            let q = "";
+            let amt = "";
+            let check = ".currency"
+            for (let i = 10; i < 13; i++) {
+                s = s + data.message[i];
+            }
+            for (let i = 14; i < 17; i++) {
+                q = q + data.message[i];
+            }
+            for (let i = 18; i < data.message.length; i++) {
+                amt = amt + data.message[i];
+            }
+            let input = s.toString();
+            let output = q.toString();
+            console.log(input + output)
+            fetch(`https://free-currency-converter.herokuapp.com/list/convert?source=${input}&destination=${output}&price=${amt}`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    data.message = [check, result.price, result.source, result.destination, result.converted_value];
+                    socket.emit('botreporting', data);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+
+        else if (data.message.includes(".lyrics", 0)) {
+            let s = "";
+            let check = ".lyrics"
+            for (let i = 8; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            solenolyrics.requestLyricsFor(s).then(
+                result => {
+                    console.log(s);
+                    data.message = [check, result, s];
+                    socket.emit('botreporting', data);
+                }
+            );
+
+
         }
     })
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
     });
 });
+
 server.listen(3001, () => {
     console.log("Server Running.");
 });

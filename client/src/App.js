@@ -5,6 +5,7 @@ import JoinRoom from './JoinRoom';
 import Header from './Header';
 import { Footer } from './Footer';
 import Main from './Main';
+import Help from './Help'
 
 import { useState } from 'react';
 import {
@@ -22,16 +23,18 @@ function App() {
   const [joinJoined, setJoinJoined] = useState(null);
   const [remJoinChat, setRemJoinChat] = useState(true);
   const [messageList, setMessageList] = useState([]);
+  const [color, setColor] = useState(0);
   return (
     <BrowserRouter>
-      <Header title="My Chat App" />
-      <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat, messageList, setMessageList }}>
+      <Header title="Sociablast" />
+      <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat, messageList, setMessageList, color, setColor }}>
         <Routes>
           {<Route exact path="/" element={<Home />} />}
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Login" element={< Login />} />
           <Route path="/Main" element={< Main />} />
           <Route path="/CreateRoom" element={<CreateRoom />} />
+          <Route path="/Help" element={<Help />} />
         </Routes>
       </UserContext.Provider>
       <Footer />
