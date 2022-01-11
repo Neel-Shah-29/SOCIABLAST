@@ -1,4 +1,3 @@
-
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -301,6 +300,7 @@ io.on("connection", (socket) => {
                 });
         }
 
+
         else if (data.message.includes(".lyrics", 0)) {
             let s = "";
             let check = ".lyrics"
@@ -314,6 +314,25 @@ io.on("connection", (socket) => {
                     socket.emit('botreporting', data);
                 }
             );
+
+
+        }
+        else if (data.message.includes(".stocks", 0)) {
+            let s = "";
+            let check = ".stocks"
+            for (let i = 8; i < data.message.length; i++) {
+                s = s + data.message[i];
+            }
+            fetch(`https://api.polygon.io/v2/aggs/ticker/${s}/range/1/minute/2021-07-22/2021-07-22?adjusted=true&sort=asc&limit=120&apiKey=jIlnqfE_thqvuCyzE1dI9aHSBbnMiQyH`)
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result)
+                    data.message = [check, result.results[0].c, result.results[0].h, result.results[0].l];
+                    socket.emit('botreporting', data);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
 
 
         }
