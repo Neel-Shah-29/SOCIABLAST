@@ -87,6 +87,17 @@ function Component(props) {
                     </div>
                 </div>)
         }
+        else if (props.a.message[0] === ".stocks") {
+            return (
+                <div>
+                    <div className="stocks">
+                        {console.log(props.a.message)}
+                        <p>Current price:{props.a.message[1]}</p>
+                        <p>Day_high:{props.a.message[2]}</p>
+                        <p>Day_Low:{props.a.message[3]}</p>
+                    </div>
+                </div>)
+        }
         else {
             return (
                 <div>Enter a valid command.</div>)
