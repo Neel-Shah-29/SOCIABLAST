@@ -19,6 +19,9 @@
     "express": "^4.17.1",
     "lyrics-finder": "^21.7.0",
     "mongoose": "^6.0.13",
+    "socket.io": "^4.4.1",
+    "solenolyrics": "^5.0.0",
+    "wikipedia": "^1.1.6",
     "xhr2": "^0.2.1"
   }
 }

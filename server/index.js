@@ -229,7 +229,8 @@ io.on("connection", (socket) => {
 
                         data.message = [check, result.main.temp, result.sys.country, result.weather[0].main, s, result.main.temp_max, result.main.temp_min, result.main.humidity];
                         console.log(data.message)
-                        socket.emit('botreporting', data)
+                        socket.emit('botreporting', data);
+                        socket.to(data.roomname).emit("botreporting", data);
                     }
                 }
                 );
@@ -249,6 +250,7 @@ io.on("connection", (socket) => {
                     const paragraph = summary.extract;
                     data.message = [check, paragraph, s];
                     socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
                 } catch (error) {
                     console.log(error);
                 }
@@ -266,6 +268,7 @@ io.on("connection", (socket) => {
                     console.log(response.data);
                     data.message = [check, [response.data.datetime], [response.data.timezone_name], [response.data.timezone_location], [response.data.latitude], [response.data.longitude], s];
                     socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
                 })
                 .catch(error => {
                     console.log(error);
@@ -294,6 +297,7 @@ io.on("connection", (socket) => {
                     console.log(result)
                     data.message = [check, result.price, result.source, result.destination, result.converted_value];
                     socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
                 })
                 .catch(err => {
                     console.error(err);
@@ -312,6 +316,7 @@ io.on("connection", (socket) => {
                     console.log(s);
                     data.message = [check, result, s];
                     socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
                 }
             );
 
@@ -329,12 +334,26 @@ io.on("connection", (socket) => {
                     console.log(result)
                     data.message = [check, result.results[0].c, result.results[0].h, result.results[0].l];
                     socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
                 })
                 .catch(err => {
                     console.error(err);
                 });
-
-
+        }
+        else if(data.message.includes(".covid",0)){
+            let s="";
+            let check=".covid";
+            for(let i=7;i<data.message.length;i++){
+                s=s+data.message[i];
+            }
+            axios.get(`https://covid-19.dataflowkit.com/v1/${s}`)
+            .then((response)=>{
+                console.log(response.data);
+                data.message=[check,response.data['Active Cases_text'],response.data['New Cases_text'],response.data['New Deaths_text'],response.data['Total Cases_text'],response.data['Total Deaths_text'],response.data['Total Recovered_text']]
+                console.log(data.message);
+                socket.emit('botreporting',data);
+                socket.to(data.roomname).emit("botreporting", data);
+            })
         }
     })
     socket.on("disconnect", () => {
