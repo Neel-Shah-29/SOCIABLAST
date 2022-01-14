@@ -34,6 +34,7 @@ function App() {
           <Route path="/Login" element={< Login />} />
           <Route path="/Main" element={< Main />} />
           <Route path="/CreateRoom" element={<CreateRoom />} />
+          <Route path="/JoinRoom" element={<JoinRoom />} />
           <Route path="/Help" element={<Help />} />
         </Routes>
       </UserContext.Provider>

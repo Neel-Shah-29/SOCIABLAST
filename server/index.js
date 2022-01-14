@@ -12,6 +12,7 @@ const fetch = require('node-fetch');
 const WIKIPEDIA = require('wikipedia');
 const axios = require('axios');
 const solenolyrics = require("solenolyrics");
+const schedule = require('node-schedule');
 require('dotenv').config();
 const api = {
     key: "6f4a080b394bf3e3b171c15866a13d78",
@@ -224,7 +225,7 @@ io.on("connection", (socket) => {
                 .then(res => res.json())
                 .then(result => {
                     console.log(result)
-                    if (result.message !== 'city not found') {
+                    if (result.message !== 'city not found' && s != "") {
                         //    console.log(result);
 
                         data.message = [check, result.main.temp, result.sys.country, result.weather[0].main, s, result.main.temp_max, result.main.temp_min, result.main.humidity];
@@ -319,8 +320,30 @@ io.on("connection", (socket) => {
                     socket.to(data.roomname).emit("botreporting", data);
                 }
             );
-
-
+        }
+        else if (data.message.includes(".reminder", 0)) {
+            let s = "";
+            let check = ".reminder";
+            let r = "";
+            let t = "";
+            let p = "";
+            for (let i = 13; i < 15; i++) {
+                s = s + data.message[i]
+            }
+            for (let i = 10; i < 12; i++) {
+                p = p + data.message[i];
+            }
+            console.log(p)
+            console.log(s)
+            for (let i = 16; i < data.message.length; i++) {
+                r = r + data.message[i]
+            }
+            const job = schedule.scheduleJob(s + ' ' + p + ' * * *', function () {
+                console.log('task to be done:' + r);
+                data.message = [check, s, p, r];
+                socket.emit('botreporting', data);
+                socket.to(data.roomname).emit("botreporting", data);
+            });
         }
         else if (data.message.includes(".stocks", 0)) {
             let s = "";
@@ -334,34 +357,26 @@ io.on("connection", (socket) => {
                     console.log(result)
                     data.message = [check, result.results[0].c, result.results[0].h, result.results[0].l];
                     socket.emit('botreporting', data);
-<<<<<<< HEAD
-=======
                     socket.to(data.roomname).emit("botreporting", data);
->>>>>>> d52a3b9bec8968130c42ce61f5bdbc731cf22cf4
                 })
                 .catch(err => {
                     console.error(err);
                 });
-<<<<<<< HEAD
-
-
-=======
         }
-        else if(data.message.includes(".covid",0)){
-            let s="";
-            let check=".covid";
-            for(let i=7;i<data.message.length;i++){
-                s=s+data.message[i];
+        else if (data.message.includes(".covid", 0)) {
+            let s = "";
+            let check = ".covid";
+            for (let i = 7; i < data.message.length; i++) {
+                s = s + data.message[i];
             }
             axios.get(`https://covid-19.dataflowkit.com/v1/${s}`)
-            .then((response)=>{
-                console.log(response.data);
-                data.message=[check,response.data['Active Cases_text'],response.data['New Cases_text'],response.data['New Deaths_text'],response.data['Total Cases_text'],response.data['Total Deaths_text'],response.data['Total Recovered_text']]
-                console.log(data.message);
-                socket.emit('botreporting',data);
-                socket.to(data.roomname).emit("botreporting", data);
-            })
->>>>>>> d52a3b9bec8968130c42ce61f5bdbc731cf22cf4
+                .then((response) => {
+                    console.log(response.data);
+                    data.message = [check, response.data['Active Cases_text'], response.data['New Cases_text'], response.data['New Deaths_text'], response.data['Total Cases_text'], response.data['Total Deaths_text'], response.data['Total Recovered_text']]
+                    console.log(data.message);
+                    socket.emit('botreporting', data);
+                    socket.to(data.roomname).emit("botreporting", data);
+                })
         }
     })
     socket.on("disconnect", () => {

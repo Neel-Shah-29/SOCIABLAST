@@ -34,6 +34,7 @@ function Main() {
                                 <p style={{ color: "white" }}>
                                     <b>{deluxe.Username}</b>
                                     <button style={{ marginLeft: "30%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                    <button style={{ marginLeft: "50%", marginTop: "5%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
 
                                 </p>
                             </div>
