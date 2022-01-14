@@ -8,9 +8,10 @@ function Container(props) {
     const { joinJoined, setJoinJoined } = useContext(UserContext);
     const { remJoinChat, setRemJoinChat } = useContext(UserContext);
     const { messageList, setMessageList } = useContext(UserContext);
+
     function func() {
+        setMessageList([]);
         props.socket.emit('JoinJoinedRooms', Roomname);
-        setMessageList([])
     }
 
     useEffect(() => {
@@ -24,8 +25,9 @@ function Container(props) {
 
     return (
         <div>
-            <p>{Roomname}</p>
-            <button className="button" onClick={func}>Open</button>
+            <p>
+                <button onClick={func} style={{ backgroundColor: "rgba(0,0,0,0)", marginLeft: "0", border: "none", padding: "10px", color: "white" }}>{Roomname}</button>
+            </p>
         </div>
     );
 }

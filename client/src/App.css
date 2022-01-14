@@ -40,13 +40,14 @@
 .App {
   width: 100%;
   height: 100%;
-  color: #212121;
+  color:#fff;
   font-family: "Open Sans", sans-serif;
   display: grid;
   place-items: center;
   border-radius: 5px;
   margin-bottom: 5%;
 }
+
 body {
   margin: 0%;
   padding: 0%;
@@ -64,7 +65,7 @@ body {
   margin-bottom:20px;
   padding-left:40px;
   padding-right:40px;
-  border: 1px solid darkgreen;
+  border: 1px solid white;
   border-radius: 4px;
 }
 
@@ -113,8 +114,9 @@ body {
 }
 .chat-window .chat-header {
   height: 45px;
-  border-radius: 6px;
-  background: #263238;
+  border-radius: 0px;
+  background-color: rgb(19, 18, 18);
+  padding:5px;
   width:100%;
   height:10%;
   cursor: pointer;
@@ -131,9 +133,6 @@ body {
 .chat-window .chat-body {
   height: calc(450px - (45px + 70px));
   border: 1px solid #263238;
-  /*
-  background-image:url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSO7g3KqXHvvV7lj1ctTvlK0QJPsIBjFVqG1A&usqp=CAU");
-  */
   background-color:rgba(0,0,0,0.3);
   border-bottom: none;
   height:83%;
@@ -144,6 +143,7 @@ body {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  scroll-behavior:smooth;
 }
 
 .chat-window .chat-body .message-container::-webkit-scrollbar {
@@ -202,6 +202,20 @@ body {
   justify-content: flex-end;
   margin-right: 5px;
 }
+#bot {
+  justify-content: flex-end;
+}
+
+#bot .message-content {
+  justify-content: flex-end;
+  color:#263238;
+  background-color: rgb(255, 208, 0);
+}
+
+#bot .message-meta {
+  justify-content: flex-end;
+  margin-right: 5px;
+}
 
 #bot {
   justify-content: flex-end;
@@ -210,11 +224,14 @@ body {
 #bot .message-content {
   justify-content: flex-end;
   background-color: rgb(255, 208, 0);
+  color:#212121;
+ 
 }
 
 #bot .message-meta {
   justify-content: flex-end;
   margin-right: 5px;
+  
 }
 
 .message-meta #author {
@@ -228,6 +245,7 @@ body {
 }
 
 .chat-window .chat-footer {
+  font-family: 'Times New Roman', Times, serif;
   height: 7%;
   border: 1px solid #263238;
   border-top: none;
@@ -244,8 +262,8 @@ body {
   border-right: 1px dotted #607d8b;
   border-left: none;
   outline: none;
-  font-family: "Open Sans", sans-serif;
-  border-radius: 5px;
+  font-family:"Times New Roman";
+  border-radius: 0px;
 }
 
 .chat-window .chat-footer button {
@@ -324,10 +342,10 @@ body {
   margin-top: 100px;
   padding:20px;
   background-color: rgba(0,0,0,0.3);
-  margin-bottom:20px;
+  margin-bottom:65px;
   padding-left:40px;
   padding-right:40px;
-  border: 1px solid darkgreen;
+  border: 1px solid white;
   border-radius: 4px;
 }
 
@@ -360,4 +378,31 @@ body {
 
 .joinChatContainers button:hover {
   background: #2e7d32;
+}
+
+
+.chat-body::-webkit-scrollbar {
+  width: 10px; 
+}
+
+.chat-body::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
+}
+
+*::-webkit-scrollbar {
+  width: 10px; 
+}
+
+*::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
 }

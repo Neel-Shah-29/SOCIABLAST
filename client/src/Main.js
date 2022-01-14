@@ -7,6 +7,7 @@ import { useState, useEffect, useContext } from "react";
 import Login from "./login";
 import io from "socket.io-client";
 import UserContext from "./UserContext";
+import logo from './warning.png';
 const socket = io.connect("http://localhost:3001");
 
 
@@ -30,9 +31,10 @@ function Main() {
                     <div className="grandfather">
                         <div className="fathersync">
                             <div className="headers1">
-                                <p>
-                                    {deluxe.Username}
-                                    <button><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                <p style={{ color: "white" }}>
+                                    <b>{deluxe.Username}</b>
+                                    <button style={{ marginLeft: "30%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                    <button style={{ marginLeft: "50%", marginTop: "5%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
 
                                 </p>
                             </div>
@@ -43,17 +45,16 @@ function Main() {
                                 {remJoinChat && <JoinRoom />}
                                 {!remJoinChat && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username} />}
                             </div>
-                            <div>
-                            </div>
                         </div>
                     </div>
                 </div>
             ) : (
                 <div className="SSSSSS">
-                    <p>Kindly login first</p>
+                    <img src={logo} style={{ width: "300px", marginLeft: "0" }} />
+                    <p className="Spara">Kindly login first</p>
                     <div>
                         <button className="button">
-                            <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "white" }}
+                            <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "black" }}
                             >Login</Link>
                         </button>
                     </div>

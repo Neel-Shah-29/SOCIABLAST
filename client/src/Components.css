@@ -1,0 +1,67 @@
+body{
+    font-family:'Times New Roman', Times, serif;
+  
+  }
+  
+  .component{
+      justify-content: flex-end;
+    background-color: rgb(255, 208, 0);
+    color:#212121;
+  }
+  
+  
+  /* WEATHER */
+  #hot {
+      background: url('https://i.imgur.com/sTfvzrM.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: local;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+  }
+  #cold{
+  
+      background-image: url("https://i.imgur.com/dpqZJV5.jpg");
+      background-size: cover;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+      
+      box-shadow: 0px 8px 16px 4px #9E9E9E;
+      
+  }
+  /* TIMEZONE */
+  .timezone{
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSY0HIVe0konBZnefP84gEyjmKeVifTeRFsJw&usqp=CAU");
+      background-size: cover;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+      color:rgb(0, 0, 0);
+  }
+  
+  /* WIKIPEDIA */
+  .wiki{
+      background-color: rgb(104, 231, 189);
+      color:black;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+      margin-left:350px;
+  }
+  
+  /* CURRENCY */
+  
+  .currency{
+      background-color: rgb(104, 231, 189);
+      color:black;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+      margin-left:350px;
+  }
+  
+  /* LYRICS */
+  .lyrics{
+      background-color: rgb(104, 231, 189);
+      color:black;
+      border-radius: 16px 16px 16px 16px;
+      padding:25px;
+      margin-left:200px;
+  }

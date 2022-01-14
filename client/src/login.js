@@ -8,6 +8,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+// import UserContext from "./UserContext";
 
 import Main from './Main';
 import UserContext from './UserContext';
@@ -22,8 +23,8 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-    const { user, setuser} = useContext(UserContext);
-    const { deluxe, setDeluxe} = useContext(UserContext);
+    const { user, setuser } = useContext(UserContext);
+    const { deluxe, setDeluxe } = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -39,6 +40,9 @@ const Login = () => {
                 setLinker(true);
                 setStatus(data);
                 setDeluxe(newEntry);
+            }
+            else {
+                setStatus(data);
             }
         })
 
@@ -107,8 +111,8 @@ const Login = () => {
                                 />
                             </div>
                             {!linker && (<button className="button" onClick={formSubmit}>Log-in</button>)}
-                            {linker && <button style={{ backgroundColor: "dodgerblue", border: "none" }}
-                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "white" }} onClick={loginset}
+                            {linker && <button style={{ backgroundColor: "white", border: "none" }}
+                            ><Link className="nav-link active" aria-current="page" to="/Main" style={{ color: "black" }} onClick={loginset}
                             >Go To Main</Link></button>}
 
 
@@ -118,16 +122,8 @@ const Login = () => {
                         </form>
                     </div>
                     <div>
-                        {   allEntry.map((currentelem) => {
-                                return (
-                                    <div>
-                                        <p>
-                                            {currentelem.Username} {status}
-                                        </p>
-                                    </div>
-                                );
-                            })
-                        }
+                        <br></br>
+                        {<p>{status}</p>}
                     </div>
 
                 </div>
