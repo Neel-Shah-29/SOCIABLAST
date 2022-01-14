@@ -98,6 +98,20 @@ function Component(props) {
                     </div>
                 </div>)
         }
+<<<<<<< HEAD
+=======
+        else if(props.a.message[0]===".covid"){
+            return (
+            <div>
+                <p>Active Cases:{props.a.message[1]}</p>
+                <p>New Cases:{props.a.message[2]}</p>
+                <p>New Deaths:{props.a.message[3]}</p>
+                <p>Total Cases:{props.a.message[4]}</p>
+                <p>Total Deaths:{props.a.message[5]}</p>
+                <p>Total Recovered:{props.a.message[6]}</p>
+            </div>);
+        }
+>>>>>>> d52a3b9bec8968130c42ce61f5bdbc731cf22cf4
         else {
             return (
                 <div>Enter a valid command.</div>)
