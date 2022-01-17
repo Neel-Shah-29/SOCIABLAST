@@ -31,12 +31,13 @@ function Main() {
                     <div className="grandfather">
                         <div className="fathersync">
                             <div className="headers1">
-                                <p style={{ color: "white" }}>
+                                <div style={{ margin: "10px" }}>
                                     <b>{deluxe.Username}</b>
-                                    <button style={{ marginLeft: "30%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
-                                    <button style={{ marginLeft: "50%", marginTop: "5%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
-
-                                </p>
+                                </div>
+                                <div className="headersInside">
+                                    <button style={{ marginLeft: "80px", marginBottom: "6px", borderRadius: "5px", backgroundColor: "rgb(11, 253, 120)", padding: "0px" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                    <button style={{ marginLeft: "80px", borderRadius: "5px", backgroundColor: "rgb(11, 253, 120)", padding: "0px", paddingRight: "13px" }} id="xyz"><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
+                                </div>
                             </div>
                             <SideBar arr={array} soc={socket} />
                         </div>

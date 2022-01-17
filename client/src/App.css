@@ -135,7 +135,7 @@ body {
   border: 1px solid #263238;
   background-color:rgba(0,0,0,0.3);
   border-bottom: none;
-  height:83%;
+  height:81%;
   width:100%;
 }
 .chat-window .chat-body .message-container {
@@ -246,7 +246,7 @@ body {
 
 .chat-window .chat-footer {
   font-family: 'Times New Roman', Times, serif;
-  height: 7%;
+  height: 9%;
   border: 1px solid #263238;
   border-top: none;
   width:100%;
@@ -261,9 +261,9 @@ body {
   font-size: 1em;
   border-right: 1px dotted #607d8b;
   border-left: none;
+  border-radius:10px;
   outline: none;
   font-family:"Times New Roman";
-  border-radius: 0px;
 }
 
 .chat-window .chat-footer button {
