@@ -1,8 +1,5 @@
-body{
-    font-family:'sans-serif', Times;
-  
+body{font-family:sans-serif;
   }
-  
   .component{
       justify-content: flex-end;
     background-color: rgb(255, 208, 0);

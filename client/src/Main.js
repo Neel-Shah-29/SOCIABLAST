@@ -27,16 +27,22 @@ function Main() {
     return (
         user ?
             (
-                <div>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
                     <div className="grandfather">
                         <div className="fathersync">
                             <div className="headers1">
-                                <div style={{ margin: "10px" }}>
-                                    <b>{deluxe.Username}</b>
-                                </div>
-                                <div className="headersInside">
-                                    <button style={{ marginLeft: "80px", marginBottom: "6px", borderRadius: "5px", backgroundColor: "rgb(11, 253, 120)", padding: "0px" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
-                                    <button style={{ marginLeft: "80px", borderRadius: "5px", backgroundColor: "rgb(11, 253, 120)", padding: "0px", paddingRight: "13px" }} id="xyz"><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
+                                <div style={{ color: "white", display: "flex", flexDirection: "row", justifyContent: "flex-start" }}>
+                                    <b style={{ marginTop: "15px" }}>{deluxe.Username}</b>
+                                    <div className="dropdown">
+                                        <button className="dropbtn" style={{ fontSize: "40px", paddingTop: "0px", marginRight: "30px" }}>&#x21b4;</button>
+                                        <div className="dropdown-content">
+                                            <button style={{ width: "100%", margin: "0%" }}><Link className="nav-link active" style={{ color: "black", fontWeight: "bold" }} aria-current="page" to="/JoinRoom">Join Room</Link></button>
+                                            <button style={{ width: "100%", margin: "0%" }}><Link className="nav-link active" style={{ color: "black", fontWeight: "bold" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                        </div>
+                                    </div>
+                                    {/*
+                                    <button style={{ marginLeft: "30%" }}><Link className="nav-link active" style={{ color: "white" }} aria-current="page" to="/CreateRoom">Create Room</Link></button>
+                                    */}
                                 </div>
                             </div>
                             <SideBar arr={array} soc={socket} />

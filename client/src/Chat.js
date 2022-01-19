@@ -125,7 +125,7 @@ function Chat({ socket, username, roomname }) {
 
                                     <div className="message-meta" style={{ display: "flex", flexDirection: "column" }}>
                                         {(messageContent.image !== undefined) ? <div classNmae="Image">
-                                            <img style={{ maxWidth: "250px", maxHeight: "200px" }} src={messageContent.image} />
+                                            <img style={{ maxWidth: "300px", maxHeight: "250px" }} src={messageContent.image} />
                                         </div> : <div></div>}
                                         <div style={{ display: "flex", flexDirection: "row" }}>
                                             <p id="time">{messageContent.time}</p>

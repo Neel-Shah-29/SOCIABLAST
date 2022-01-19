@@ -1,6 +1,4 @@
-.grandfather{
-    font-family: 'sans serif';
-    margin-left:10%;
+.grandfather{font-family:sans-serif;
     margin-top:5%;
     margin-bottom:5%;
     align-self: center;
@@ -118,4 +116,38 @@ html::-webkit-scrollbar-thumb {
 .mothersync::-webkit-scrollbar-thumb {
     background: #4e4e4e;
     border-radius: 25px;
+}
+.dropbtn {  
+    background-color:transparent;  
+    color: white;  
+    padding: 10px;  
+    font-size: 12px;
+    border: none; 
+}  
+.dropdown {  
+    display: inline-block;  
+    position: relative;
+    border-radius: 3px;
+}  
+.dropdown-content {  
+    position:absolute;  
+    background-color: lightgrey;  
+    border-radius:4px;
+    min-width: 200px;  
+    display: none;  
+    z-index: 1; 
+}  
+.dropdown-content button {  
+    color: white; 
+    background-color: #43a047;;
+    border-radius: 4px;
+    text-decoration: none;  
+    display: block;  
+    border:none;
+}  
+.dropdown-content button:hover {  
+    background-color: lightgreen;  
+}  
+.dropdown:hover .dropdown-content {  
+    display: block;  
 }
