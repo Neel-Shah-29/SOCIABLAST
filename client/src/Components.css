@@ -85,3 +85,12 @@ body{font-family:sans-serif;
   padding:25px;
   height:150px;
 }
+.reminder{
+    background-image: url("https://st2.depositphotos.com/6235482/10449/i/950/depositphotos_104494234-stock-photo-smile-message-on-adhesive-note.jpg");
+    padding:40px;
+    background-attachment: local;
+    background-size: cover;
+    font-weight:bold;
+    border-radius:10px;
+    color:black;
+}

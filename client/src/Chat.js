@@ -116,7 +116,7 @@ function Chat({ socket, username, roomname }) {
                         return (
                             <div
                                 className="message"
-                                id={username === messageContent.username ? "you" : (messageContent.username === "bot" ? "bot" : "other")}
+                                id={username === messageContent.username ? "other" : (messageContent.username === "bot" ? "bot" : "you")}
                             >
                                 {(messageContent.username === "bot") ? <Component a={messageContent} /> : <div>
                                     {(messageContent.image === undefined) ? <div className="message-content">
@@ -125,7 +125,7 @@ function Chat({ socket, username, roomname }) {
 
                                     <div className="message-meta" style={{ display: "flex", flexDirection: "column" }}>
                                         {(messageContent.image !== undefined) ? <div classNmae="Image">
-                                            <img style={{ maxWidth: "300px", maxHeight: "250px" }} src={messageContent.image} />
+                                            <img style={{ maxWidth: "300px", maxHeight: "250px", borderRadius: "20px" }} src={messageContent.image} />
                                         </div> : <div></div>}
                                         <div style={{ display: "flex", flexDirection: "row" }}>
                                             <p id="time">{messageContent.time}</p>
