@@ -14,6 +14,9 @@ const Home = () => {
                         <li>.lyrics</li>
                         <li>.time</li>
                         <li>.currency</li>
+                        <li>.covid</li>
+                        <li>.stocks</li>
+                        <li>.reminder</li>
                         <br></br>
                     </div>
                     <p>(Yet to be implemented)</p>
@@ -22,9 +25,6 @@ const Home = () => {
                         <li>.sticker</li>
                         <li>.song name</li>
                         <li>.meme</li>
-                        <li>.covid</li>
-                        <li>.stocks</li>
-                        <li>.reminder</li>
                     </div>
                 </ol>
             </p>

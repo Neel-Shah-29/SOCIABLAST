@@ -83,7 +83,7 @@ function Component(props) {
                     <div className="lyrics">
                         {console.log(props.a.message)}
                         <h3>Song : {` `}{props.a.message[2]} </h3>
-                        <p>{props.a.message[1]}</p>
+                        <p style={{ whiteSpace: "pre-wrap" }}>{props.a.message[1]}</p>
                     </div>
                 </div>)
         }
@@ -101,12 +101,14 @@ function Component(props) {
         else if (props.a.message[0] === ".covid") {
             return (
                 <div>
-                    <p>Active Cases:{props.a.message[1]}</p>
-                    <p>New Cases:{props.a.message[2]}</p>
-                    <p>New Deaths:{props.a.message[3]}</p>
-                    <p>Total Cases:{props.a.message[4]}</p>
-                    <p>Total Deaths:{props.a.message[5]}</p>
-                    <p>Total Recovered:{props.a.message[6]}</p>
+                    <div className="covid">
+                        <p>Active Cases:{props.a.message[1]}</p>
+                        <p>New Cases:{props.a.message[2]}</p>
+                        <p>New Deaths:{props.a.message[3]}</p>
+                        <p>Total Cases:{props.a.message[4]}</p>
+                        <p>Total Deaths:{props.a.message[5]}</p>
+                        <p>Total Recovered:{props.a.message[6]}</p>
+                    </div>
                 </div>);
         }
         else if (props.a.message[0] === ".reminder") {
