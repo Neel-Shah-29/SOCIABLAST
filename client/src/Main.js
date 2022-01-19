@@ -56,11 +56,11 @@ function Main() {
                     </div>
                 </div>
             ) : (
-                <div className="SSSSSS">
-                    <img src={logo} style={{ width: "300px", marginLeft: "0" }} />
-                    <p className="Spara">Kindly login first</p>
+                <div className="SSSSSS" style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
+                    <img src={logo} style={{ width: "300px"}} />
+                    <p className="Spara" style={{width:"500px"}}>Kindly login first</p>
                     <div>
-                        <button className="button">
+                        <button className="button" style={{width:"500px"}}>
                             <Link className="nav-link active" aria-current="page" to="/Login" style={{ color: "black" }}
                             >Login</Link>
                         </button>

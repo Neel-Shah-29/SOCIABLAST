@@ -102,12 +102,9 @@ function Component(props) {
             return (
                 <div>
                     <div className="covid">
-                        <p>Active Cases:{props.a.message[1]}</p>
-                        <p>New Cases:{props.a.message[2]}</p>
-                        <p>New Deaths:{props.a.message[3]}</p>
-                        <p>Total Cases:{props.a.message[4]}</p>
-                        <p>Total Deaths:{props.a.message[5]}</p>
-                        <p>Total Recovered:{props.a.message[6]}</p>
+                        <p>Total Cases:{props.a.message[1]}</p>
+                        <p>Total Deaths:{props.a.message[2]}</p>
+                        <p>Total Recovered:{props.a.message[3]}</p>
                     </div>
                 </div>);
         }

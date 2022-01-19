@@ -375,7 +375,7 @@ io.on("connection", (socket) => {
             axios.get(`https://covid-19.dataflowkit.com/v1/${s}`)
                 .then((response) => {
                     console.log(response.data);
-                    data.message = [check, response.data['Active Cases_text'], response.data['New Cases_text'], response.data['New Deaths_text'], response.data['Total Cases_text'], response.data['Total Deaths_text'], response.data['Total Recovered_text']]
+                    data.message = [check,response.data['Total Cases_text'], response.data['Total Deaths_text'], response.data['Total Recovered_text']]
                     console.log(data.message);
                     socket.emit('botreporting', data);
                     socket.to(data.roomname).emit("botreporting", data);

@@ -22,7 +22,7 @@ const css = `
         display:flex;
         justify-content: center;
         align-items: center;
-        
+        cursor:pointer;
 }
 input[type="file"]
 {
@@ -156,7 +156,7 @@ function Chat({ socket, username, roomname }) {
                         <div class="my-element">
                             <style>{css}</style>
                             <input type="file" id="file" accept="image/*" onChange={setImage} />
-                            <label for="file">
+                            <label for="file" style={{cursor:"pointer"}}>
                                 &#x2912;
                             </label>
                         </div>
