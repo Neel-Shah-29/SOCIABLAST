@@ -1,18 +1,24 @@
 import './App.css';
-import React, { useState, useEffect ,useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { io } from "socket.io-client";
 import Chat from "./Chat";
 import UserContext from './UserContext';
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link
+} from "react-router-dom";
 const socket = io.connect("http://localhost:3001")
 
 const JoinRoom = () => {
-    const { user, setuser,deluxe,setDeluxe,joinJoined,setJoinJoined,remJoinChat,setRemJoinChat} = useContext(UserContext);
+    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
     const [roomname, setRoomName] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [roomcode, setRoomCode] = useState("");
     const [roomstatus, setroomstatus] = useState("");
     const [username, setusername] = useState("");
-    const [joinStatus,setJoinStatus]=useState(false);
+    const [joinStatus, setJoinStatus] = useState(false);
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
             socket.emit("roomlogincheck", { deluxe, roomname, roomcode });
@@ -27,20 +33,19 @@ const JoinRoom = () => {
                     <p>
                         {(data === "Invalid roomname" || data === "Invalid Password.") ? (
                             console.log(data)
-                        ) : (setShowChat(true))}
+                        ) : (setJoinStatus(true))}
                     </p>
                 </>
             );
         })
-        socket.on("RoomAlreadyJoined",(data)=>{
+        socket.on("RoomAlreadyJoined", (data) => {
             setJoinStatus(true);
         })
     }, [socket]);
 
     return (
         <div className="App">
-            {!showChat ? (
-                <div>
+            <div>
                 <div className="joinChatContainer">
                     <h3>Join A Chat</h3>
                     <input
@@ -57,14 +62,12 @@ const JoinRoom = () => {
                             setRoomCode(event.target.value);
                         }}
                     />
-                    <button onClick={join_Room}>Join A Room</button>
+                    {!joinStatus && <button onClick={join_Room}>Join A Room</button>}
+                    {joinStatus && <button><Link style={{ color: "white" }} className="nav-link active" aria-current="page" to="/Main" >Go To Main</Link></button>}
                     <p>{roomstatus}</p>
                 </div>
-                    {joinStatus && <p style={{fontFamily:"Times New Roman" }}>Room Already Joined</p>}
-                </div>
-            ) : (
-                <Chat socket={socket} roomname={roomname} username={username} />
-            )}
+                {joinStatus && <p style={{ fontFamily: "Times New Roman" }}>Room Already Joined</p>}
+            </div>
         </div>
     );
 }

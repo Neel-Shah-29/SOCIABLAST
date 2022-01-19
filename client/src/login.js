@@ -8,6 +8,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
+// import UserContext from "./UserContext";
 
 import Main from './Main';
 import UserContext from './UserContext';
@@ -22,8 +23,8 @@ const Login = () => {
     const [status, setStatus] = useState('');
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
-    const { user, setuser} = useContext(UserContext);
-    const { deluxe, setDeluxe} = useContext(UserContext);
+    const { user, setuser } = useContext(UserContext);
+    const { deluxe, setDeluxe } = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {
@@ -40,7 +41,7 @@ const Login = () => {
                 setStatus(data);
                 setDeluxe(newEntry);
             }
-            else{
+            else {
                 setStatus(data);
             }
         })
@@ -122,7 +123,7 @@ const Login = () => {
                     </div>
                     <div>
                         <br></br>
-                        {   <p>{status}</p>}
+                        {<p>{status}</p>}
                     </div>
 
                 </div>

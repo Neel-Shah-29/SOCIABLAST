@@ -41,7 +41,7 @@
   width: 100%;
   height: 100%;
   color:#fff;
-  font-family: "Open Sans", sans-serif;
+  font-family:sans-serif;
   display: grid;
   place-items: center;
   border-radius: 5px;
@@ -52,10 +52,11 @@ body {
   margin: 0%;
   padding: 0%;
 }
+
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700");
 
 .joinChatContainer {
-  font-family: 'Times New Roman', Times, serif;
+ /* font-family: 'Times New Roman', Times, serif; */
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -103,7 +104,7 @@ body {
 .chat-window {
   width: 100%;
   height:100%;
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -135,7 +136,7 @@ body {
   border: 1px solid #263238;
   background-color:rgba(0,0,0,0.3);
   border-bottom: none;
-  height:83%;
+  height:81%;
   width:100%;
 }
 .chat-window .chat-body .message-container {
@@ -195,7 +196,7 @@ body {
 
 #other .message-content {
   justify-content: flex-end;
-  background-color: rgb(255, 0, 119);
+  background-color: rgb(189, 90, 25);
 }
 
 #other .message-meta {
@@ -217,6 +218,23 @@ body {
   margin-right: 5px;
 }
 
+#bot {
+  justify-content: flex-end;
+}
+
+#bot .message-content {
+  justify-content: flex-end;
+  background-color: rgb(255, 208, 0);
+  color:#212121;
+ 
+}
+
+#bot .message-meta {
+  justify-content: flex-end;
+  margin-right: 5px;
+  
+}
+
 .message-meta #author {
   margin-left: 10px;
   font-weight: bold;
@@ -228,8 +246,8 @@ body {
 }
 
 .chat-window .chat-footer {
-  font-family: 'Times New Roman', Times, serif;
-  height: 7%;
+  /* font-family: 'Times New Roman', Times, serif; */
+  height: 9%;
   border: 1px solid #263238;
   border-top: none;
   width:100%;
@@ -244,9 +262,9 @@ body {
   font-size: 1em;
   border-right: 1px dotted #607d8b;
   border-left: none;
+  border-radius:10px;
   outline: none;
-  font-family:"Times New Roman";
-  border-radius: 0px;
+  /* font-family:"Times New Roman"; */
 }
 
 .chat-window .chat-footer button {
@@ -308,7 +326,7 @@ body {
 }
 
 .footer{
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
   color: white;
   background-color: rgb(44, 44, 44);
   padding: 30px;
@@ -318,7 +336,7 @@ body {
   width:100%;
 }
 .joinChatContainers {
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
   display: flex;
   flex-direction: column;
   text-align: center;
