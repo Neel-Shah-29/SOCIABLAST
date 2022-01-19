@@ -150,11 +150,14 @@ io.on("connection", (socket) => {
                         let flag = false;
                         SignUpObject.find({ Username: uname })
                             .then((datas) => {
-                                let array = datas[0].RoomsJoined;
-                                for (let i = 0; i < array.length; i++) {
-                                    if (array[i] === rname) {
+                                console.log(datas);
+                                if (datas !== []) {
+                                    let array = datas[0].RoomsJoined;
+                                    for (let i = 0; i < array.length; i++) {
+                                        if (array[i] === rname) {
 
-                                        flag = true;
+                                            flag = true;
+                                        }
                                     }
                                 }
                             })
@@ -314,7 +317,7 @@ io.on("connection", (socket) => {
             }
             solenolyrics.requestLyricsFor(s).then(
                 result => {
-                    console.log(s);
+                    console.log(`${result}`);
                     data.message = [check, result, s];
                     socket.emit('botreporting', data);
                     socket.to(data.roomname).emit("botreporting", data);
