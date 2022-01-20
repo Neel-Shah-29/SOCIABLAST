@@ -8,7 +8,7 @@ import Login from "./login";
 import io from "socket.io-client";
 import UserContext from "./UserContext";
 import logo from './warning.png';
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("");
 
 
 function Main() {
