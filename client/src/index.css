@@ -15,6 +15,7 @@ code {
   margin: 20px;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.3);
+  min-height: 75vh;
 }
 
 body{
@@ -145,15 +146,13 @@ body{
 }
 
 .SSSSSS{
-  margin-left:39%;
   height:575px;
 }
 .SSSSSS .Spara{
-  margin-left: 4.5%;
   font-size: xx-large;
+  margin-left: 275px;
 }
 .SSSSSS .button{
-  margin-left: 12.5%;
   font-size: large;
 }
 

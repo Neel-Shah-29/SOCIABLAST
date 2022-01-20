@@ -19,6 +19,7 @@ const JoinRoom = () => {
     const [roomstatus, setroomstatus] = useState("");
     const [username, setusername] = useState("");
     const [joinStatus, setJoinStatus] = useState(false);
+    const [sss, setsss] = useState(false);
     const join_Room = () => {
         if (roomname !== "" && roomcode !== "") {
             socket.emit("roomlogincheck", { deluxe, roomname, roomcode });
@@ -39,7 +40,7 @@ const JoinRoom = () => {
             );
         })
         socket.on("RoomAlreadyJoined", (data) => {
-            setJoinStatus(true);
+            setsss(true);
         })
     }, [socket]);
 
@@ -65,8 +66,8 @@ const JoinRoom = () => {
                     {!joinStatus && <button onClick={join_Room}>Join A Room</button>}
                     {joinStatus && <button><Link style={{ color: "white" }} className="nav-link active" aria-current="page" to="/Main" >Go To Main</Link></button>}
                     <p>{roomstatus}</p>
+                    {sss && <p style={{ fontFamily: "Times New Roman" }}>Room Already Joined</p>}
                 </div>
-                {joinStatus && <p style={{ fontFamily: "Times New Roman" }}>Room Already Joined</p>}
             </div>
         </div>
     );

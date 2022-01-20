@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  min-height: 70vh;
 }
 
 .App-logo {
@@ -333,6 +334,7 @@ body {
   position:sticky;
   top:10vh;
   width:100%;
+  /* min-height:100vh; */
 }
 .joinChatContainers {
   /* font-family: 'Times New Roman', Times, serif; */

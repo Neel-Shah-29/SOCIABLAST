@@ -5,9 +5,8 @@ const Home = () => {
         <div className="Home">
             <h2>TECHNOBOTS!</h2>
             <p>
-                Making an application with chat + bot considering the following feactures COMMANDS:-
+                Making an web application with chat + bot considering the following feactures COMMANDS:-
                 <ol>
-                    <p>(Implemented sucessfully)</p>
                     <div style={{ marginLeft: "20px" }}>
                         <li>.wiki object</li>
                         <li>.weather place</li>
@@ -18,13 +17,6 @@ const Home = () => {
                         <li>.stocks</li>
                         <li>.reminder</li>
                         <br></br>
-                    </div>
-                    <p>(Yet to be implemented)</p>
-                    <div style={{ marginLeft: "20px" }}>
-                        <li>.voice line</li>
-                        <li>.sticker</li>
-                        <li>.song name</li>
-                        <li>.meme</li>
                     </div>
                 </ol>
             </p>
