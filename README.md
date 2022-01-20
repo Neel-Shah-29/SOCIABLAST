@@ -20,7 +20,7 @@
 ## 👨‍🏫 Mentors
 
 - **Ravi Maurya**
-- **Pankaj Khushlani**
+- **Pankaj Khushalani**
 - **Azeez Dandawala**
 
 ## 📝 Description
