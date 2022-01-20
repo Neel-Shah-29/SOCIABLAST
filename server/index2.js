@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const http = require('http');
-const socket = require('socket.io');
+const { Server } = require('socket.io');
 const mongoose = require('mongoose');
 const Roomlist = require('./Modals/rooms');
 const SignUpObject = require('./Modals/SignUpModal');
@@ -19,11 +19,9 @@ const api = {
     base: "https://api.openweathermap.org/data/2.5/"
 }
 
+const server = http.createServer(app);
 const PORT = process.env.PORT || 3001;
-const server = app.listen(PORT, () => {
-    console.log('App started at port');
-  })
-const io = socket(server, {
+const io = new Server(server, {
     cors: {
         origin: "http://localhost:3000",
         methods: ["GET", "POST"],
@@ -34,17 +32,14 @@ const url = process.env.MongoDB_Database_Url;
 
 mongoose.connect(url)
     .then(() => {
-        console.log("Connected.");
+        console.log("Conneected.");
     })
-
-if(process.env.NODE_ENV=== 'production'){
-    app.use(express.static('../client/build'));
-  
-    app.get('*', (req, res) => {
+if(process.env.NODE_ENV === 'production'){
+    app.get('*', (req , res ) => {    
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     })
-  }
-io.sockets.on("connection", (socket) => {
+}
+io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
     socket.on("createroom", (data) => {
@@ -397,3 +392,6 @@ io.sockets.on("connection", (socket) => {
     });
 });
 
+server.listen(PORT, () => {
+    console.log("Server Running.");
+});
