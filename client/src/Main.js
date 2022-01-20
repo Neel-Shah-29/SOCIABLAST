@@ -8,11 +8,12 @@ import Login from "./login";
 import io from "socket.io-client";
 import UserContext from "./UserContext";
 import logo from './warning.png';
+const socket = io.connect("");
 
 
 function Main() {
     const [array, setArray] = useState([]);
-    const { socket,user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
+    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
     useEffect(() => {
         console.log(deluxe);
         if (deluxe !== null) {

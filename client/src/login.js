@@ -12,6 +12,7 @@ import {
 
 import Main from './Main';
 import UserContext from './UserContext';
+const socket = io.connect("");
 
 const Login = () => {
     const [username, setUserame] = useState("");
@@ -23,7 +24,7 @@ const Login = () => {
     const [newPage, setNewPage] = useState(false);
     const [linker, setLinker] = useState(false);
     const { user, setuser } = useContext(UserContext);
-    const { deluxe, setDeluxe ,socket} = useContext(UserContext);
+    const { deluxe, setDeluxe } = useContext(UserContext);
     const formSubmit = (e) => {
         e.preventDefault();
         const newEntry = {

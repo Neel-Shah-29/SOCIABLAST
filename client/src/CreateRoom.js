@@ -9,8 +9,10 @@ import {
     Link
 } from "react-router-dom";
 
+const socket = io.connect("")
+
 function CreateRoom() {
-    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat,socket } = useContext(UserContext);
+    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
     const [roomname, setRoomName] = useState("");
     const [roomcode, setRoomCode] = useState("");
     const [showmain, setShowmain] = useState(false);
