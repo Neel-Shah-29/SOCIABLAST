@@ -1,7 +1,12 @@
 # **SOCIABLAST**
 
-### A chat+bot with amazing features!
-
+<div align="center">
+   <strong>SOCIABLAST</strong> -A chat+bot with amazing features!. <br>
+  Inheritance '21 - Team Technobots <br> <br>
+  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/toshan-luktuke/stock-market-analyser?color=red&style=for-the-badge"></a>
+  <a href="https://github.com/toshan-luktuke/stock-market-analyser/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Neel-Shah-29/SOCIABLAST?style=for-the-badge"></a>
+  <a href="https://img.shields.io/github/contributors/Neel-Shah-29/SOCIABLAST?logo=GitHub&logoColor=red&style=for-the-badge"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Neel-Shah-29/SOCIABLAST?logo=GitHub&style=for-the-badge"></a>
+</div>
 
 #### Team Name : **Technobots**
 
