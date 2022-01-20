@@ -89,6 +89,6 @@ git clone https://github.com/Neel-Shah-29/SOCIABLAST.git
 
 ## Future Work
 
-1) There are many bot feactures that can be implemented like .stickers , .emoji , .news and much more. Whatever user thinks can be implemented.
-2) The User Interface can be made more user friendly though we have tried to create an execellent UI as per our imagination.
-3) Storage of messages sent and recieved in a given chat room in the local computer as the messages and data is lost once we refresh the screen.
+- [ ] There are many bot feactures that can be implemented like .stickers , .emoji , .news and much more. Whatever user thinks can be implemented.
+- [ ] The User Interface can be made more user friendly though we have tried to create an execellent UI as per our imagination.
+- [ ] Storage of messages sent and recieved in a given chat room in the local computer as the messages and data is lost once we refresh the screen.
