@@ -27,7 +27,7 @@ function App() {
   const [color, setColor] = useState(0);
   useEffect((
   ) => {
-    setsocket(io.connect("http://localhost:3001"));
+    setsocket(io.connect(""));
   }, []
   )
   return (
