@@ -6,6 +6,7 @@ import Header from './Header';
 import { Footer } from './Footer';
 import Main from './Main';
 import Help from './Help'
+import io from 'socket.io-client';
 
 import { useState } from 'react';
 import {
@@ -24,10 +25,11 @@ function App() {
   const [remJoinChat, setRemJoinChat] = useState(true);
   const [messageList, setMessageList] = useState([]);
   const [color, setColor] = useState(0);
+  const socket = io.connect("");
   return (
     <BrowserRouter>
       <Header title="Sociablast" />
-      <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat, messageList, setMessageList, color, setColor }}>
+      <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat, messageList, setMessageList, color, setColor ,socket}}>
         <Routes>
           {<Route exact path="/" element={<Home />} />}
           <Route path="/SignUp" element={<SignUp />} />

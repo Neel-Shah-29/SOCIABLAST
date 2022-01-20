@@ -9,10 +9,9 @@ import {
     Route,
     Link
 } from "react-router-dom";
-const socket = io.connect("")
 
 const JoinRoom = () => {
-    const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
+    const { socket,user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
     const [roomname, setRoomName] = useState("");
     const [showChat, setShowChat] = useState(false);
     const [roomcode, setRoomCode] = useState("");
