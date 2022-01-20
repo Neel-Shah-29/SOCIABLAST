@@ -224,12 +224,19 @@ io.sockets.on("connection", (socket) => {
             })
     })
     socket.on('JoinJoinedRooms', async (data) => {
-        console.log(data);
-        socket.join(data);
-        const clientsInRoom = await io.in(data).allSockets()
-        console.log(clientsInRoom);
-        socket.emit('gotJoinJoinedRooms', data);
-        console.log('Backend of the JoinJoinedRooms.');
+        await SignUpObject.findOne({Username:data.user})
+        .then((datas)=>{
+            for(let i=0;i<datas.RoomsJoined.length;i++){
+                socket.leave(datas.RoomsJoined[i]);
+            }
+        })
+        .then(async()=>{
+            socket.join(data.Roomname);
+            const clientsInRoom = await io.in(data).allSockets()
+            console.log(clientsInRoom);
+            socket.emit('gotJoinJoinedRooms', data.Roomname);
+            console.log('Backend of the JoinJoinedRooms.');  
+        })
     })
 
     socket.on("send_message", (data) => {
