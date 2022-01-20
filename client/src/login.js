@@ -12,7 +12,7 @@ import {
 
 import Main from './Main';
 import UserContext from './UserContext';
-const socket = io.connect("http://localhost:3001");
+const socket = io.connect("");
 
 const Login = () => {
     const [username, setUserame] = useState("");

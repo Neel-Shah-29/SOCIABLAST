@@ -9,7 +9,7 @@ import {
     Route,
     Link
 } from "react-router-dom";
-const socket = io.connect("http://localhost:3001")
+const socket = io.connect("")
 
 const JoinRoom = () => {
     const { user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat } = useContext(UserContext);
