@@ -49,7 +49,6 @@ function Main() {
                         </div>
                         <div className="mothersync">
                             <div className="headers3">
-                                {remJoinChat && <JoinRoom />}
                                 {!remJoinChat && <Chat socket={socket} roomname={joinJoined} username={deluxe.Username} />}
                             </div>
                         </div>
