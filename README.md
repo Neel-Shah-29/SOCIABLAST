@@ -70,7 +70,16 @@ Users can also send the images in the chat room joined.
 git clone https://github.com/Neel-Shah-29/SOCIABLAST.git
 
 ```
-
+To start the frontend user interface
+```
+cd client
+npm start
+```
+To start the backend server
+```
+cd server 
+npm start
+```
 
 
 ## 🖼 Screenshots
