@@ -95,29 +95,29 @@ io.sockets.on("connection", (socket) => {
             Password: object.password
         })
         let a = ''
-        SignUpObject.find({ "Email": Modal.Email})
+        SignUpObject.find({ "Email": Modal.Email })
             .then((data) => {
-                if (data !== null && data.length!==0) {
+                if (data !== null && data.length !== 0) {
                     console.log('User Already Exists for the corresponding Email.');
                     a = 'User Already Exists for the corresponding Email.'
                     socket.emit('signupsubmit', a)
                 }
                 else {
-                    SignUpObject.find({ "Username": Modal.Username})
-                    .then((data)=>{
-                        if(data!==null){
-                            console.log('User Already Exists for the corresponding Username.');
-                            a = 'User Already Exists for the corresponding Username.'
-                            socket.emit('signupsubmit', a)
-                        }
-                        else{     
-                            console.log('User registered Successfully.');
-                            Modal.save().then((result) => {
-                            a = 'User registered Successfully.'
-                            socket.emit('signupsubmit', a)
-                            });
-                        }
-                    })
+                    SignUpObject.find({ "Username": Modal.Username })
+                        .then((data) => {
+                            if (data !== null && data.length !== 0) {
+                                console.log('User Already Exists for the corresponding Username.');
+                                a = 'User Already Exists for the corresponding Username.'
+                                socket.emit('signupsubmit', a)
+                            }
+                            else {
+                                console.log('User registered Successfully.');
+                                Modal.save().then((result) => {
+                                    a = 'User registered Successfully.'
+                                    socket.emit('signupsubmit', a)
+                                });
+                            }
+                        })
                 }
             })
     }
