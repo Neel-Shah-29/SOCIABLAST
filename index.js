@@ -97,7 +97,7 @@ io.sockets.on("connection", (socket) => {
         let a = ''
         SignUpObject.find({ "Email": Modal.Email})
             .then((data) => {
-                if (data !== null) {
+                if (data !== null && data.length!==0) {
                     console.log('User Already Exists for the corresponding Email.');
                     a = 'User Already Exists for the corresponding Email.'
                     socket.emit('signupsubmit', a)
