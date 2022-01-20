@@ -76,10 +76,19 @@ git clone https://github.com/Neel-Shah-29/SOCIABLAST.git
 ## 🖼 Screenshots
 
 ![WhatsApp Image 2022-01-20 at 1 18 39 PM](https://user-images.githubusercontent.com/84740927/150296409-1f502c9d-6378-4585-8142-87a4ac17ed06.jpeg)
+
 ![WhatsApp Image 2022-01-20 at 1 18 39 PM](https://user-images.githubusercontent.com/84740927/150296538-9e714695-5e77-45d1-b60b-be0b4d056d36.jpeg)
+
 ![image](https://user-images.githubusercontent.com/84740927/150296651-d99e0341-cd36-4d96-a9bb-90b970887a5f.png)
+
 ![image](https://user-images.githubusercontent.com/84740927/150296769-f9c866c3-c151-4aa6-8105-cf7cadad3d3d.png)
+
 ![image](https://user-images.githubusercontent.com/84740927/150296794-a10502f5-6f68-488e-9f0e-383b7b8ef0b2.png)
+
 ![image](https://user-images.githubusercontent.com/84740927/150296831-992cd43f-0a82-4dfe-9366-f1f12f151555.png)
 
+## Future Work
 
+1) There are many bot feactures that can be implemented like .stickers , .emoji , .news and much more. Whatever user thinks can be implemented.
+2) The User Interface can be made more user friendly though we have tried to create an execellent UI as per our imagination.
+3) Storage of messages sent and recieved in a given chat room in the local computer as the messages and data is lost once we refresh the screen.
