@@ -223,14 +223,16 @@ io.sockets.on("connection", (socket) => {
                 }
             })
     })
-    socket.on('JoinJoinedRooms', (data) => {
+    socket.on('JoinJoinedRooms', async (data) => {
+        console.log(data);
         socket.join(data);
+        const clientsInRoom = await io.in(data).allSockets()
+        console.log(clientsInRoom);
         socket.emit('gotJoinJoinedRooms', data);
         console.log('Backend of the JoinJoinedRooms.');
     })
 
     socket.on("send_message", (data) => {
-        console.log(data);
         //const clientsInRoom = await io.in(data.roomname).allSockets();
         //The above commented line is used to check the users present in thr room.
         socket.to(data.roomname).emit("receive_message", data);

@@ -6,8 +6,8 @@ import Header from './Header';
 import { Footer } from './Footer';
 import Main from './Main';
 import Help from './Help'
-
-import { useState } from 'react';
+import io from "socket.io-client";
+import { useEffect, useState } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -23,22 +23,30 @@ function App() {
   const [joinJoined, setJoinJoined] = useState(null);
   const [remJoinChat, setRemJoinChat] = useState(true);
   const [messageList, setMessageList] = useState([]);
+  const [socket, setsocket] = useState(undefined)
   const [color, setColor] = useState(0);
-  
+  useEffect((
+  ) => {
+    setsocket(io.connect("http://localhost:3001"));
+  }, []
+  )
   return (
     <BrowserRouter>
       <Header title="Sociablast" />
-      <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, setRemJoinChat, messageList, setMessageList, color, setColor }}>
-        <Routes>
-          {<Route exact path="/" element={<Home />} />}
-          <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/Login" element={< Login />} />
-          <Route path="/Main" element={< Main />} />
-          <Route path="/CreateRoom" element={<CreateRoom />} />
-          <Route path="/JoinRoom" element={<JoinRoom />} />
-          <Route path="/Help" element={<Help />} />
-        </Routes>
-      </UserContext.Provider>
+      {(socket !== undefined) ?
+
+
+        <UserContext.Provider value={{ user, setuser, deluxe, setDeluxe, joinJoined, setJoinJoined, remJoinChat, socket, setRemJoinChat, messageList, setMessageList, color, setColor }}>
+          <Routes>
+            {<Route exact path="/" element={<Home />} />}
+            <Route path="/SignUp" element={<SignUp />} />
+            <Route path="/Login" element={< Login />} />
+            <Route path="/Main" element={< Main />} />
+            <Route path="/CreateRoom" element={<CreateRoom />} />
+            <Route path="/JoinRoom" element={<JoinRoom />} />
+            <Route path="/Help" element={<Help />} />
+          </Routes>
+        </UserContext.Provider> : <div></div>}
       <Footer />
     </BrowserRouter>
   );
