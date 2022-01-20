@@ -1,5 +1,7 @@
-import React, { useState, useEffect ,useContext} from 'react'
-import UserContext from "./UserContext";
+import React, { useState, useEffect } from 'react'
+import io from "socket.io-client";
+
+const socket = io.connect("");
 
 const SignUp = (props) => {
     const [username, setUserame] = useState("");
@@ -7,7 +9,6 @@ const SignUp = (props) => {
     const [password, setPassword] = useState("");
     const [allEntry, setAllEntry] = useState([]);
     const [submitted, setSubmitted] = useState("");
-    const {socket} = useContext(UserContext);
 
     const formSubmit = (e) => {
         e.preventDefault();
