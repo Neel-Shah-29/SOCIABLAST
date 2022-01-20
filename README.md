@@ -73,11 +73,12 @@ git clone https://github.com/Neel-Shah-29/SOCIABLAST.git
 To start the frontend user interface
 ```
 cd client
+npm install
 npm start
 ```
 To start the backend server
 ```
-cd server 
+npm install
 npm start
 ```
 
