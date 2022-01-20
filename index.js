@@ -95,7 +95,7 @@ io.sockets.on("connection", (socket) => {
             Password: object.password
         })
         let a = ''
-        SignUpObject.findOne({ "Email": Modal.Email })
+        SignUpObject.findOne({ "Email": Modal.Email,"Username":Modal.Username })
             .then((data) => {
                 if (data !== null) {
                     console.log('User Already Exists for the corresponding Email.');
