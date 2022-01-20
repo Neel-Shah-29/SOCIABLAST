@@ -3,9 +3,9 @@
 <div align="center">
    <strong>SOCIABLAST</strong> -A chat+bot with amazing features!. <br>
   Inheritance '21 - Team Technobots <br> <br>
-  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/Neel-Shah-29/SOCIABLAST?color=red&style=for-the-badge"></a>
-  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/Neel-Shah-29/SOCIABLAST?style=for-the-badge"></a>
-  <a href="https://img.shields.io/github/contributors/Neel-Shah-29/SOCIABLAST?logo=GitHub&logoColor=red&style=for-the-badge"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Neel-Shah-29/SOCIABLAST?logo=GitHub&style=for-the-badge"></a>
+  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/stargazers"><img alt="GitHub issues" src="https://img.shields.io/github/stars/Neel-Shah-29/SOCIABLAST"></a>
+  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/network/members"><img alt="GitHub stars" src="https://img.shields.io/github/forks/Neel-Shah-29/SOCIABLAST"></a>
+  <a href="https://github.com/Neel-Shah-29/SOCIABLAST/issues"><img alt="GitHub contributors" src="https://img.shields.io/github/issues/Neel-Shah-29/SOCIABLAST"></a>
 </div>
 
 #### Team Name : **Technobots**
@@ -101,6 +101,9 @@ npm start
 ![image](https://user-images.githubusercontent.com/84740927/150296794-a10502f5-6f68-488e-9f0e-383b7b8ef0b2.png)
 
 ![image](https://user-images.githubusercontent.com/84740927/150296831-992cd43f-0a82-4dfe-9366-f1f12f151555.png)
+
+## Demo Video Drive Link
+https://drive.google.com/file/d/1NgQ4JyFTRaFYtzACkFk2x64H6GFTZxEt/view?usp=sharing
 
 ## Future Work
 
