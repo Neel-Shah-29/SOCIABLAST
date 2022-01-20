@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Creating a chat application with various feactures",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "cryptr": "^6.0.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "lyrics-finder": "^21.7.0",
+    "mongoose": "^6.0.13",
+    "node-schedule": "^2.1.0",
+    "socket.io": "^4.4.1",
+    "solenolyrics": "^5.0.0",
+    "wikipedia": "^1.1.6",
+    "xhr2": "^0.2.1"
+  }
+}
