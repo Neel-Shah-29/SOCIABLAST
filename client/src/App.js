@@ -25,11 +25,12 @@ function App() {
   const [messageList, setMessageList] = useState([]);
   const [socket, setsocket] = useState(undefined)
   const [color, setColor] = useState(0);
-  useEffect((
-  ) => {
+ 
+  useEffect(() => {
     setsocket(io.connect(""));
-  }, []
-  )
+    return ()=>{socket.disconnect()};
+  }, [])
+
   return (
     <BrowserRouter>
       <Header title="Sociablast" />
