@@ -6,6 +6,8 @@
   <a href="https://github.com/Neel-Shah-29/SOCIABLAST/stargazers"><img alt="GitHub issues" src="https://img.shields.io/github/stars/Neel-Shah-29/SOCIABLAST"></a>
   <a href="https://github.com/Neel-Shah-29/SOCIABLAST/network/members"><img alt="GitHub stars" src="https://img.shields.io/github/forks/Neel-Shah-29/SOCIABLAST"></a>
   <a href="https://github.com/Neel-Shah-29/SOCIABLAST/issues"><img alt="GitHub contributors" src="https://img.shields.io/github/issues/Neel-Shah-29/SOCIABLAST"></a>
+    <img src="https://komarev.com/ghpvc/?username=SOCIABLAST&label=Project%20views&color=0e75b6&style=flat"
+    alt="adam-pw" /> 
 </div>
 
 #### Team Name : **Technobots**
