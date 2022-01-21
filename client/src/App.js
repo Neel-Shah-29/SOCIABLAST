@@ -16,20 +16,16 @@ import {
 } from "react-router-dom";
 import SignUp from './SignUp';
 import Home from './Home';
-import UserContext from './UserContext';
+import UserContext,{socket} from './UserContext';
 function App() {
   const [user, setuser] = useState(null);
   const [deluxe, setDeluxe] = useState({});
   const [joinJoined, setJoinJoined] = useState(null);
   const [remJoinChat, setRemJoinChat] = useState(true);
   const [messageList, setMessageList] = useState([]);
-  const [socket, setsocket] = useState(undefined)
   const [color, setColor] = useState(0);
  
-  useEffect(() => {
-    setsocket(io.connect(""));
-    return ()=>{socket.disconnect()};
-  }, [])
+
 
   return (
     <BrowserRouter>

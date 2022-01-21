@@ -7,21 +7,21 @@ function Container(props) {
     let Roomname = props.Rname;
     const { joinJoined, setJoinJoined } = useContext(UserContext);
     const { remJoinChat, setRemJoinChat } = useContext(UserContext);
-    const { messageList, setMessageList ,deluxe} = useContext(UserContext);
+    const { messageList, setMessageList ,deluxe,socket} = useContext(UserContext);
 
     function func() {
         setMessageList([]);
-        props.socket.emit('JoinJoinedRooms', {Roomname:Roomname,user:deluxe.Username});
+        socket.emit('JoinJoinedRooms', {Roomname:Roomname,user:deluxe.Username});
     }
 
     useEffect(() => {
         console.log(joinJoined);
         console.log('Frontend of the JoinJoinedRooms');
-        props.socket.on("gotJoinJoinedRooms", (data) => {
+        socket.on("gotJoinJoinedRooms", (data) => {
             setJoinJoined(data);
             setRemJoinChat(false);
         })
-    }, [props.socket, joinJoined]);
+    }, [socket, joinJoined]);
 
     return (
         <div>
