@@ -74,6 +74,9 @@ function Chat({ socket, username, roomname }) {
             setMessageList((list) => [...list, data]);
             console.log(data);
         })
+        return ()=>{
+            socket.off();
+        }
     }, [socket]);
     File.prototype.convertToBase64 = function (callback) {
         var reader = new FileReader();
