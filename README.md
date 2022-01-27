@@ -64,8 +64,14 @@ Users can also send the images in the chat room joined.
 
 ## 🤖 Technology Stack
 
-- Front-end - HTML, CSS, Javascript, React
-- Back-end - MongoDB, Node JS, Socket IO
+- Front-end -![JavaScript](https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=flat-square&logo=javascript&logoColor=000000&labelColor=%23F7DF1C&color=%23FFCE5A)
+![HTML5](https://img.shields.io/badge/-HTML5-%23E44D27?style=flat-square&logo=html5&logoColor=ffffff)
+![CSS3](https://img.shields.io/badge/-CSS3-%231572B6?style=flat-square&logo=css3)
+![React](https://img.shields.io/badge/-React-61DAFB?style=flat-square&logo=react&logoColor=ffffff)
+
+- Back-end - ![Nodejs](https://img.shields.io/badge/-Nodejs-339933?style=flat-square&logo=Node.js&logoColor=ffffff)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat-square&logo=mongodb&logoColor=white)
+![Socket-IO](https://img.shields.io/badge/-Socket--IO-green)
 
 
 ## 🛠️ Project Setup
