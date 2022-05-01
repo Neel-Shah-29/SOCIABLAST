@@ -35,6 +35,7 @@
 ### SOCIABLAST!
 
 People can **chat** , send **images** , execute various **bot features** in the chat room discussion. We have also created a great chat room system configuration with high security of **Login** and **Password** for each user. Appropriate validations are also applied to Login and Password.
+Users can also send the images in the chat room joined.
 
 ![login](https://user-images.githubusercontent.com/84740927/150297063-2490c634-100a-46b9-ab06-fc726626b9ec.png)
 
@@ -53,7 +54,6 @@ Making an application with chat + bot considering the following features COMMAND
 
 ![image](https://user-images.githubusercontent.com/84740927/150296115-7920d057-25db-497e-9c6f-26f9ee12b997.png)
 
-Users can also send the images in the chat room joined.
 
 
 
